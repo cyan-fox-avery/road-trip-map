@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (26)
+## Places so far (31)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -35,4 +35,7 @@ Rookery (San Simeon, CA), The Mystery Spot (Santa Cruz, CA), Musée Mécanique
 (Leggett, CA), Avenue of the Giants (Weott, CA), Salvation Mountain (Niland,
 CA), Mothership (San Diego, CA), Corvette Diner (San Diego, CA), San Diego
 Air & Space Museum (San Diego, CA), Disneyland Park (Anaheim, CA), Knott's
-Berry Farm (Buena Park, CA).
+Berry Farm (Buena Park, CA), Medieval Times Buena Park (Buena Park, CA),
+Aquarium of the Pacific (Long Beach, CA), Universal Studios Hollywood
+(Universal City, CA), Griffith Observatory (Los Angeles, CA), Monterey Bay
+Aquarium (Monterey, CA).
