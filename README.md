@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (81)
+## Places so far (86)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -64,4 +64,6 @@ Nevada Northern Railway (Ely, NV), The Star Hotel (Elko, NV),
 Sandpoint (Sandpoint, ID), Silverwood Theme Park (Athol, ID), Lake
 Coeur d'Alene Cruises (Coeur d'Alene, ID), Wallace (Wallace, ID),
 Silver Mountain Gondola (Kellogg, ID), Boise (Boise, ID), RePop
-Gifts (Boise, ID).
+Gifts (Boise, ID), Westside Drive In (Boise, ID), Indian Creek
+Plaza (Caldwell, ID), Bruneau Dunes State Park (Bruneau, ID),
+McCall (McCall, ID), The Roundhouse (Sun Valley, ID).
