@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (41)
+## Places so far (46)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -43,4 +43,7 @@ Exploratorium (San Francisco, CA), Alcatraz Island (San Francisco, CA),
 Skunk Train (Fort Bragg, CA), Redwood Sky Walk (Eureka, CA), The Living
 Desert Zoo & Gardens (Palm Desert, CA), Cranberry Sweets & More (Coos Bay,
 OR), New England Aquarium (Boston, MA), Tillamook Creamery (Tillamook, OR),
-Freakybuttrue Peculiarium (Portland, OR).
+Freakybuttrue Peculiarium (Portland, OR), Crater Lake Rim Drive (Crater
+Lake National Park, OR), Rogue Creamery Cheese Shop (Central Point, OR),
+Roaring Rapids Pizza (Eugene, OR), Slappy Cakes (Portland, OR), Raven's
+Manor (Portland, OR).
