@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (16)
+## Places so far (21)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -30,4 +30,7 @@ Mothman Museum (WV), House on the Rock (WI), City Museum (St. Louis, MO),
 Meow Wolf House of Eternal Return (Santa Fe, NM), Very Large Array (NM),
 Best Friends Animal Sanctuary (Kanab, UT), Museum of Make Believe (Laguna
 Beach, CA), Madonna Inn (San Luis Obispo, CA), Piedras Blancas Elephant Seal
-Rookery (San Simeon, CA), The Mystery Spot (Santa Cruz, CA).
+Rookery (San Simeon, CA), The Mystery Spot (Santa Cruz, CA), Musée Mécanique
+(San Francisco, CA), The Wave Organ (San Francisco, CA), Confusion Hill
+(Leggett, CA), Avenue of the Giants (Weott, CA), Salvation Mountain (Niland,
+CA).
