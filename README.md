@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (21)
+## Places so far (26)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -33,4 +33,6 @@ Beach, CA), Madonna Inn (San Luis Obispo, CA), Piedras Blancas Elephant Seal
 Rookery (San Simeon, CA), The Mystery Spot (Santa Cruz, CA), Musée Mécanique
 (San Francisco, CA), The Wave Organ (San Francisco, CA), Confusion Hill
 (Leggett, CA), Avenue of the Giants (Weott, CA), Salvation Mountain (Niland,
-CA).
+CA), Mothership (San Diego, CA), Corvette Diner (San Diego, CA), San Diego
+Air & Space Museum (San Diego, CA), Disneyland Park (Anaheim, CA), Knott's
+Berry Farm (Buena Park, CA).
