@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>Road Trip Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+  :root{
+    --bg:#f6f4ee; --surface:#ffffff; --surface-2:#efece3; --ink:#1c2420; --ink-2:#4b5750; --ink-3:#71807a;
+    --line:#ddd8ca; --accent:#1d4d3a; --accent-ink:#ffffff; --accent-soft:#e3ede7;
+    --chip:#eef0ea; --shadow:0 10px 30px rgba(28,36,32,.10); --shadow-sm:0 2px 10px rgba(28,36,32,.08);
+    --radius:14px;
+    --cat-food:#d94f30; --cat-shopping:#b97f10; --cat-nature:#2e7d4f; --cat-museum:#2a5a8a;
+    --cat-amusement:#c42b5a; --cat-historic:#7a5a2e; --cat-quirky:#6d4fa1; --cat-other:#5a6c7d;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#121613; --surface:#1b201d; --surface-2:#232a26; --ink:#ece9df; --ink-2:#b9c0ba; --ink-3:#8b968f;
+      --line:#333b36; --accent:#7fc7a5; --accent-ink:#0f1f18; --accent-soft:#22352c;
+      --chip:#262d29; --shadow:0 10px 30px rgba(0,0,0,.45); --shadow-sm:0 2px 10px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent)}
+  .wrap{max-width:1180px;margin:0 auto;padding:20px 16px 56px}
+  @media(min-width:760px){.wrap{padding:28px 24px 64px}}
+
+  /* Intro */
+  .intro{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:6px}
+  .intro h1{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:clamp(30px,5vw,44px);line-height:1.05;margin:0;letter-spacing:.2px}
+  .intro h1 em{font-style:italic;color:var(--accent)}
+  .intro p{margin:8px 0 0;color:var(--ink-2);max-width:56ch;font-size:15.5px}
+  .stats{display:flex;gap:8px;flex-wrap:wrap}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:600;color:var(--ink-2);box-shadow:var(--shadow-sm)}
+  .stat b{color:var(--ink);font-size:15px}
+
+  /* Toolbar */
+  .toolbar{background:var(--bg);padding:14px 0 10px;margin-top:14px;border-bottom:1px solid var(--line)}
+  @media(min-width:1100px){.toolbar{position:sticky;top:0;z-index:1200}}
+  .viewtoggle{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;gap:4px;box-shadow:var(--shadow-sm)}
+  .viewtoggle button{appearance:none;border:0;background:transparent;color:var(--ink-2);font:inherit;font-weight:700;font-size:15px;min-height:48px;padding:10px 22px;border-radius:999px;cursor:pointer}
+  .viewtoggle button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+  .viewtoggle button:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .toolbar-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+  .result-count{font-size:14px;color:var(--ink-2);font-weight:600}
+
+  .filters{display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px}
+  @media(min-width:640px){.filters{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:980px){.filters{grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr 1fr}}
+  .field{display:flex;flex-direction:column;gap:5px}
+  .field label{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+  .field select,.field input{font:inherit;font-size:15.5px;min-height:50px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);width:100%}
+  .filter-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+  .btn{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-weight:700;font-size:15px;min-height:50px;padding:10px 18px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow-sm)}
+  .btn-primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .btn:active{transform:translateY(1px)}
+
+  /* Legend */
+  .legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:16px 0 12px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+  .legend h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0 0 4px;width:100%}
+  .legend-item{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--ink-2);background:none;border:0;font-family:inherit;cursor:pointer;min-height:44px;padding:4px 6px;border-radius:8px}
+  .legend-item[aria-pressed="true"]{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+  .dot{width:16px;height:16px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);flex:none}
+
+  /* Map */
+  .map-shell{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+  #map{height:460px;width:100%;background:#dfe8dd}
+  @media(min-width:760px){#map{height:560px}}
+  .map-fallback{display:none;padding:28px;text-align:center;color:var(--ink-2)}
+  .leaflet-popup-content-wrapper{border-radius:12px}
+  .leaflet-popup-content{font-family:"Public Sans",sans-serif;font-size:14.5px;line-height:1.45;margin:14px 16px;min-width:220px}
+  .pop-name{font-family:"DM Serif Display",Georgia,serif;font-size:20px;line-height:1.15;margin:0 0 2px;color:#1c2420}
+  .pop-loc{color:#5a6a61;font-size:13.5px;margin:0 0 8px;font-weight:600}
+  .pop-desc{margin:0 0 10px;color:#333}
+  .pop-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .pop-links{display:flex;gap:8px;flex-wrap:wrap}
+  .pop-links a{display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:14px;text-decoration:none}
+  .pop-links a.primary{background:#1d4d3a;color:#fff}
+  .pop-links a.secondary{border:1.5px solid #1d4d3a;color:#1d4d3a;background:#fff}
+  /* Custom pin */
+  .pin-wrap{background:transparent;border:0}
+  .pin{width:34px;height:34px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .pin span{transform:rotate(45deg);color:#fff;font-size:15px;line-height:1}
+  .pin.visited{outline:3px solid #1c2420;outline-offset:1px}
+  @media(prefers-color-scheme: dark){.pin.visited{outline-color:#fff}}
+
+  .tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--chip);color:var(--ink-2);font-size:12.5px;font-weight:700;white-space:nowrap}
+  .tag .cdot{width:9px;height:9px;border-radius:50%;flex:none}
+  .tag.status-want{background:#fdf0d5;color:#7a5200}
+  .tag.status-visited{background:#dff2e4;color:#14532d}
+  @media(prefers-color-scheme: dark){.tag.status-want{background:#3a2f14;color:#f2cd72}.tag.status-visited{background:#173a26;color:#8fe0ab}}
+
+  /* Detail panel */
+  .detail{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+  .detail-head{padding:20px 20px 0;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-start}
+  @media(min-width:760px){.detail-head{padding:24px 26px 0}}
+  .detail-head h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:clamp(26px,4vw,34px);margin:0;line-height:1.1}
+  .detail-loc{color:var(--ink-2);font-weight:600;margin:4px 0 0}
+  .detail-body{padding:16px 20px 22px}
+  @media(min-width:760px){.detail-body{padding:16px 26px 26px}}
+  .detail-desc{font-size:16.5px;color:var(--ink);max-width:72ch;margin:0 0 18px}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 18px}
+  @media(min-width:760px){.facts{grid-template-columns:repeat(4,1fr)}}
+  .fact{background:var(--surface);padding:12px 14px}
+  .fact dt{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0 0 3px}
+  .fact dd{margin:0;font-weight:700;font-size:15.5px}
+  .fact dd small{display:block;font-weight:500;color:var(--ink-2);font-size:13px;margin-top:2px}
+  .stars{color:#b97f10;font-size:17px;letter-spacing:2px}
+  .stars .off{color:var(--line)}
+  .detail-actions{display:flex;flex-wrap:wrap;gap:10px}
+  .detail-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:12px 20px;border-radius:999px;font-weight:700;font-size:15.5px;text-decoration:none}
+  .detail-actions a.primary{background:var(--accent);color:var(--accent-ink)}
+  .detail-actions a.secondary{border:1.5px solid var(--accent);color:var(--accent);background:transparent}
+  .notes-box{margin-top:16px;background:var(--surface-2);border-radius:12px;padding:14px 16px;font-size:15px;color:var(--ink-2)}
+  .notes-box b{color:var(--ink)}
+
+  /* List view */
+  .cards{display:grid;grid-template-columns:1fr;gap:16px;margin-top:18px}
+  @media(min-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1020px){.cards{grid-template-columns:repeat(3,1fr)}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:18px;display:flex;flex-direction:column;gap:10px;text-align:left;font:inherit;color:inherit;cursor:pointer;width:100%}
+  .card:hover{border-color:var(--accent)}
+  .card.selected{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+  .card-top{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+  .card h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:23px;line-height:1.15;margin:0}
+  .card .loc{color:var(--ink-2);font-weight:600;font-size:14px;margin:2px 0 0}
+  .card .desc{color:var(--ink-2);font-size:14.5px;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card .meta{display:flex;flex-wrap:wrap;gap:6px}
+  .card .foot{margin-top:auto;padding-top:8px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-3);font-weight:600}
+  .empty{display:none;text-align:center;padding:44px 20px;background:var(--surface);border:1px dashed var(--line);border-radius:16px;color:var(--ink-2);margin-top:18px}
+  .empty h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:24px;color:var(--ink);margin:0 0 6px}
+
+  /* Schema / adding */
+  .schema{margin-top:36px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 20px;box-shadow:var(--shadow-sm)}
+  @media(min-width:760px){.schema{padding:28px}}
+  .schema h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:28px;margin:0 0 6px}
+  .schema p{color:var(--ink-2);max-width:70ch;margin:0 0 16px}
+  .schema-grid{display:grid;grid-template-columns:1fr;gap:8px 22px}
+  @media(min-width:700px){.schema-grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:1020px){.schema-grid{grid-template-columns:1fr 1fr 1fr}}
+  .schema-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:var(--surface-2);border-radius:10px;font-size:14.5px}
+  .schema-item b{white-space:nowrap}
+  .schema-item span{color:var(--ink-2)}
+  .price-key{margin-top:14px;font-size:14px;color:var(--ink-2)}
+  footer{margin-top:28px;color:var(--ink-3);font-size:13.5px;text-align:center}
+  .hidden{display:none !important}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="intro">
+    <div>
+      <h1>Avery &amp; Harley's <em>road trip</em> stops</h1>
+      <p>Every place on the list across the continental US — tap a pin or a card to see the full details: price, how long it takes, best seasons, and your own rating once you've been.</p>
+    </div>
+    <div class="stats" aria-label="Trip summary">
+      <span class="stat"><b id="stat-total">1</b> place</span>
+      <span class="stat"><b id="stat-states">1</b> state</span>
+      <span class="stat"><b id="stat-visited">0</b> visited</span>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="toolbar-row">
+      <div class="viewtoggle" role="group" aria-label="Choose view">
+        <button type="button" id="btn-map" aria-pressed="true">🗺️ Map</button>
+        <button type="button" id="btn-list" aria-pressed="false">☰ List</button>
+      </div>
+      <span class="result-count" id="result-count" aria-live="polite"></span>
+    </div>
+
+    <form class="filters" id="filters" aria-label="Filter and sort places">
+      <div class="field">
+        <label for="f-search">Search</label>
+        <input type="search" id="f-search" placeholder="Name, city, or keyword…" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="f-category">Type</label>
+        <select id="f-category"><option value="">All types</option></select>
+      </div>
+      <div class="field">
+        <label for="f-state">State</label>
+        <select id="f-state"><option value="">All states</option></select>
+      </div>
+      <div class="field">
+        <label for="f-price">Price</label>
+        <select id="f-price">
+          <option value="">Any price</option>
+          <option value="0">Free</option>
+          <option value="1">$ — under $25</option>
+          <option value="2">$$ — $25–$75</option>
+          <option value="3">$$$ — $75+</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-time">Visit length</label>
+        <select id="f-time">
+          <option value="">Any length</option>
+          <option value="quick">Quick stop (&lt; 1 hr)</option>
+          <option value="short">1–2 hours</option>
+          <option value="half">Half day</option>
+          <option value="full">Full day</option>
+          <option value="multi">Multi day</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-season">Season</label>
+        <select id="f-season">
+          <option value="">Any season</option>
+          <option>Spring</option><option>Summer</option><option>Fall</option><option>Winter</option>
+          <option value="year-round">Year-round</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-sort">Sort list by</label>
+        <select id="f-sort">
+          <option value="name">Name (A–Z)</option>
+          <option value="state">State, then name</option>
+          <option value="price-asc">Price (low → high)</option>
+          <option value="price-desc">Price (high → low)</option>
+          <option value="time-asc">Visit length (short → long)</option>
+          <option value="rating-desc">Your rating (high → low)</option>
+        </select>
+      </div>
+    </form>
+    <div class="filter-actions">
+      <button type="button" class="btn" id="f-status-want" aria-pressed="false">Want to go</button>
+      <button type="button" class="btn" id="f-status-visited" aria-pressed="false">Visited</button>
+      <button type="button" class="btn" id="f-reset">Reset all filters</button>
+    </div>
+  </div>
+
+  <!-- MAP VIEW -->
+  <section id="view-map" aria-label="Map view">
+    <div class="legend" id="legend" aria-label="Pin colours by type"></div>
+    <div class="map-shell">
+      <div id="map" role="application" aria-label="Interactive map of road trip places in the continental United States"></div>
+      <div class="map-fallback" id="map-fallback">
+        <p><strong>The map couldn't load.</strong> Switch to the List view above — every place is there with its full details.</p>
+      </div>
+    </div>
+    <article class="detail" id="detail" aria-live="polite"></article>
+  </section>
+
+  <!-- LIST VIEW -->
+  <section id="view-list" class="hidden" aria-label="List view">
+    <div class="cards" id="cards"></div>
+    <div class="empty" id="empty">
+      <h3>Nothing matches those filters</h3>
+      <p>Try widening the price, season, or state — or reset all filters to see the whole list again.</p>
+    </div>
+  </section>
+
+  <section class="schema" aria-label="What every entry includes">
+    <h2>Every entry carries the full set — from day one</h2>
+    <p>These are the fields locked in before the first place was added, so no entry ever needs re-editing later. Send places one at a time — name, state, type, and a link if it has one — and the coordinates get looked up and filled in for you.</p>
+    <div class="schema-grid">
+      <div class="schema-item"><b>Name</b><span>— the attraction's name</span></div>
+      <div class="schema-item"><b>Type</b><span>— food, shopping, nature, museum, amusement, historic, quirky, other</span></div>
+      <div class="schema-item"><b>City &amp; state</b><span>— where it is</span></div>
+      <div class="schema-item"><b>Coordinates</b><span>— latitude &amp; longitude, so the pin lands right</span></div>
+      <div class="schema-item"><b>Address</b><span>— optional street address</span></div>
+      <div class="schema-item"><b>Website</b><span>— link to the attraction</span></div>
+      <div class="schema-item"><b>Description</b><span>— a short summary</span></div>
+      <div class="schema-item"><b>Price tier</b><span>— Free, $, $$, or $$$</span></div>
+      <div class="schema-item"><b>Visit length</b><span>— quick stop, 1–2 hours, half day, full day, multi day</span></div>
+      <div class="schema-item"><b>Seasons</b><span>— spring, summer, fall, winter, or year-round</span></div>
+      <div class="schema-item"><b>Your rating</b><span>— 1–5 stars, filled in only after you've visited</span></div>
+      <div class="schema-item"><b>Reviews link</b><span>— out to live reviews (Google / Tripadvisor)</span></div>
+      <div class="schema-item"><b>Status</b><span>— want to go, or visited</span></div>
+      <div class="schema-item"><b>Notes</b><span>— anything you two want to remember</span></div>
+    </div>
+    <p class="price-key"><strong>Price key:</strong> Free &nbsp;·&nbsp; $ = under $25 per person &nbsp;·&nbsp; $$ = $25–$75 &nbsp;·&nbsp; $$$ = $75+</p>
+  </section>
+
+  <footer>Map data © OpenStreetMap contributors · Pins show places added so far — the list grows one real place at a time.</footer>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+/* ============================================================
+   PLACES — add one object per attraction. Every field from the
+   locked-in schema is here so nothing needs re-editing later.
+   price: 0 = Free, 1 = $, 2 = $$, 3 = $$$
+   time: "quick" (<1h) | "short" (1–2h) | "half" | "full" | "multi" (multi day)
+   rating: null until visited, then 1–5 (your own rating)
+   status: "want" | "visited"
+   ============================================================ */
+var PLACES = [
+  {
+    id: "dollywood",
+    name: "Dollywood",
+    category: "amusement",
+    city: "Pigeon Forge",
+    state: "Tennessee",
+    lat: 35.80782,
+    lng: -83.53427,
+    address: "2700 Dollywood Parks Blvd, Pigeon Forge, TN 37863",
+    website: "https://www.dollywood.com/themepark/",
+    reviewsUrl: "https://www.tripadvisor.in/Attraction_Review-g55270-d103537-Reviews-or3700-Dollywood_Theme_Park-Pigeon_Forge_Tennessee.html",
+    description: "Dolly Parton's 165-acre theme park in the foothills of the Great Smoky Mountains — big coasters and family rides, live music shows and seasonal festivals, and craftspeople demonstrating East Tennessee traditions, all wrapped in Southern charm.",
+    price: 3,
+    time: "full",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Open mid-March through early January. Tripadvisor named it the #1 theme park in the U.S. in 2022 and 2024, and it won the Golden Ticket Award for Best Park in the world in 2023 — plan a full day, one reviewer after another says a partial day isn't enough."
+  },
+  {
+    id: "hersheypark",
+    name: "Hersheypark",
+    category: "amusement",
+    city: "Hershey",
+    state: "Pennsylvania",
+    lat: 40.29272,
+    lng: -76.65916,
+    address: "100 Hersheypark Drive, Hershey, PA 17033",
+    website: "https://www.hersheypark.com/",
+    reviewsUrl: "https://www.tripadvisor.in/Attraction_Review-g52819-d107691-Reviews-or40-Hersheypark-Hershey_Pennsylvania.html",
+    description: "Milton S. Hershey's chocolate-themed park in Hershey, Pennsylvania — the largest amusement park in the state, with major coasters like Candymonium and Skyrush, the 11-acre Boardwalk water park, and ZooAmerica included with admission.",
+    price: 2,
+    time: "full",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Founded in 1906 as a leisure park for Hershey Chocolate Company employees. Open April through early January, including Hersheypark Halloween and Christmas Candylane in the fall and winter — one ticket covers the rides, The Boardwalk in summer, and ZooAmerica, so give it a full day."
+  },
+  {
+    id: "walt-disney-world",
+    name: "Walt Disney World Resort",
+    category: "amusement",
+    city: "Orlando",
+    state: "Florida",
+    lat: 28.40394,
+    lng: -81.58062,
+    address: "3111 World Dr, Orlando, FL 32830",
+    website: "https://disneyworld.disney.go.com/en_CA/",
+    reviewsUrl: "https://www.tripadvisor.ca/ShowUserReviews-g34515-d143394-r1042544211-Walt_Disney_World_Resort-Orlando_Florida.html",
+    description: "Walt Disney World Resort near Orlando, Florida — a roughly 25,000-acre resort with four theme parks: Magic Kingdom, EPCOT, Disney's Hollywood Studios, and Disney's Animal Kingdom, plus two water parks and dozens of resort hotels.",
+    price: 3,
+    time: "multi",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Opened October 1, 1971, and open year-round. One-day, one-park tickets are date-based and run well over $100 per person, so this is solidly $$$ — and with four full parks to cover, most visitors give it several days rather than a single full day."
+  },
+  {
+    id: "portillos-chicago",
+    name: "Portillo's",
+    category: "food",
+    city: "Chicago",
+    state: "Illinois",
+    lat: 41.89339,
+    lng: -87.63141,
+    address: "100 W Ontario St, Chicago, IL 60654",
+    website: "https://locations.portillos.com/chicago/",
+    reviewsUrl: "https://www.tripadvisor.in/Restaurant_Review-g35805-d1171368-Reviews-Portillo_s_Barnelli_s_Chicago-Chicago_Illinois.html",
+    description: "The Portillo's & Barnelli's flagship in Chicago's River North — a 1930s–40s Prohibition-themed spot for Chicago classics: Italian beef sandwiches, Chicago-style hot dogs with all the fixings, char-broiled burgers, chopped salad, and the famous chocolate cake shake.",
+    price: 1,
+    time: "quick",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "The downtown flagship at Ontario and Clark — most Portillo's locations trace back to Dick Portillo's first hot dog stand in Villa Park in 1963. Open 10:00 AM–1:00 AM every day, so it works as a late-night stop too. Don't skip the chocolate cake shake; Barnelli's inside covers the pasta side of the menu."
+  },
+  {
+    id: "dog-mountain",
+    name: "Dog Mountain",
+    category: "nature",
+    city: "St. Johnsbury",
+    state: "Vermont",
+    lat: 44.43536,
+    lng: -71.98190,
+    address: "143 Parks Rd, St. Johnsbury, VT 05819",
+    website: "https://www.dogmt.com/visit/",
+    reviewsUrl: "https://www.tripadvisor.ie/Attraction_Review-g57387-d1010623-Reviews-Dog_Mountain-Saint_Johnsbury_Northeast_Kingdom_Vermont.html",
+    description: "A 150-acre mountaintop haven in St. Johnsbury, Vermont, created by folk artist Stephen Huneck — leash-optional hiking trails and dog ponds, the Stephen Huneck Gallery, and the Dog Chapel, whose walls are covered floor to ceiling with photos, letters, and memorials to beloved dogs.",
+    price: 0,
+    time: "half",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Free and open to the public — the grounds are open dawn to dusk, with a suggested donation toward upkeep. Leashes are optional: dogs can run, swim in the ponds, and try the agility course. Stephen Huneck and his wife Gwen bought the property in 1995 and built the Dog Chapel after his visionary experience. Most visits run 2–3 hours; gallery and chapel hours are typically 10 AM–5 PM, so check ahead, and time it for one of the seasonal Dog Parties if you can."
+  },
+  {
+    id: "cryptozoology-museum",
+    name: "International Cryptozoology Museum",
+    category: "museum",
+    city: "Bangor",
+    state: "Maine",
+    lat: 44.81828,
+    lng: -68.77485,
+    address: "490 Broadway, Bangor, ME 04401",
+    website: "https://cryptozoologymuseum.com/",
+    reviewsUrl: "https://www.TripAdvisor.ca/Attraction_Review-g40827-d1674550-Reviews-International_Cryptozoology_Museum-Portland_Maine.html",
+    description: "The world's only museum devoted entirely to cryptozoology — the study of hidden or unknown animals — in Bangor, Maine. Founded in 2003 by cryptozoologist and author Loren Coleman, its thousands of specimens, replicas, and artifacts cover Bigfoot, the Loch Ness Monster, Mothman, the Feejee mermaid, and lesser-known cryptids and folk traditions from around the world.",
+    price: 1,
+    time: "short",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Important: it moved — the museum opened at its new Bangor home on June 1, 2026, after 23 years in Portland, and the old Thompson's Point location in Portland is closed, so don't navigate there. Admission is $10 for ages 13+, $5 for 12 and under, babies free. Hours shift with the season: daily 10 AM–6 PM April–September, shorter days through the fall, and Friday–Monday only January–March; closed Thanksgiving, Christmas Eve, and Christmas — check ahead before driving over. The Bangor building is a historic Streamline Moderne landmark that's still being renovated."
+  },
+  {
+    id: "mothman-museum",
+    name: "Mothman Museum",
+    category: "museum",
+    city: "Point Pleasant",
+    state: "West Virginia",
+    lat: 38.84276,
+    lng: -82.13863,
+    address: "400 Main St, Point Pleasant, WV 25550",
+    website: "https://www.mothmanmuseum.com/mothman-museum.html",
+    reviewsUrl: "https://www.tripadvisor.ca/Attraction_Review-g59426-d621279-Reviews-Mothman_Museum-Point_Pleasant_West_Virginia.html",
+    description: "The world's only Mothman Museum, in Point Pleasant, West Virginia — the town where the Mothman sightings actually happened in 1966–67. Handwritten eyewitness accounts from the night of November 15, 1966, original press clippings and footage of the Silver Bridge disaster, exhibits on John Keel, Mary Hyre, and the Men in Black, and the largest collection of props and memorabilia from the film The Mothman Prophecies, with the famous Mothman Statue right next door.",
+    price: 1,
+    time: "quick",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Open 7 days a week — Monday–Thursday 10 AM–5 PM, Friday–Saturday 10 AM–6 PM, Sunday 12–5 PM; closed Christmas Day, New Year's Day, Easter, and Thanksgiving. Admission is $4.99 for ages 11 to adult and $1.99 for children 10 and under. It's a small museum — most visits run under an hour, longer if you read the archives closely. Bring a camera for the life-sized Mothman replicas and the statue beside the museum, and leave time to walk to the Silver Bridge Memorial, Tu-Endi-Wei State Park, and the flood wall murals, all within a couple of blocks."
+  },
+  {
+    id: "house-on-the-rock",
+    name: "The House on the Rock",
+    category: "quirky",
+    city: "Spring Green",
+    state: "Wisconsin",
+    lat: 43.09420,
+    lng: -90.13124,
+    address: "5754 State Road 23, Spring Green, WI 53588",
+    website: "https://www.thehouseontherock.com/",
+    reviewsUrl: "https://www.tripadvisor.ca/Attraction_Review-g60294-d103795-Reviews-or1010-House_on_the_Rock-Spring_Green_Wisconsin.html",
+    description: "Alex Jordan Jr.'s sprawling, eccentric house and museum complex perched atop Deer Shelter Rock in Spring Green, Wisconsin — begun in the 1940s and grown into three self-guided sections of endless collections: the original house, the 218-foot Infinity Room jutting out over the Wyoming Valley, the world's largest indoor carousel, enormous self-playing music machines, dollhouses, model ships, and a 200-foot sea creature in the Heritage of the Sea exhibit.",
+    price: 2,
+    time: "half",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Seasonal, not year-round — the regular season runs mid-March through early November, followed by the Christmas Experience through December; the complex is closed in January and February. In spring and fall it's open Thursday through Monday (closed Tuesday and Wednesday), and daily in summer, 9 AM–5 PM. The Ultimate Experience covering all three sections is about $35 for adults — buy the $$ tier honestly — and the House recommends allowing at least 3 to 3.5 hours and arriving no later than 2 PM, since last Ultimate admission is at 3 PM and sections start closing early. Most visitors end up staying 3–5 hours, so wear comfortable shoes."
+  },
+  {
+    id: "city-museum",
+    name: "City Museum",
+    category: "quirky",
+    city: "St. Louis",
+    state: "Missouri",
+    lat: 38.63372,
+    lng: -90.20073,
+    address: "750 N 16th St, St. Louis, MO 63103",
+    website: "https://citymuseum.org/",
+    reviewsUrl: "https://www.tripadvisor.co.nz/Attraction_Review-g44881-d107810-Reviews-or20-City_Museum-Saint_Louis_Missouri.html",
+    description: "A 600,000-square-foot artist-built playground inside the former International Shoe factory in downtown St. Louis — not a look-but-don't-touch museum but a climbable, crawlable maze of repurposed architectural and industrial salvage: a 10-story spiral slide, underground caves, tunnels and slides everywhere, MonstroCity's multi-story outdoor climbing structure, a skate park, aquarium, and a rooftop with a Ferris wheel and a school bus teetering on the edge.",
+    price: 1,
+    time: "half",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Open year-round, generally from 10 AM with closing times that vary by day and season (later on Fridays and Saturdays) — check the calendar for your date. General admission starts at $20 online (about $23 at the window, children 2 and under free); the Rooftop is a separate add-on, roughly $8, and both the Rooftop and MonstroCity are weather-dependent and seasonal, roughly March through October. Plan at least 4 hours — many people stay 5–6. Wear closed-toe shoes and clothes you can climb and crawl in; kneepads are sold in the gift shop and regulars swear by them. Parking in the Serpent Lot is about $15."
+  },
+  {
+    id: "house-of-eternal-return",
+    name: "House of Eternal Return",
+    category: "quirky",
+    city: "Santa Fe",
+    state: "New Mexico",
+    lat: 35.65461,
+    lng: -105.99658,
+    address: "1352 Rufina Cir, Santa Fe, NM 87507",
+    website: "https://meowwolf.com/projects/house-of-eternal-return",
+    reviewsUrl: "https://www.tripadvisor.co.za/Attraction_Review-g60958-d10084963-Reviews-or2500-Meow_Wolf_Santa_Fe-Santa_Fe_New_Mexico.html",
+    description: "Meow Wolf's original permanent exhibition in Santa Fe, New Mexico — a 20,000-square-foot immersive art experience built around a mysterious Victorian house belonging to the Selig family, who vanished after a forbidden experiment tore at time and space. Crawl through the refrigerator, the washing machine, and other secret passages into dozens of fantastical, hands-on worlds across more than 70 rooms created by local and community artists, and piece together the Seligs' story as you explore.",
+    price: 2,
+    time: "half",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "The first Meow Wolf location, opened in 2016. Open year-round with hours that vary by day and season — entry typically starts at 10 AM and runs into the evening, with some weekdays closed, so check the calendar for your date. Admission is timed-entry and books up, so buy ahead online: general admission starts around $33–$35 for adults (about $26 for ages 4–12, 3 and under free), with anytime tickets from about $54. Plan at least 2–3 hours — there's no set route, and following the Selig family mystery through the house's documents and clues takes longer than just wandering the portals."
+  },
+  {
+    id: "very-large-array",
+    name: "Karl G. Jansky Very Large Array",
+    category: "museum",
+    city: "Socorro",
+    state: "New Mexico",
+    lat: 34.07351,
+    lng: -107.62240,
+    address: "Old Hwy 60, Socorro, NM 87825",
+    website: "https://www.aoc.nrao.edu/epo/puente/visit/",
+    reviewsUrl: "https://www.tripadvisor.co.uk/Attraction_Review-g47216-d10559317-Reviews-Very_Large_Array-Socorro_New_Mexico.html",
+    description: "The Karl G. Jansky Very Large Array on the Plains of San Agustin, 50 miles west of Socorro, New Mexico — 27 giant white radio dish antennas, each 82 feet (25 metres) across and weighing 230 tons, arranged in a Y shape and moved on railroad tracks to listen to radio waves from deep space. The Visitor Center has exhibits on radio astronomy and an award-winning documentary narrated by Jodie Foster, and a self-guided walking tour takes you past the Whisper Gallery to the base of one of the antennas and up to an observation deck overlooking the array.",
+    price: 1,
+    time: "short",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Open to the public 7 days a week, 9 AM–4 PM only — no one is allowed on site after 4 PM without prior authorization; closed Thanksgiving Day and Christmas Day (gift shop also closed Christmas Eve and New Year's Day). Admission is $10 for adults 13–64, $8 for seniors 65+, military and veterans, and free for ages 12 and under — buy ahead online if you can, because connectivity at the site is very limited. Most visits run 1–2 hours. Critical: keep cell phones OFF or in airplane mode the whole visit — they interfere with the telescopes' observing. There's no food on site (nearest restaurants are in Magdalena, about 25 miles east, or Datil, about 20 miles west), so bring food and water. The site sits at 7,000 feet, so bring sun protection and layers — snow is possible September through May. Don't trust a maps search for 'Very Large Array' alone: it can send you to the NRAO offices in Socorro instead. Use the GPS coordinates 34.07351, -107.62240 — from Socorro, take US-60 west through Magdalena, turn left on NM-52 just west of mile marker 93, go 2.5 miles, then right on NM-166 (Old Highway 60) for 1.6 miles; the Visitor Center is on your right."
+  },
+  {
+    id: "best-friends-animal-sanctuary",
+    name: "Best Friends Animal Sanctuary",
+    category: "nature",
+    city: "Kanab",
+    state: "Utah",
+    lat: 37.12619,
+    lng: -112.54352,
+    address: "5001 Angel Canyon Rd, Kanab, UT 84741",
+    website: "https://bestfriends.org/sanctuary/visit/tours-activities",
+    reviewsUrl: "https://www.tripadvisor.co.uk/Attraction_Review-g57030-d185088-Reviews-or330-Best_Friends_Animal_Sanctuary-Kanab_Utah.html",
+    description: "The largest no-kill animal sanctuary in the United States, set in Angel Canyon just north of Kanab, Utah — nearly 6,000 acres of red-rock canyon caring for around 1,600 animals at any given time across Dogtown, Cat World, Horse Haven, the Bunny House, Parrot Garden, and Marshall's Piggy Paradise, plus the moving Angels Rest pet memorial. Free guided tours introduce the sanctuary's work, and visitors can also volunteer, take a dog on an outing or sleepover, and hike the canyon trails.",
+    price: 0,
+    time: "half",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Open 8 AM–5 PM Mountain Time every day except Christmas Day. Tours are free but this is a working sanctuary — walk-ins are not permitted at the animal care areas, so book tours and volunteer shifts in advance at bestfriends.org; they fill up fast, especially in summer. The Grand Sanctuary Tour runs about 90 minutes to 2 hours, but plan a half day if you want to add a focused tour (cats, dogs, pigs, horses, and more), a volunteer shift, lunch at the Angel Village café, or time at Angels Rest and on the trails. Start at the Welcome Center, and download the Sanctuary app for hikes, sights, and driving directions around the property."
+  }
+];
+
+var CATEGORIES = {
+  food:      { label: "Food",      color: "#d94f30", icon: "🍴" },
+  shopping:  { label: "Shopping",  color: "#b97f10", icon: "🛍" },
+  nature:    { label: "Nature",    color: "#2e7d4f", icon: "🌲" },
+  museum:    { label: "Museum",    color: "#2a5a8a", icon: "🏛" },
+  amusement: { label: "Amusement", color: "#c42b5a", icon: "🎢" },
+  historic:  { label: "Historic",  color: "#7a5a2e", icon: "🏺" },
+  quirky:    { label: "Quirky",    color: "#6d4fa1", icon: "✦" },
+  other:     { label: "Other",     color: "#5a6c7d", icon: "📍" }
+};
+var PRICE_LABEL = ["Free", "$", "$$", "$$$"];
+var PRICE_HINT  = ["Free", "Under $25 / person", "$25–$75 / person", "$75+ / person"];
+var TIME_LABEL  = { quick: "Quick stop", short: "1–2 hours", half: "Half day", full: "Full day", multi: "Multi day" };
+var TIME_HINT   = { quick: "Under an hour", short: "1–2 hours", half: "About 3–5 hours", full: "Give it the whole day", multi: "Several days — plan to stay a while" };
+var TIME_ORDER  = { quick: 0, short: 1, half: 2, full: 3, multi: 4 };
+
+var state = { view: "map", category: "", status: "", selectedId: null };
+var markers = {};
+var map = null;
+
+/* ---------- helpers ---------- */
+function el(id){ return document.getElementById(id); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function catOf(p){ return CATEGORIES[p.category] || CATEGORIES.other; }
+function seasonsLabel(p){
+  if (!p.seasons || !p.seasons.length) return "Year-round";
+  if (p.seasons.length === 4) return "Spring · Summer · Fall · Winter";
+  return p.seasons.join(" · ");
+}
+function starsHTML(rating){
+  if (rating == null) return '<span style="color:var(--ink-3);font-weight:600;font-size:14px">Not rated yet — yours to rate after you visit</span>';
+  var s = "";
+  for (var i = 1; i <= 5; i++) s += '<span class="' + (i <= rating ? "" : "off") + '">★</span>';
+  return '<span class="stars">' + s + '</span>';
+}
+function directionsUrl(p){
+  return "https://www.google.com/maps/dir/?api=1&destination=" + p.lat + "," + p.lng;
+}
+
+/* ---------- filtering & sorting ---------- */
+function getFiltered(){
+  var q = el("f-search").value.trim().toLowerCase();
+  var cat = el("f-category").value;
+  var st = el("f-state").value;
+  var price = el("f-price").value;
+  var time = el("f-time").value;
+  var season = el("f-season").value;
+  var sort = el("f-sort").value;
+
+  var out = PLACES.filter(function(p){
+    if (q){
+      var hay = (p.name + " " + p.city + " " + p.state + " " + p.description + " " + catOf(p).label).toLowerCase();
+      if (hay.indexOf(q) === -1) return false;
+    }
+    if (cat && p.category !== cat) return false;
+    if (state.category && p.category !== state.category) return false;
+    if (st && p.state !== st) return false;
+    if (price !== "" && p.price !== Number(price)) return false;
+    if (time && p.time !== time) return false;
+    if (season){
+      if (season === "year-round"){ if (p.seasons && p.seasons.length && p.seasons.length < 4) return false; }
+      else if (!p.seasons || p.seasons.indexOf(season) === -1) return false;
+    }
+    if (state.status && p.status !== state.status) return false;
+    return true;
+  });
+
+  out.sort(function(a, b){
+    if (sort === "state") return a.state.localeCompare(b.state) || a.name.localeCompare(b.name);
+    if (sort === "price-asc") return a.price - b.price || a.name.localeCompare(b.name);
+    if (sort === "price-desc") return b.price - a.price || a.name.localeCompare(b.name);
+    if (sort === "time-asc") return TIME_ORDER[a.time] - TIME_ORDER[b.time] || a.name.localeCompare(b.name);
+    if (sort === "rating-desc") return (b.rating || 0) - (a.rating || 0) || a.name.localeCompare(b.name);
+    return a.name.localeCompare(b.name);
+  });
+  return out;
+}
+
+/* ---------- rendering: list ---------- */
+function tagHTML(p){
+  var c = catOf(p);
+  return '<span class="tag"><span class="cdot" style="background:' + c.color + '"></span>' + esc(c.label) + '</span>'
+    + '<span class="tag">' + esc(PRICE_LABEL[p.price]) + ' · ' + esc(TIME_LABEL[p.time]) + '</span>'
+    + '<span class="tag status-' + p.status + '">' + (p.status === "visited" ? "✓ Visited" : "Want to go") + '</span>';
+}
+function renderCards(list){
+  var box = el("cards");
+  box.innerHTML = list.map(function(p){
+    return '<button type="button" class="card' + (state.selectedId === p.id ? " selected" : "") + '" data-id="' + esc(p.id) + '">'
+      + '<span class="card-top"><span><h3>' + esc(p.name) + '</h3><p class="loc">' + esc(p.city) + ', ' + esc(p.state) + '</p></span></span>'
+      + '<p class="desc">' + esc(p.description) + '</p>'
+      + '<span class="meta">' + tagHTML(p) + '</span>'
+      + '<span class="foot"><span>' + esc(seasonsLabel(p)) + '</span><span>' + (p.rating ? "★ " + p.rating + " / 5 — yours" : "Not rated yet") + '</span></span>'
+      + '</button>';
+  }).join("");
+  el("empty").style.display = list.length ? "none" : "block";
+  var cards = box.querySelectorAll(".card");
+  for (var i = 0; i < cards.length; i++){
+    cards[i].addEventListener("click", function(){ selectPlace(this.getAttribute("data-id"), true); });
+  }
+}
+
+/* ---------- rendering: detail ---------- */
+function renderDetail(p){
+  var box = el("detail");
+  if (!p){ box.innerHTML = ""; box.style.display = "none"; return; }
+  box.style.display = "";
+  var c = catOf(p);
+  box.innerHTML =
+    '<div class="detail-head"><div><h2>' + esc(p.name) + '</h2>'
+    + '<p class="detail-loc">' + esc(p.city) + ', ' + esc(p.state) + (p.address ? ' · ' + esc(p.address) : '') + '</p></div>'
+    + '<div style="display:flex;gap:6px;flex-wrap:wrap">' + tagHTML(p) + '</div></div>'
+    + '<div class="detail-body">'
+    + '<p class="detail-desc">' + esc(p.description) + '</p>'
+    + '<dl class="facts">'
+    + '<div class="fact"><dt>Type</dt><dd>' + esc(c.label) + '</dd></div>'
+    + '<div class="fact"><dt>Price</dt><dd>' + esc(PRICE_LABEL[p.price]) + '<small>' + esc(PRICE_HINT[p.price]) + '</small></dd></div>'
+    + '<div class="fact"><dt>Visit length</dt><dd>' + esc(TIME_LABEL[p.time]) + '<small>' + esc(TIME_HINT[p.time]) + '</small></dd></div>'
+    + '<div class="fact"><dt>Seasons</dt><dd style="font-size:14.5px">' + esc(seasonsLabel(p)) + '</dd></div>'
+    + '<div class="fact"><dt>Status</dt><dd>' + (p.status === "visited" ? "Visited" : "Want to go") + '</dd></div>'
+    + '<div class="fact"><dt>Your rating</dt><dd>' + starsHTML(p.rating) + '</dd></div>'
+    + '<div class="fact"><dt>Location</dt><dd style="font-size:14.5px">' + esc(p.city) + ', ' + esc(p.state) + '<small>' + p.lat.toFixed(5) + ', ' + p.lng.toFixed(5) + '</small></dd></div>'
+    + '<div class="fact"><dt>Address</dt><dd style="font-size:14.5px">' + (p.address ? esc(p.address) : "—") + '</dd></div>'
+    + '</dl>'
+    + (p.notes ? '<div class="notes-box"><b>Notes:</b> ' + esc(p.notes) + '</div>' : '')
+    + '<div class="detail-actions" style="margin-top:18px">'
+    + (p.website ? '<a class="primary" href="' + esc(p.website) + '" target="_blank" rel="noopener">Visit website ↗</a>' : '')
+    + (p.reviewsUrl ? '<a class="secondary" href="' + esc(p.reviewsUrl) + '" target="_blank" rel="noopener">Read reviews ↗</a>' : '')
+    + '<a class="secondary" href="' + directionsUrl(p) + '" target="_blank" rel="noopener">Directions ↗</a>'
+    + '</div></div>';
+}
+
+/* ---------- map ---------- */
+function pinIcon(p){
+  var c = catOf(p);
+  return L.divIcon({
+    className: "pin-wrap",
+    html: '<div class="pin' + (p.status === "visited" ? " visited" : "") + '" style="background:' + c.color + '"><span>' + c.icon + '</span></div>',
+    iconSize: [34, 34],
+    iconAnchor: [17, 32],
+    popupAnchor: [0, -30]
+  });
+}
+function popupHTML(p){
+  var c = catOf(p);
+  return '<p class="pop-name">' + esc(p.name) + '</p>'
+    + '<p class="pop-loc">' + esc(c.label) + ' · ' + esc(p.city) + ', ' + esc(p.state) + '</p>'
+    + '<p class="pop-desc">' + esc(p.description) + '</p>'
+    + '<div class="pop-meta">' + tagHTML(p) + '</div>'
+    + '<div class="pop-links">'
+    + (p.website ? '<a class="primary" href="' + esc(p.website) + '" target="_blank" rel="noopener">Website ↗</a>' : '')
+    + '<a class="secondary" href="' + directionsUrl(p) + '" target="_blank" rel="noopener">Directions</a>'
+    + '</div>';
+}
+function initMap(){
+  if (typeof L === "undefined"){ el("map").style.display = "none"; el("map-fallback").style.display = "block"; return; }
+  map = L.map("map", { scrollWheelZoom: true }).setView([39.5, -98.35], 4);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
+  }).addTo(map);
+  PLACES.forEach(function(p){
+    var m = L.marker([p.lat, p.lng], { icon: pinIcon(p), title: p.name }).addTo(map);
+    m.bindPopup(popupHTML(p));
+    m.on("click", function(){ selectPlace(p.id, false); });
+    markers[p.id] = m;
+  });
+}
+function syncMarkers(list){
+  if (!map) return;
+  var visible = {};
+  list.forEach(function(p){ visible[p.id] = true; });
+  PLACES.forEach(function(p){
+    var m = markers[p.id];
+    if (!m) return;
+    if (visible[p.id]){ if (!map.hasLayer(m)) m.addTo(map); }
+    else if (map.hasLayer(m)) map.removeLayer(m);
+  });
+}
+
+/* ---------- selection & refresh ---------- */
+function selectPlace(id, switchToMap){
+  state.selectedId = id;
+  var p = null;
+  for (var i = 0; i < PLACES.length; i++) if (PLACES[i].id === id) p = PLACES[i];
+  renderDetail(p);
+  renderCards(getFiltered());
+  if (p && map && markers[id]){
+    if (switchToMap) setView("map");
+    map.flyTo([p.lat, p.lng], Math.max(map.getZoom(), 9), { duration: 0.8 });
+    setTimeout(function(){ markers[id].openPopup(); }, 850);
+    el("detail").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+}
+function refresh(){
+  var list = getFiltered();
+  renderCards(list);
+  syncMarkers(list);
+  el("result-count").textContent = list.length + (list.length === 1 ? " place" : " places") + " showing";
+  if (state.selectedId){
+    var still = list.some(function(p){ return p.id === state.selectedId; });
+    if (!still){ var p0 = null; for (var i=0;i<PLACES.length;i++) if (PLACES[i].id===state.selectedId) p0=PLACES[i]; renderDetail(p0); }
+  }
+}
+
+/* ---------- view toggle ---------- */
+function setView(v){
+  state.view = v;
+  el("btn-map").setAttribute("aria-pressed", v === "map" ? "true" : "false");
+  el("btn-list").setAttribute("aria-pressed", v === "list" ? "true" : "false");
+  el("view-map").classList.toggle("hidden", v !== "map");
+  el("view-list").classList.toggle("hidden", v !== "list");
+  if (v === "map" && map) setTimeout(function(){ map.invalidateSize(); }, 60);
+}
+
+/* ---------- build filter options ---------- */
+(function buildOptions(){
+  var catSel = el("f-category");
+  Object.keys(CATEGORIES).forEach(function(k){
+    var used = PLACES.some(function(p){ return p.category === k; });
+    var o = document.createElement("option");
+    o.value = k; o.textContent = CATEGORIES[k].label + (used ? "" : "");
+    catSel.appendChild(o);
+  });
+  var states = [];
+  PLACES.forEach(function(p){ if (states.indexOf(p.state) === -1) states.push(p.state); });
+  states.sort();
+  var stSel = el("f-state");
+  states.forEach(function(s){ var o = document.createElement("option"); o.value = s; o.textContent = s; stSel.appendChild(o); });
+
+  var legend = el("legend");
+  legend.innerHTML = "<h2>Pin colours — tap to filter by type</h2>" + Object.keys(CATEGORIES).map(function(k){
+    var c = CATEGORIES[k];
+    var n = PLACES.filter(function(p){ return p.category === k; }).length;
+    return '<button type="button" class="legend-item" data-cat="' + k + '" aria-pressed="false"><span class="dot" style="background:' + c.color + '"></span>' + esc(c.label) + (n ? ' (' + n + ')' : '') + '</button>';
+  }).join("");
+  var items = legend.querySelectorAll(".legend-item");
+  for (var i = 0; i < items.length; i++){
+    items[i].addEventListener("click", function(){
+      var k = this.getAttribute("data-cat");
+      var on = state.category !== k;
+      state.category = on ? k : "";
+      el("f-category").value = state.category;
+      var all = legend.querySelectorAll(".legend-item");
+      for (var j = 0; j < all.length; j++) all[j].setAttribute("aria-pressed", all[j].getAttribute("data-cat") === state.category ? "true" : "false");
+      refresh();
+    });
+  }
+
+  el("stat-total").textContent = PLACES.length;
+  el("stat-states").textContent = states.length;
+  el("stat-visited").textContent = PLACES.filter(function(p){ return p.status === "visited"; }).length;
+})();
+
+/* ---------- events ---------- */
+["f-search","f-category","f-state","f-price","f-time","f-season","f-sort"].forEach(function(id){
+  el(id).addEventListener("input", function(){
+    if (id === "f-category"){
+      state.category = "";
+      var all = el("legend").querySelectorAll(".legend-item");
+      for (var j = 0; j < all.length; j++) all[j].setAttribute("aria-pressed", "false");
+    }
+    refresh();
+  });
+  el(id).addEventListener("change", refresh);
+});
+el("btn-map").addEventListener("click", function(){ setView("map"); });
+el("btn-list").addEventListener("click", function(){ setView("list"); });
+
+function bindStatus(id, val){
+  el(id).addEventListener("click", function(){
+    var on = state.status !== val;
+    state.status = on ? val : "";
+    el("f-status-want").setAttribute("aria-pressed", state.status === "want" ? "true" : "false");
+    el("f-status-visited").setAttribute("aria-pressed", state.status === "visited" ? "true" : "false");
+    el("f-status-want").classList.toggle("btn-primary", state.status === "want");
+    el("f-status-visited").classList.toggle("btn-primary", state.status === "visited");
+    refresh();
+  });
+}
+bindStatus("f-status-want", "want");
+bindStatus("f-status-visited", "visited");
+
+el("f-reset").addEventListener("click", function(){
+  el("filters").reset();
+  state.category = ""; state.status = "";
+  el("f-status-want").setAttribute("aria-pressed", "false");
+  el("f-status-visited").setAttribute("aria-pressed", "false");
+  el("f-status-want").classList.remove("btn-primary");
+  el("f-status-visited").classList.remove("btn-primary");
+  var all = el("legend").querySelectorAll(".legend-item");
+  for (var j = 0; j < all.length; j++) all[j].setAttribute("aria-pressed", "false");
+  refresh();
+});
+el("filters").addEventListener("submit", function(e){ e.preventDefault(); });
+
+/* ---------- init ---------- */
+initMap();
+if (PLACES.length) renderDetail(PLACES[0]), state.selectedId = PLACES[0].id;
+refresh();
+</script>
+</body>
+</html>
