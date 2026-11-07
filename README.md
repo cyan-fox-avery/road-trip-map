@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (71)
+## Places so far (76)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -59,4 +59,6 @@ Vegas, NV), Silverton Aquarium (Las Vegas, NV), Ethel M Chocolates
 Factory & Cactus Garden (Henderson, NV), Hoover Dam (Boulder City,
 NV), Northshore Road (Boulder City, NV), Extraterrestrial Highway
 (Rachel, NV), Virginia City (Virginia City, NV), Virginia & Truckee
-Railroad (Virginia City, NV).
+Railroad (Virginia City, NV), Junkee Clothing Exchange (Reno, NV),
+Nevada Northern Railway (Ely, NV), The Star Hotel (Elko, NV),
+Sandpoint (Sandpoint, ID), Silverwood Theme Park (Athol, ID).
