@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (31)
+## Places so far (36)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -38,4 +38,6 @@ Air & Space Museum (San Diego, CA), Disneyland Park (Anaheim, CA), Knott's
 Berry Farm (Buena Park, CA), Medieval Times Buena Park (Buena Park, CA),
 Aquarium of the Pacific (Long Beach, CA), Universal Studios Hollywood
 (Universal City, CA), Griffith Observatory (Los Angeles, CA), Monterey Bay
-Aquarium (Monterey, CA).
+Aquarium (Monterey, CA), Santa Cruz Beach Boardwalk (Santa Cruz, CA),
+Exploratorium (San Francisco, CA), Alcatraz Island (San Francisco, CA),
+Skunk Train (Fort Bragg, CA), Redwood Sky Walk (Eureka, CA).
