@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (61)
+## Places so far (66)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -53,4 +53,7 @@ WA), Snoqualmie Falls (Snoqualmie, WA), Leavenworth Reindeer Farm
 (Leavenworth, WA), Petunia & Loomis (Spokane, WA), Numerica SkyRide
 (Spokane, WA), Bright's Candies (Walla Walla, WA), Chukar Cherries
 (Prosser, WA), The Gingerbread Factory (Leavenworth, WA), SPARK Museum
-of Electrical Invention (Bellingham, WA), Poulsbo (Poulsbo, WA).
+of Electrical Invention (Bellingham, WA), Poulsbo (Poulsbo, WA), Las
+Vegas (Las Vegas, NV), AREA15 (Las Vegas, NV), The Golden Tiki (Las
+Vegas, NV), Silverton Aquarium (Las Vegas, NV), Ethel M Chocolates
+Factory & Cactus Garden (Henderson, NV).
