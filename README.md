@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (66)
+## Places so far (71)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -56,4 +56,7 @@ WA), Snoqualmie Falls (Snoqualmie, WA), Leavenworth Reindeer Farm
 of Electrical Invention (Bellingham, WA), Poulsbo (Poulsbo, WA), Las
 Vegas (Las Vegas, NV), AREA15 (Las Vegas, NV), The Golden Tiki (Las
 Vegas, NV), Silverton Aquarium (Las Vegas, NV), Ethel M Chocolates
-Factory & Cactus Garden (Henderson, NV).
+Factory & Cactus Garden (Henderson, NV), Hoover Dam (Boulder City,
+NV), Northshore Road (Boulder City, NV), Extraterrestrial Highway
+(Rachel, NV), Virginia City (Virginia City, NV), Virginia & Truckee
+Railroad (Virginia City, NV).
