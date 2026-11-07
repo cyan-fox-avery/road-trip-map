@@ -52,9 +52,16 @@
   .toolbar-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
   .result-count{font-size:14px;color:var(--ink-2);font-weight:600}
 
-  .filters{display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px}
-  @media(min-width:640px){.filters{grid-template-columns:repeat(2,1fr)}}
-  @media(min-width:980px){.filters{grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr 1fr}}
+  .filters{margin-top:12px}
+  .filters-toggle{display:flex;align-items:center;gap:8px;width:100%;min-height:50px;margin-top:12px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-weight:700;font-size:15.5px;cursor:pointer}
+  .filters-toggle .filters-chevron{margin-left:auto;transition:transform .15s ease}
+  .filters-toggle[aria-expanded="true"] .filters-chevron{transform:rotate(180deg)}
+  .filters-count{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 7px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:800}
+  .filters-panel{display:none;margin-top:12px}
+  .filters-open .filters-panel{display:grid;grid-template-columns:1fr;gap:10px}
+  @media(min-width:640px){.filters-open .filters-panel{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:980px){.filters-open .filters-panel{grid-template-columns:repeat(3,1fr)}}
+  .filters-panel .filter-actions{grid-column:1/-1;margin-top:2px}
   .field{display:flex;flex-direction:column;gap:5px}
   .field label{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
   .field select,.field input{font:inherit;font-size:15.5px;min-height:50px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);width:100%}
@@ -138,18 +145,6 @@
   .empty{display:none;text-align:center;padding:44px 20px;background:var(--surface);border:1px dashed var(--line);border-radius:16px;color:var(--ink-2);margin-top:18px}
   .empty h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:24px;color:var(--ink);margin:0 0 6px}
 
-  /* Schema / adding */
-  .schema{margin-top:36px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 20px;box-shadow:var(--shadow-sm)}
-  @media(min-width:760px){.schema{padding:28px}}
-  .schema h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:28px;margin:0 0 6px}
-  .schema p{color:var(--ink-2);max-width:70ch;margin:0 0 16px}
-  .schema-grid{display:grid;grid-template-columns:1fr;gap:8px 22px}
-  @media(min-width:700px){.schema-grid{grid-template-columns:1fr 1fr}}
-  @media(min-width:1020px){.schema-grid{grid-template-columns:1fr 1fr 1fr}}
-  .schema-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:var(--surface-2);border-radius:10px;font-size:14.5px}
-  .schema-item b{white-space:nowrap}
-  .schema-item span{color:var(--ink-2)}
-  .price-key{margin-top:14px;font-size:14px;color:var(--ink-2)}
   footer{margin-top:28px;color:var(--ink-3);font-size:13.5px;text-align:center}
   .hidden{display:none !important}
 </style>
@@ -179,10 +174,12 @@
     </div>
 
     <form class="filters" id="filters" aria-label="Filter and sort places">
-      <div class="field">
+      <div class="field search-field">
         <label for="f-search">Search</label>
         <input type="search" id="f-search" placeholder="Name, city, or keyword…" autocomplete="off">
       </div>
+      <button type="button" class="filters-toggle" id="filters-toggle" aria-expanded="false" aria-controls="filters-panel"><span>Filters</span><span class="filters-count" id="filters-count" hidden></span><span class="filters-chevron" aria-hidden="true">▾</span></button>
+      <div class="filters-panel" id="filters-panel">
       <div class="field">
         <label for="f-category">Type</label>
         <select id="f-category"><option value="">All types</option></select>
@@ -231,12 +228,13 @@
           <option value="rating-desc">Your rating (high → low)</option>
         </select>
       </div>
+      <div class="filter-actions">
+        <button type="button" class="btn" id="f-status-want" aria-pressed="false">Want to go</button>
+        <button type="button" class="btn" id="f-status-visited" aria-pressed="false">Visited</button>
+        <button type="button" class="btn" id="f-reset">Reset all filters</button>
+      </div>
+      </div>
     </form>
-    <div class="filter-actions">
-      <button type="button" class="btn" id="f-status-want" aria-pressed="false">Want to go</button>
-      <button type="button" class="btn" id="f-status-visited" aria-pressed="false">Visited</button>
-      <button type="button" class="btn" id="f-reset">Reset all filters</button>
-    </div>
   </div>
 
   <!-- MAP VIEW -->
@@ -258,28 +256,6 @@
       <h3>Nothing matches those filters</h3>
       <p>Try widening the price, season, or state — or reset all filters to see the whole list again.</p>
     </div>
-  </section>
-
-  <section class="schema" aria-label="What every entry includes">
-    <h2>Every entry carries the full set — from day one</h2>
-    <p>These are the fields locked in before the first place was added, so no entry ever needs re-editing later. Send places one at a time — name, state, type, and a link if it has one — and the coordinates get looked up and filled in for you.</p>
-    <div class="schema-grid">
-      <div class="schema-item"><b>Name</b><span>— the attraction's name</span></div>
-      <div class="schema-item"><b>Type</b><span>— food, shopping, nature, museum, amusement, historic, quirky, other</span></div>
-      <div class="schema-item"><b>City &amp; state</b><span>— where it is</span></div>
-      <div class="schema-item"><b>Coordinates</b><span>— latitude &amp; longitude, so the pin lands right</span></div>
-      <div class="schema-item"><b>Address</b><span>— optional street address</span></div>
-      <div class="schema-item"><b>Website</b><span>— link to the attraction</span></div>
-      <div class="schema-item"><b>Description</b><span>— a short summary</span></div>
-      <div class="schema-item"><b>Price tier</b><span>— Free, $, $$, or $$$</span></div>
-      <div class="schema-item"><b>Visit length</b><span>— quick stop, 1–2 hours, half day, full day, multi day</span></div>
-      <div class="schema-item"><b>Seasons</b><span>— spring, summer, fall, winter, or year-round</span></div>
-      <div class="schema-item"><b>Your rating</b><span>— 1–5 stars, filled in only after you've visited</span></div>
-      <div class="schema-item"><b>Reviews link</b><span>— out to live reviews (Google / Tripadvisor)</span></div>
-      <div class="schema-item"><b>Status</b><span>— want to go, or visited</span></div>
-      <div class="schema-item"><b>Notes</b><span>— anything you two want to remember</span></div>
-    </div>
-    <p class="price-key"><strong>Price key:</strong> Free &nbsp;·&nbsp; $ = under $25 per person &nbsp;·&nbsp; $$ = $25–$75 &nbsp;·&nbsp; $$$ = $75+</p>
   </section>
 
   <footer>Map data © OpenStreetMap contributors · Pins show places added so far — the list grows one real place at a time.</footer>
@@ -725,6 +701,7 @@ function refresh(){
   renderCards(list);
   syncMarkers(list);
   el("result-count").textContent = list.length + (list.length === 1 ? " place" : " places") + " showing";
+  updateFiltersCount();
   if (state.selectedId){
     var still = list.some(function(p){ return p.id === state.selectedId; });
     if (!still){ var p0 = null; for (var i=0;i<PLACES.length;i++) if (PLACES[i].id===state.selectedId) p0=PLACES[i]; renderDetail(p0); }
@@ -822,10 +799,28 @@ el("f-reset").addEventListener("click", function(){
 });
 el("filters").addEventListener("submit", function(e){ e.preventDefault(); });
 
+/* ---------- filters dropdown ---------- */
+function updateFiltersCount(){
+  var n = 0;
+  ["f-category","f-state","f-price","f-time","f-season"].forEach(function(id){ if (el(id).value) n++; });
+  if (state.status) n++;
+  var badge = el("filters-count");
+  badge.hidden = n === 0;
+  badge.textContent = n;
+}
+function setFiltersOpen(open){
+  el("filters").classList.toggle("filters-open", open);
+  el("filters-toggle").setAttribute("aria-expanded", open ? "true" : "false");
+}
+el("filters-toggle").addEventListener("click", function(){
+  setFiltersOpen(!el("filters").classList.contains("filters-open"));
+});
+
 /* ---------- init ---------- */
 initMap();
 if (PLACES.length) renderDetail(PLACES[0]), state.selectedId = PLACES[0].id;
 refresh();
+setFiltersOpen(window.matchMedia("(min-width: 760px)").matches);
 </script>
 </body>
 </html>
