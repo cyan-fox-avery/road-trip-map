@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (51)
+## Places so far (56)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -48,4 +48,7 @@ Lake National Park, OR), Rogue Creamery Cheese Shop (Central Point, OR),
 Roaring Rapids Pizza (Eugene, OR), Slappy Cakes (Portland, OR), Raven's
 Manor (Portland, OR), Paxton Gate (Portland, OR), Marsh's Free Museum
 (Long Beach, WA), Sharky's (Ocean Shores, WA), Archie McPhee (Seattle,
-WA), Ye Olde Curiosity Shop (Seattle, WA).
+WA), Ye Olde Curiosity Shop (Seattle, WA), Pike Place Market (Seattle,
+WA), Snoqualmie Falls (Snoqualmie, WA), Leavenworth Reindeer Farm
+(Leavenworth, WA), Petunia & Loomis (Spokane, WA), Numerica SkyRide
+(Spokane, WA).
