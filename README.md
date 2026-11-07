@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (76)
+## Places so far (81)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -61,4 +61,7 @@ NV), Northshore Road (Boulder City, NV), Extraterrestrial Highway
 (Rachel, NV), Virginia City (Virginia City, NV), Virginia & Truckee
 Railroad (Virginia City, NV), Junkee Clothing Exchange (Reno, NV),
 Nevada Northern Railway (Ely, NV), The Star Hotel (Elko, NV),
-Sandpoint (Sandpoint, ID), Silverwood Theme Park (Athol, ID).
+Sandpoint (Sandpoint, ID), Silverwood Theme Park (Athol, ID), Lake
+Coeur d'Alene Cruises (Coeur d'Alene, ID), Wallace (Wallace, ID),
+Silver Mountain Gondola (Kellogg, ID), Boise (Boise, ID), RePop
+Gifts (Boise, ID).
