@@ -128,6 +128,9 @@
   .detail-actions a.secondary{border:1.5px solid var(--accent);color:var(--accent);background:transparent}
   .notes-box{margin-top:16px;background:var(--surface-2);border-radius:12px;padding:14px 16px;font-size:15px;color:var(--ink-2)}
   .notes-box b{color:var(--ink)}
+  .mustsee{margin:2px 0 0;font-size:14.5px;font-weight:700;color:var(--accent)}
+  .mustsee-box{margin-top:16px;background:var(--surface-2);border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-size:15px;color:var(--ink)}
+  .mustsee-box b{color:var(--ink)}
 
   /* List view */
   .cards{display:grid;grid-template-columns:1fr;gap:16px;margin-top:18px}
@@ -266,6 +269,8 @@
 /* ============================================================
    PLACES — add one object per attraction. Every field from the
    locked-in schema is here so nothing needs re-editing later.
+   categories: array, first is the pin colour; more than one is fine
+   mustSee: one-line highlight, only when the place has one
    price: 0 = Free, 1 = $, 2 = $$, 3 = $$$
    time: "quick" (<1h) | "short" (1–2h) | "half" | "full" | "multi" (multi day)
    rating: null until visited, then 1–5 (your own rating)
@@ -275,7 +280,7 @@ var PLACES = [
   {
     id: "dollywood",
     name: "Dollywood",
-    category: "amusement",
+    categories: ["amusement"],
     city: "Pigeon Forge",
     state: "Tennessee",
     lat: 35.80782,
@@ -294,7 +299,7 @@ var PLACES = [
   {
     id: "hersheypark",
     name: "Hersheypark",
-    category: "amusement",
+    categories: ["amusement"],
     city: "Hershey",
     state: "Pennsylvania",
     lat: 40.29272,
@@ -313,7 +318,7 @@ var PLACES = [
   {
     id: "walt-disney-world",
     name: "Walt Disney World Resort",
-    category: "amusement",
+    categories: ["amusement"],
     city: "Orlando",
     state: "Florida",
     lat: 28.40394,
@@ -332,7 +337,7 @@ var PLACES = [
   {
     id: "portillos-chicago",
     name: "Portillo's",
-    category: "food",
+    categories: ["food"],
     city: "Chicago",
     state: "Illinois",
     lat: 41.89339,
@@ -341,6 +346,7 @@ var PLACES = [
     website: "https://locations.portillos.com/chicago/",
     reviewsUrl: "https://www.tripadvisor.in/Restaurant_Review-g35805-d1171368-Reviews-Portillo_s_Barnelli_s_Chicago-Chicago_Illinois.html",
     description: "The Portillo's & Barnelli's flagship in Chicago's River North — a 1930s–40s Prohibition-themed spot for Chicago classics: Italian beef sandwiches, Chicago-style hot dogs with all the fixings, char-broiled burgers, chopped salad, and the famous chocolate cake shake.",
+    mustSee: "The famous chocolate cake shake",
     price: 1,
     time: "quick",
     seasons: ["Spring", "Summer", "Fall", "Winter"],
@@ -351,7 +357,7 @@ var PLACES = [
   {
     id: "dog-mountain",
     name: "Dog Mountain",
-    category: "nature",
+    categories: ["nature"],
     city: "St. Johnsbury",
     state: "Vermont",
     lat: 44.43536,
@@ -370,7 +376,7 @@ var PLACES = [
   {
     id: "cryptozoology-museum",
     name: "International Cryptozoology Museum",
-    category: "museum",
+    categories: ["museum"],
     city: "Bangor",
     state: "Maine",
     lat: 44.81828,
@@ -389,7 +395,7 @@ var PLACES = [
   {
     id: "mothman-museum",
     name: "Mothman Museum",
-    category: "museum",
+    categories: ["museum"],
     city: "Point Pleasant",
     state: "West Virginia",
     lat: 38.84276,
@@ -408,7 +414,7 @@ var PLACES = [
   {
     id: "house-on-the-rock",
     name: "The House on the Rock",
-    category: "quirky",
+    categories: ["quirky", "museum"],
     city: "Spring Green",
     state: "Wisconsin",
     lat: 43.09420,
@@ -427,7 +433,7 @@ var PLACES = [
   {
     id: "city-museum",
     name: "City Museum",
-    category: "quirky",
+    categories: ["quirky", "museum"],
     city: "St. Louis",
     state: "Missouri",
     lat: 38.63372,
@@ -446,7 +452,7 @@ var PLACES = [
   {
     id: "house-of-eternal-return",
     name: "House of Eternal Return",
-    category: "quirky",
+    categories: ["quirky", "museum"],
     city: "Santa Fe",
     state: "New Mexico",
     lat: 35.65461,
@@ -465,7 +471,7 @@ var PLACES = [
   {
     id: "very-large-array",
     name: "Karl G. Jansky Very Large Array",
-    category: "museum",
+    categories: ["museum"],
     city: "Socorro",
     state: "New Mexico",
     lat: 34.07351,
@@ -484,7 +490,7 @@ var PLACES = [
   {
     id: "best-friends-animal-sanctuary",
     name: "Best Friends Animal Sanctuary",
-    category: "nature",
+    categories: ["nature"],
     city: "Kanab",
     state: "Utah",
     lat: 37.12619,
@@ -503,7 +509,7 @@ var PLACES = [
   {
     id: "museum-of-make-believe",
     name: "Museum of Make Believe",
-    category: "museum",
+    categories: ["museum"],
     city: "Laguna Beach",
     state: "California",
     lat: 33.53030,
@@ -518,6 +524,64 @@ var PLACES = [
     rating: null,
     status: "want",
     notes: "Open Thursday–Sunday only, 11am–7pm (closed Monday–Wednesday). The Treasure Hunter's Experience is $10 ages 1–12 / $15 ages 13+; the Storybook Experience is $35. Tickets are donations to the nonprofit. Small space — most visits run under an hour. Parking package $5 for one hour, or street parking and meters nearby."
+  },
+  {
+    id: "madonna-inn",
+    name: "Madonna Inn",
+    categories: ["quirky", "historic"],
+    city: "San Luis Obispo",
+    state: "California",
+    lat: 35.26739,
+    lng: -120.67467,
+    address: "100 Madonna Rd, San Luis Obispo, CA 93405",
+    website: "https://www.madonnainn.com/",
+    reviewsUrl: "https://www.tripadvisor.ie/Hotel_Review-g33026-d81740-Reviews-Madonna_Inn-San_Luis_Obispo_San_Luis_Obispo_County_California.html",
+    description: "A legendary hot-pink hotel on the Central Coast since 1958 — 110 uniquely themed rooms, from rock-walled caves with waterfall showers to glitter-filled suites, plus the Gold Rush Steak House, a bakery, a spa, and a hilltop pool with a 45-foot waterfall, all on a 1,000-acre ranch halfway between San Francisco and Los Angeles.",
+    mustSee: "Pink champagne cake",
+    price: 3,
+    time: "multi",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Open year-round. Rooms run roughly $150s to $1,000+ a night depending on room and season — book ahead, the themed rooms go fast. You don't have to stay overnight to try the cake: the bakery sells the famous pink champagne cake by the slice. The Gold Rush Steak House runs about $31–$50 a person."
+  },
+  {
+    id: "piedras-blancas-elephant-seals",
+    name: "Piedras Blancas Elephant Seal Rookery",
+    categories: ["nature"],
+    city: "San Simeon",
+    state: "California",
+    lat: 35.66303,
+    lng: -121.25756,
+    address: "15950 Cabrillo Hwy, San Simeon, CA 93452",
+    website: "https://elephantseal.org/plan-your-visit/",
+    reviewsUrl: "https://www.tripadvisor.ca/Attraction_Review-g33039-d256262-Reviews-Piedras_Blancas-San_Simeon_San_Luis_Obispo_County_California.html",
+    description: "The largest mainland U.S. colony of northern elephant seals — up to 25,000 seals haul out along 8 miles of beach at Piedras Blancas. Free viewing platforms sit right off Highway 1, with volunteer docents on hand to answer questions.",
+    price: 0,
+    time: "short",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Free, open sunrise to sunset every day of the year, no reservations. The viewing area is on Hwy 1, 7.8 miles north of San Simeon and 4 miles north of Hearst Castle — look for the Elephant Seal Vista Point signs. Docents are there daily 10 AM–4 PM. No restrooms at the viewing area, no drones, keep your distance and keep voices low. Best viewing is late January–March for pups and mothers, December–February for the big bulls; seals are present year-round. Bring binoculars. The Friends of the Elephant Seal Visitor Center is in San Simeon at 250 San Simeon Ave, Suite 5A, open daily 10 AM–4 PM."
+  },
+  {
+    id: "mystery-spot",
+    name: "The Mystery Spot",
+    categories: ["quirky", "historic"],
+    city: "Santa Cruz",
+    state: "California",
+    lat: 37.01704,
+    lng: -122.00272,
+    address: "465 Mystery Spot Rd, Santa Cruz, CA 95065",
+    website: "https://www.mysteryspot.com/visit/",
+    reviewsUrl: "https://www.tripadvisor.ie/Attraction_Review-g33048-d127951-Reviews-or20-Mystery_Spot-Santa_Cruz_California.html",
+    description: "A gravitational anomaly in the Santa Cruz redwoods — a 150-foot circle, discovered in 1939, where balls roll uphill, people lean at impossible angles, and a tilted cabin leaves you dizzy. The 45-minute guided tour is funny, hands-on, and full of optical-illusion demos.",
+    price: 1,
+    time: "short",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Open 365 days a year: Mon–Fri 10 AM–4 PM, Sat–Sun 10 AM–5 PM (longer hours in summer). Tickets are $12 a person, kids 3 and under free; parking is $5. Book online in advance — weekends and holidays sell out, and the road often closes around noon on busy days, when only reservations get in. Arrive 30 minutes before your tour or you miss it. Steep slope, not wheelchair-friendly."
   }
 ];
 
@@ -544,7 +608,8 @@ var map = null;
 /* ---------- helpers ---------- */
 function el(id){ return document.getElementById(id); }
 function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
-function catOf(p){ return CATEGORIES[p.category] || CATEGORIES.other; }
+function catOf(p){ var k = (p.categories && p.categories[0]) || p.category; return CATEGORIES[k] || CATEGORIES.other; }
+function catsLabel(p){ var ks = p.categories || [p.category]; return ks.map(function(k){ return (CATEGORIES[k] || CATEGORIES.other).label; }).join(" · "); }
 function seasonsLabel(p){
   if (!p.seasons || !p.seasons.length) return "Year-round";
   if (p.seasons.length === 4) return "Spring · Summer · Fall · Winter";
@@ -572,11 +637,11 @@ function getFiltered(){
 
   var out = PLACES.filter(function(p){
     if (q){
-      var hay = (p.name + " " + p.city + " " + p.state + " " + p.description + " " + catOf(p).label).toLowerCase();
+      var hay = (p.name + " " + p.city + " " + p.state + " " + p.description + " " + catsLabel(p) + " " + (p.mustSee || "")).toLowerCase();
       if (hay.indexOf(q) === -1) return false;
     }
-    if (cat && p.category !== cat) return false;
-    if (state.category && p.category !== state.category) return false;
+    if (cat && p.categories.indexOf(cat) === -1) return false;
+    if (state.category && p.categories.indexOf(state.category) === -1) return false;
     if (st && p.state !== st) return false;
     if (price !== "" && p.price !== Number(price)) return false;
     if (time && p.time !== time) return false;
@@ -601,8 +666,11 @@ function getFiltered(){
 
 /* ---------- rendering: list ---------- */
 function tagHTML(p){
-  var c = catOf(p);
-  return '<span class="tag"><span class="cdot" style="background:' + c.color + '"></span>' + esc(c.label) + '</span>'
+  var tags = p.categories.map(function(k){
+    var c = CATEGORIES[k] || CATEGORIES.other;
+    return '<span class="tag"><span class="cdot" style="background:' + c.color + '"></span>' + esc(c.label) + '</span>';
+  }).join("");
+  return tags
     + '<span class="tag">' + esc(PRICE_LABEL[p.price]) + ' · ' + esc(TIME_LABEL[p.time]) + '</span>'
     + '<span class="tag status-' + p.status + '">' + (p.status === "visited" ? "✓ Visited" : "Want to go") + '</span>';
 }
@@ -612,6 +680,7 @@ function renderCards(list){
     return '<button type="button" class="card' + (state.selectedId === p.id ? " selected" : "") + '" data-id="' + esc(p.id) + '">'
       + '<span class="card-top"><span><h3>' + esc(p.name) + '</h3><p class="loc">' + esc(p.city) + ', ' + esc(p.state) + '</p></span></span>'
       + '<p class="desc">' + esc(p.description) + '</p>'
+      + (p.mustSee ? '<p class="mustsee">★ Must see: ' + esc(p.mustSee) + '</p>' : '')
       + '<span class="meta">' + tagHTML(p) + '</span>'
       + '<span class="foot"><span>' + esc(seasonsLabel(p)) + '</span><span>' + (p.rating ? "★ " + p.rating + " / 5 — yours" : "Not rated yet") + '</span></span>'
       + '</button>';
@@ -628,7 +697,6 @@ function renderDetail(p){
   var box = el("detail");
   if (!p){ box.innerHTML = ""; box.style.display = "none"; return; }
   box.style.display = "";
-  var c = catOf(p);
   box.innerHTML =
     '<div class="detail-head"><div><h2>' + esc(p.name) + '</h2>'
     + '<p class="detail-loc">' + esc(p.city) + ', ' + esc(p.state) + (p.address ? ' · ' + esc(p.address) : '') + '</p></div>'
@@ -636,7 +704,7 @@ function renderDetail(p){
     + '<div class="detail-body">'
     + '<p class="detail-desc">' + esc(p.description) + '</p>'
     + '<dl class="facts">'
-    + '<div class="fact"><dt>Type</dt><dd>' + esc(c.label) + '</dd></div>'
+    + '<div class="fact"><dt>Type</dt><dd>' + esc(catsLabel(p)) + '</dd></div>'
     + '<div class="fact"><dt>Price</dt><dd>' + esc(PRICE_LABEL[p.price]) + '<small>' + esc(PRICE_HINT[p.price]) + '</small></dd></div>'
     + '<div class="fact"><dt>Visit length</dt><dd>' + esc(TIME_LABEL[p.time]) + '<small>' + esc(TIME_HINT[p.time]) + '</small></dd></div>'
     + '<div class="fact"><dt>Seasons</dt><dd style="font-size:14.5px">' + esc(seasonsLabel(p)) + '</dd></div>'
@@ -645,6 +713,7 @@ function renderDetail(p){
     + '<div class="fact"><dt>Location</dt><dd style="font-size:14.5px">' + esc(p.city) + ', ' + esc(p.state) + '<small>' + p.lat.toFixed(5) + ', ' + p.lng.toFixed(5) + '</small></dd></div>'
     + '<div class="fact"><dt>Address</dt><dd style="font-size:14.5px">' + (p.address ? esc(p.address) : "—") + '</dd></div>'
     + '</dl>'
+    + (p.mustSee ? '<div class="mustsee-box">★ <b>Must see:</b> ' + esc(p.mustSee) + '</div>' : '')
     + (p.notes ? '<div class="notes-box"><b>Notes:</b> ' + esc(p.notes) + '</div>' : '')
     + '<div class="detail-actions" style="margin-top:18px">'
     + (p.website ? '<a class="primary" href="' + esc(p.website) + '" target="_blank" rel="noopener">Visit website ↗</a>' : '')
@@ -665,9 +734,8 @@ function pinIcon(p){
   });
 }
 function popupHTML(p){
-  var c = catOf(p);
   return '<p class="pop-name">' + esc(p.name) + '</p>'
-    + '<p class="pop-loc">' + esc(c.label) + ' · ' + esc(p.city) + ', ' + esc(p.state) + '</p>'
+    + '<p class="pop-loc">' + esc(catsLabel(p)) + ' · ' + esc(p.city) + ', ' + esc(p.state) + '</p>'
     + '<p class="pop-desc">' + esc(p.description) + '</p>'
     + '<div class="pop-meta">' + tagHTML(p) + '</div>'
     + '<div class="pop-links">'
@@ -741,7 +809,7 @@ function setView(v){
 (function buildOptions(){
   var catSel = el("f-category");
   Object.keys(CATEGORIES).forEach(function(k){
-    var used = PLACES.some(function(p){ return p.category === k; });
+    var used = PLACES.some(function(p){ return p.categories.indexOf(k) !== -1; });
     var o = document.createElement("option");
     o.value = k; o.textContent = CATEGORIES[k].label + (used ? "" : "");
     catSel.appendChild(o);
@@ -755,7 +823,7 @@ function setView(v){
   var legend = el("legend");
   legend.innerHTML = "<h2>Pin colours — tap to filter by type</h2>" + Object.keys(CATEGORIES).map(function(k){
     var c = CATEGORIES[k];
-    var n = PLACES.filter(function(p){ return p.category === k; }).length;
+    var n = PLACES.filter(function(p){ return p.categories.indexOf(k) !== -1; }).length;
     return '<button type="button" class="legend-item" data-cat="' + k + '" aria-pressed="false"><span class="dot" style="background:' + c.color + '"></span>' + esc(c.label) + (n ? ' (' + n + ')' : '') + '</button>';
   }).join("");
   var items = legend.querySelectorAll(".legend-item");
