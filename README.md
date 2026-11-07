@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (86)
+## Places so far (91)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -66,4 +66,7 @@ Coeur d'Alene Cruises (Coeur d'Alene, ID), Wallace (Wallace, ID),
 Silver Mountain Gondola (Kellogg, ID), Boise (Boise, ID), RePop
 Gifts (Boise, ID), Westside Drive In (Boise, ID), Indian Creek
 Plaza (Caldwell, ID), Bruneau Dunes State Park (Bruneau, ID),
-McCall (McCall, ID), The Roundhouse (Sun Valley, ID).
+McCall (McCall, ID), The Roundhouse (Sun Valley, ID), Shoshone
+Falls (Twin Falls, ID), Pickle's Place (Arco, ID), Craters of the
+Moon National Monument (Arco, ID), Lava Hot Springs Hot Pools
+(Lava Hot Springs, ID), Idaho Potato Museum (Blackfoot, ID).
