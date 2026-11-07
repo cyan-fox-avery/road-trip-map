@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (56)
+## Places so far (61)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -51,4 +51,6 @@ Manor (Portland, OR), Paxton Gate (Portland, OR), Marsh's Free Museum
 WA), Ye Olde Curiosity Shop (Seattle, WA), Pike Place Market (Seattle,
 WA), Snoqualmie Falls (Snoqualmie, WA), Leavenworth Reindeer Farm
 (Leavenworth, WA), Petunia & Loomis (Spokane, WA), Numerica SkyRide
-(Spokane, WA).
+(Spokane, WA), Bright's Candies (Walla Walla, WA), Chukar Cherries
+(Prosser, WA), The Gingerbread Factory (Leavenworth, WA), SPARK Museum
+of Electrical Invention (Bellingham, WA), Poulsbo (Poulsbo, WA).
