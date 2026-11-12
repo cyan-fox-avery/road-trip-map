@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (91)
+## Places so far (97)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -69,4 +69,8 @@ Plaza (Caldwell, ID), Bruneau Dunes State Park (Bruneau, ID),
 McCall (McCall, ID), The Roundhouse (Sun Valley, ID), Shoshone
 Falls (Twin Falls, ID), Pickle's Place (Arco, ID), Craters of the
 Moon National Monument (Arco, ID), Lava Hot Springs Hot Pools
-(Lava Hot Springs, ID), Idaho Potato Museum (Blackfoot, ID).
+(Lava Hot Springs, ID), Idaho Potato Museum (Blackfoot, ID),
+Willie's Chicken Shack (New Orleans, LA), New Orleans (New
+Orleans, LA), Café du Monde (New Orleans, LA), Pepper Palace
+(New Orleans, LA), Audubon Aquarium (New Orleans, LA), Café
+Pontalba (New Orleans, LA).
