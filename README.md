@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (192)
+## Places so far (200)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -138,4 +138,11 @@ Wolf Discovery Center (West Yellowstone, MT),
 Alpacas of Montana, Inc. (Bozeman, MT), Tinkertown
 Museum (Sandia Park, NM), Kakawa Chocolate House
 (Santa Fe, NM), Cumbres & Toltec Scenic Railroad
-(Chama, NM).
+(Chama, NM), Sparky's Burgers, BBQ & Espresso
+(Hatch, NM), 66 Diner (Albuquerque, NM), Spaceport
+Roswell (Roswell, NM), Indian Pueblo Cultural
+Center (Albuquerque, NM), Sandia Peak Tramway
+(Albuquerque, NM), Bosque del Apache National
+Wildlife Refuge (San Antonio, NM), Terry Bison
+Ranch Resort (Cheyenne, WY), Bar T 5 Covered Wagon
+Cookout and Show (Jackson, WY).
