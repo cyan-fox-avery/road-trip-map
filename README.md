@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (160)
+## Places so far (168)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -112,4 +112,10 @@ National Park (Moab, UT), Museum of Jurassic Technology
 Center (Roswell, NM), American Museum of Magic (Marshall,
 MI), The Strong National Museum of Play (Rochester, NY),
 National Comedy Center (Jamestown, NY), Museum of Pop
-Culture (Seattle, WA).
+Culture (Seattle, WA), Steven F. Udvar-Hazy Center
+(Chantilly, VA), Museum of the Moving Image (Astoria, NY),
+Field Museum of Natural History (Chicago, IL), National
+Museum of Natural History (Washington, DC), Atomic Museum
+(Las Vegas, NV), American Visionary Art Museum (Baltimore,
+MD), American Sign Museum (Cincinnati, OH), Gilgal
+Sculpture Garden (Salt Lake City, UT).
