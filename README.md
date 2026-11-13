@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (223)
+## Places so far (231)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -159,4 +159,8 @@ National Parks (CA), Zion National Park (UT), Wind River Canyon
 National Monument (Devils Tower, WY), Cody (Cody, WY), Jackson
 (Jackson, WY), National Elk Refuge Sleigh Rides (Jackson, WY),
 The Airplane Restaurant (Colorado Springs, CO), Manitou Springs
-Penny Arcade (Manitou Springs, CO).
+Penny Arcade (Manitou Springs, CO), The Wizard's Chest (Denver, CO),
+Fifty Two 80's — A Totally Awesome Shop (Denver, CO), Sasquatch Outpost
+(Bailey, CO), Butterfly Pavilion (Westminster, CO), Hammond's Candies
+Factory (Denver, CO), Dinosaur Ridge (Morrison, CO), Ghost Town Museum
+(Colorado Springs, CO), Manitou Springs (Manitou Springs, CO).
