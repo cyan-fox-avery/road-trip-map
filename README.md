@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (231)
+## Places so far (239)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -163,4 +163,4 @@ Penny Arcade (Manitou Springs, CO), The Wizard's Chest (Denver, CO),
 Fifty Two 80's — A Totally Awesome Shop (Denver, CO), Sasquatch Outpost
 (Bailey, CO), Butterfly Pavilion (Westminster, CO), Hammond's Candies
 Factory (Denver, CO), Dinosaur Ridge (Morrison, CO), Ghost Town Museum
-(Colorado Springs, CO), Manitou Springs (Manitou Springs, CO).
+(Colorado Springs, CO), Manitou Springs (Manitou Springs, CO), Pikes Peak Cog Railway (Manitou Springs, CO), Glenwood Caverns Adventure Park (Glenwood Springs, CO), Royal Gorge Bridge & Park (Cañon City, CO), Royal Gorge Route Railroad (Cañon City, CO), Glenwood Hot Springs Pool (Glenwood Springs, CO), Georgetown Loop Railroad (Georgetown, CO), Durango & Silverton Narrow Gauge Railroad (Durango, CO), Black Canyon of the Gunnison National Park (Montrose, CO).
