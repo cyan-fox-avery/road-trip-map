@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (144)
+## Places so far (152)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -100,4 +100,10 @@ Bonita (Lakewood, CO), Fritz's Railroad Restaurant (Kansas City,
 MO), Lambert's Cafe (Sikeston, MO), Magic Time Machine (San
 Antonio, TX), Aquarium Restaurant — Houston (Houston, TX),
 Mai-Kai Restaurant (Fort Lauderdale, FL), Tonga Room &
-Hurricane Bar (San Francisco, CA).
+Hurricane Bar (San Francisco, CA), Dooky Chase's Restaurant
+(New Orleans, LA), The Big Texan Steak Ranch (Amarillo, TX),
+Serendipity 3 (New York, NY), Cattleman's Steakhouse at
+Indian Cliffs Ranch (Fabens, TX), Harris Ranch Resort
+(Coalinga, CA), Skeletons: Museum of Osteology (Oklahoma
+City, OK), National Museum of Funeral History (Houston, TX),
+Museum of Bad Art (Boston, MA).
