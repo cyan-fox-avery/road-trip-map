@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (152)
+## Places so far (160)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -106,4 +106,10 @@ Serendipity 3 (New York, NY), Cattleman's Steakhouse at
 Indian Cliffs Ranch (Fabens, TX), Harris Ranch Resort
 (Coalinga, CA), Skeletons: Museum of Osteology (Oklahoma
 City, OK), National Museum of Funeral History (Houston, TX),
-Museum of Bad Art (Boston, MA).
+Museum of Bad Art (Boston, MA), Moab (Moab, UT), Arches
+National Park (Moab, UT), Museum of Jurassic Technology
+(Culver City, CA), International UFO Museum and Research
+Center (Roswell, NM), American Museum of Magic (Marshall,
+MI), The Strong National Museum of Play (Rochester, NY),
+National Comedy Center (Jamestown, NY), Museum of Pop
+Culture (Seattle, WA).
