@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (120)
+## Places so far (128)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -85,4 +85,9 @@ Orchards Aplets & Cotlets Factory (Cashmere, WA), LIGO Exploration
 Centre (Richland, WA), North Cascades Highway (Rockport, WA), Grand
 Canyon South Rim (Grand Canyon Village, AZ), Bearizona (Williams, AZ),
 Poozeum (Williams, AZ), Seligman (Seligman, AZ), Oatman (Oatman, AZ),
-Keepers of the Wild (Valentine, AZ), Meteor Crater (Winslow, AZ).
+Keepers of the Wild (Valentine, AZ), Meteor Crater (Winslow, AZ),
+Petrified Forest National Park (Holbrook, AZ), Lowell Observatory
+(Flagstaff, AZ), Verde Canyon Railroad (Clarkdale, AZ), Organ Stop Pizza
+(Mesa, AZ), Curious Nature (Phoenix, AZ), OdySea Aquarium (Scottsdale,
+AZ), Butterfly Wonderland (Scottsdale, AZ), Cerreta Candy Company
+(Glendale, AZ).
