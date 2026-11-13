@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (176)
+## Places so far (184)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -123,4 +123,12 @@ Sculpture Garden (Salt Lake City, UT), Hollow Mountain
 Hole N" The Rock (Moab, UT), Prairie Schooner Steak House
 (Ogden, UT), Pirate O's Gourmet Market (Draper, UT),
 Gardner Village (West Jordan, UT), Moab Rock Shop (Moab,
-UT), Heber Valley Milk & Artisan Cheese (Midway, UT).
+UT), Heber Valley Milk & Artisan Cheese (Midway, UT),
+Loveland Living Planet Aquarium (Draper, UT), Mrs.
+Cavanaugh's Chocolates and Ice Cream (North Salt Lake,
+UT), Himitsu Station (Salt Lake City, UT), This Is The
+Place Heritage Park (Salt Lake City, UT), Sip 'n Dip
+Lounge (Great Falls, MT), The Sweet Palace
+(Philipsburg, MT), Montana Gems of Philipsburg
+(Philipsburg, MT), St. Regis Travel Center (St. Regis,
+MT).
