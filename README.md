@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (184)
+## Places so far (192)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -131,4 +131,11 @@ Place Heritage Park (Salt Lake City, UT), Sip 'n Dip
 Lounge (Great Falls, MT), The Sweet Palace
 (Philipsburg, MT), Montana Gems of Philipsburg
 (Philipsburg, MT), St. Regis Travel Center (St. Regis,
-MT).
+MT), Montana Vortex and House of Mystery (Columbia
+Falls, MT), CSKT Bison Range (Moiese, MT), Gates of
+the Mountains Boat Tours (Helena, MT), Grizzly &
+Wolf Discovery Center (West Yellowstone, MT),
+Alpacas of Montana, Inc. (Bozeman, MT), Tinkertown
+Museum (Sandia Park, NM), Kakawa Chocolate House
+(Santa Fe, NM), Cumbres & Toltec Scenic Railroad
+(Chama, NM).
