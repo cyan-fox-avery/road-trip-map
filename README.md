@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (107)
+## Places so far (112)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -78,4 +78,8 @@ Four Corners Monument (Teec Nos Pos, AZ), Jelly Belly Factory (Fairfield,
 CA), Bravo Farms Gift Shoppe (Traver, CA), Peggy Sue's 50's Diner (Yermo,
 CA), Calico Ghost Town (Yermo, CA), Old Sacramento Waterfront (Sacramento,
 CA), Rosicrucian Egyptian Museum (San Jose, CA), Yosemite Valley Scenic
-Drive (Yosemite National Park, CA), Springfield (Springfield, OR).
+Drive (Yosemite National Park, CA), Springfield (Springfield, OR),
+Hot Lake Springs Resort (La Grande, OR), Sumpter Valley Railroad
+(Sumpter, OR), Painted Hills Scenic Drive (Mitchell, OR), Liberty
+Orchards Aplets & Cotlets Factory (Cashmere, WA), LIGO Exploration
+Centre (Richland, WA).
