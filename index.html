@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="light dark" />
 <link rel="icon" href="data:," />
-<title>Worth the Detour — Avery &amp; Harley's road trip</title>
+<title>Worth the Detour — Avery, Harley &amp; Sarah's road trip</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -156,12 +156,12 @@
 
   <header class="intro">
     <div>
-      <p class="kicker">Avery &amp; Harley's road trip</p>
+      <p class="kicker">Avery, Harley &amp; Sarah's road trip</p>
       <h1>Worth the Detour</h1>
     </div>
     <div class="stats" aria-label="Trip summary">
-      <span class="stat"><b id="stat-total">1</b> place</span>
-      <span class="stat"><b id="stat-states">1</b> state</span>
+      <span class="stat"><b id="stat-total">1</b> <span id="stat-total-label">places</span></span>
+      <span class="stat"><b id="stat-states">1</b> <span id="stat-states-label">states</span></span>
       <span class="stat"><b id="stat-visited">0</b> visited</span>
     </div>
   </header>
@@ -2317,14 +2317,7 @@ function pinIcon(p){
   });
 }
 function popupHTML(p){
-  return '<p class="pop-name">' + esc(p.name) + '</p>'
-    + '<p class="pop-loc">' + esc(catsLabel(p)) + ' · ' + esc(p.city) + ', ' + esc(p.state) + '</p>'
-    + '<p class="pop-desc">' + esc(p.description) + '</p>'
-    + '<div class="pop-meta">' + tagHTML(p) + '</div>'
-    + '<div class="pop-links">'
-    + (p.website ? '<a class="primary" href="' + esc(p.website) + '" target="_blank" rel="noopener">Website ↗</a>' : '')
-    + '<a class="secondary" href="' + directionsUrl(p) + '" target="_blank" rel="noopener">Directions</a>'
-    + '</div>';
+  return '<p class="pop-name">' + esc(p.name) + '</p>';
 }
 function initMap(){
   if (typeof L === "undefined"){ el("map").style.display = "none"; el("map-fallback").style.display = "block"; return; }
@@ -2363,7 +2356,7 @@ function selectPlace(id, switchToMap){
     if (switchToMap) setView("map");
     map.flyTo([p.lat, p.lng], Math.max(map.getZoom(), 9), { duration: 0.8 });
     setTimeout(function(){ markers[id].openPopup(); }, 850);
-    el("detail").scrollIntoView({ behavior: "smooth", block: "nearest" });
+    if (switchToMap) el("detail").scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 }
 function refresh(){
@@ -2423,7 +2416,9 @@ function setView(v){
   }
 
   el("stat-total").textContent = PLACES.length;
+  el("stat-total-label").textContent = PLACES.length === 1 ? "place" : "places";
   el("stat-states").textContent = states.length;
+  el("stat-states-label").textContent = states.length === 1 ? "state" : "states";
   el("stat-visited").textContent = PLACES.filter(function(p){ return p.status === "visited"; }).length;
 })();
 

@@ -1,6 +1,6 @@
 # Road Trip Map
 
-An interactive map for Avery and Harley to plan a road trip across the
+An interactive map for Avery, Harley, and Sarah to plan a road trip across the
 continental US: coloured pins by attraction type, click-through links, and a
 sortable list page with descriptions, prices, visit times, seasons, and
 reviews links.
