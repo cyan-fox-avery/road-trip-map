@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (200)
+## Places so far (215)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -145,4 +145,13 @@ Center (Albuquerque, NM), Sandia Peak Tramway
 (Albuquerque, NM), Bosque del Apache National
 Wildlife Refuge (San Antonio, NM), Terry Bison
 Ranch Resort (Cheyenne, WY), Bar T 5 Covered Wagon
-Cookout and Show (Jackson, WY).
+Cookout and Show (Jackson, WY), Chugwater Soda Fountain
+(Chugwater, WY), Farson Mercantile (Farson, WY), Cody
+Cattle Company (Cody, WY), Cody Nite Rodeo (Cody, WY),
+Wyoming Dinosaur Center (Thermopolis, WY), Buffalo Bill
+Center of the West (Cody, WY), Yellowstone National Park
+(WY), Grand Teton National Park (WY), Acadia National Park
+(Bar Harbor, ME), Bryce Canyon National Park (UT),
+Everglades National Park (FL), Glacier National Park (MT),
+Rocky Mountain National Park (CO), Sequoia & Kings Canyon
+National Parks (CA), Zion National Park (UT).
