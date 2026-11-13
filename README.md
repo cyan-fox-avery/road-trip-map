@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (215)
+## Places so far (223)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -154,4 +154,9 @@ Center of the West (Cody, WY), Yellowstone National Park
 (Bar Harbor, ME), Bryce Canyon National Park (UT),
 Everglades National Park (FL), Glacier National Park (MT),
 Rocky Mountain National Park (CO), Sequoia & Kings Canyon
-National Parks (CA), Zion National Park (UT).
+National Parks (CA), Zion National Park (UT), Wind River Canyon
+(Thermopolis, WY), Hell's Half Acre (Casper, WY), Devils Tower
+National Monument (Devils Tower, WY), Cody (Cody, WY), Jackson
+(Jackson, WY), National Elk Refuge Sleigh Rides (Jackson, WY),
+The Airplane Restaurant (Colorado Springs, CO), Manitou Springs
+Penny Arcade (Manitou Springs, CO).
