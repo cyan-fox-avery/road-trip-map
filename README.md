@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (136)
+## Places so far (144)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -95,4 +95,9 @@ AZ), Butterfly Wonderland (Scottsdale, AZ), Cerreta Candy Company
 Mining Company (Columbia, CA), Wegner Crystal Mines (Mount Ida,
 AR), Rose Creek Mine (Franklin, NC), Sheffler Rock Shop and
 Geode Mine (Alexandria, MO), Herkimer Diamond Mines (Herkimer,
-NY).
+NY), Rainforest Cafe — Mall of America (Bloomington, MN), Casa
+Bonita (Lakewood, CO), Fritz's Railroad Restaurant (Kansas City,
+MO), Lambert's Cafe (Sikeston, MO), Magic Time Machine (San
+Antonio, TX), Aquarium Restaurant — Houston (Houston, TX),
+Mai-Kai Restaurant (Fort Lauderdale, FL), Tonga Room &
+Hurricane Bar (San Francisco, CA).
