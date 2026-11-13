@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (112)
+## Places so far (120)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -82,4 +82,7 @@ Drive (Yosemite National Park, CA), Springfield (Springfield, OR),
 Hot Lake Springs Resort (La Grande, OR), Sumpter Valley Railroad
 (Sumpter, OR), Painted Hills Scenic Drive (Mitchell, OR), Liberty
 Orchards Aplets & Cotlets Factory (Cashmere, WA), LIGO Exploration
-Centre (Richland, WA).
+Centre (Richland, WA), North Cascades Highway (Rockport, WA), Grand
+Canyon South Rim (Grand Canyon Village, AZ), Bearizona (Williams, AZ),
+Poozeum (Williams, AZ), Seligman (Seligman, AZ), Oatman (Oatman, AZ),
+Keepers of the Wild (Valentine, AZ), Meteor Crater (Winslow, AZ).
