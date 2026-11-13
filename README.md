@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (168)
+## Places so far (176)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -118,4 +118,9 @@ Field Museum of Natural History (Chicago, IL), National
 Museum of Natural History (Washington, DC), Atomic Museum
 (Las Vegas, NV), American Visionary Art Museum (Baltimore,
 MD), American Sign Museum (Cincinnati, OH), Gilgal
-Sculpture Garden (Salt Lake City, UT).
+Sculpture Garden (Salt Lake City, UT), Hollow Mountain
+(Hanksville, UT), Bonneville Salt Flats (Wendover, UT),
+Hole N" The Rock (Moab, UT), Prairie Schooner Steak House
+(Ogden, UT), Pirate O's Gourmet Market (Draper, UT),
+Gardner Village (West Jordan, UT), Moab Rock Shop (Moab,
+UT), Heber Valley Milk & Artisan Cheese (Midway, UT).
