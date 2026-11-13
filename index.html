@@ -2354,7 +2354,7 @@ function selectPlace(id, switchToMap){
   renderCards(getFiltered());
   if (p && map && markers[id]){
     if (switchToMap) setView("map");
-    map.flyTo([p.lat, p.lng], Math.max(map.getZoom(), 9), { duration: 0.8 });
+    map.flyTo([p.lat, p.lng], map.getZoom(), { duration: 0.8 });
     setTimeout(function(){ markers[id].openPopup(); }, 850);
     if (switchToMap) el("detail").scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
