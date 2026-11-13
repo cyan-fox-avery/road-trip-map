@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (102)
+## Places so far (107)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -76,4 +76,6 @@ Orleans, LA), Café du Monde (New Orleans, LA), Pepper Palace
 Pontalba (New Orleans, LA), Johnny Longboats (Riviera Beach, FL),
 Four Corners Monument (Teec Nos Pos, AZ), Jelly Belly Factory (Fairfield,
 CA), Bravo Farms Gift Shoppe (Traver, CA), Peggy Sue's 50's Diner (Yermo,
-CA).
+CA), Calico Ghost Town (Yermo, CA), Old Sacramento Waterfront (Sacramento,
+CA), Rosicrucian Egyptian Museum (San Jose, CA), Yosemite Valley Scenic
+Drive (Yosemite National Park, CA), Springfield (Springfield, OR).
