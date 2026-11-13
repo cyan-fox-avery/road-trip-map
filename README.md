@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (97)
+## Places so far (102)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -73,4 +73,7 @@ Moon National Monument (Arco, ID), Lava Hot Springs Hot Pools
 Willie's Chicken Shack (New Orleans, LA), New Orleans (New
 Orleans, LA), Café du Monde (New Orleans, LA), Pepper Palace
 (New Orleans, LA), Audubon Aquarium (New Orleans, LA), Café
-Pontalba (New Orleans, LA).
+Pontalba (New Orleans, LA), Johnny Longboats (Riviera Beach, FL),
+Four Corners Monument (Teec Nos Pos, AZ), Jelly Belly Factory (Fairfield,
+CA), Bravo Farms Gift Shoppe (Traver, CA), Peggy Sue's 50's Diner (Yermo,
+CA).
