@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (128)
+## Places so far (136)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -90,4 +90,9 @@ Petrified Forest National Park (Holbrook, AZ), Lowell Observatory
 (Flagstaff, AZ), Verde Canyon Railroad (Clarkdale, AZ), Organ Stop Pizza
 (Mesa, AZ), Curious Nature (Phoenix, AZ), OdySea Aquarium (Scottsdale,
 AZ), Butterfly Wonderland (Scottsdale, AZ), Cerreta Candy Company
-(Glendale, AZ).
+(Glendale, AZ), Rustler's Rooste (Phoenix, AZ), Trail Dust Town
+(Tucson, AZ), Bowlin's The Thing (Dragoon, AZ), Matelot Gulch
+Mining Company (Columbia, CA), Wegner Crystal Mines (Mount Ida,
+AR), Rose Creek Mine (Franklin, NC), Sheffler Rock Shop and
+Geode Mine (Alexandria, MO), Herkimer Diamond Mines (Herkimer,
+NY).
