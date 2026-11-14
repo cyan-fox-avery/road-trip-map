@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (270)
+## Places so far (278)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -170,4 +170,4 @@ Brazilian Steakhouse (Las Vegas, NV), Show de Carnes Brazilian Steakhouse
 (Palo Alto, CA), Bullvino's Churrascaria (St. Paul, MN), M Grill Brazilian
 Churrascaria (Los Angeles, CA), Rodizio Grill Brazilian Steakhouse (Denver,
 CO), Fogo de Chão — Naperville (Naperville, IL), Texas de Brazil — Irvine
-(Irvine, CA), Ghirardelli Square (San Francisco, CA), Flaming Gorge Reservoir (Dutch John, UT), Taos (Taos, NM), Carmel-by-the-Sea (Carmel-by-the-Sea, CA), Monterey (Monterey, CA), Turpentine Creek Wildlife Refuge (Eureka Springs, AR), Peaceful Valley Donkey Rescue (San Angelo, TX), Lions Tigers & Bears (Alpine, CA), Wild Spirit Wolf Sanctuary (Ramah, NM), Chimp Haven (Keithville, LA), Luvin Arms Animal Sanctuary (Erie, CO), The Gentle Barn (Santa Clarita, CA), Farm Sanctuary (Watkins Glen, NY), Animal Place (Grass Valley, CA), Woodstock Farm Sanctuary (High Falls, NY), Full Circle Farm Sanctuary (Warm Springs, GA), Save the Chimps (Fort Pierce, FL), Warm Springs Ranch (Boonville, MO), Acadia by Carriage (Acadia National Park, ME), Wild Horse Adventure Tours (Corolla, NC), Kentucky Horse Park (Lexington, KY).
+(Irvine, CA), Ghirardelli Square (San Francisco, CA), Flaming Gorge Reservoir (Dutch John, UT), Taos (Taos, NM), Carmel-by-the-Sea (Carmel-by-the-Sea, CA), Monterey (Monterey, CA), Turpentine Creek Wildlife Refuge (Eureka Springs, AR), Peaceful Valley Donkey Rescue (San Angelo, TX), Lions Tigers & Bears (Alpine, CA), Wild Spirit Wolf Sanctuary (Ramah, NM), Chimp Haven (Keithville, LA), Luvin Arms Animal Sanctuary (Erie, CO), The Gentle Barn (Santa Clarita, CA), Farm Sanctuary (Watkins Glen, NY), Animal Place (Grass Valley, CA), Woodstock Farm Sanctuary (High Falls, NY), Full Circle Farm Sanctuary (Warm Springs, GA), Save the Chimps (Fort Pierce, FL), Warm Springs Ranch (Boonville, MO), Acadia by Carriage (Acadia National Park, ME), Wild Horse Adventure Tours (Corolla, NC), Kentucky Horse Park (Lexington, KY), Old Friends (Georgetown, KY), Retirement Home for Horses (Alachua, FL), Assateague Island (Berlin, MD), Return to Freedom (Lompoc, CA), Salt River Wild Horse Viewing (Mesa, AZ), Pryor Mountain Wild Mustang Center (Lovell, WY), Biltmore Estate Carriage & Trail Ride Barns (Asheville, NC), Mackinac Island Carriage Tours (Mackinac Island, MI).
