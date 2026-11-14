@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (239)
+## Places so far (249)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -163,4 +163,11 @@ Penny Arcade (Manitou Springs, CO), The Wizard's Chest (Denver, CO),
 Fifty Two 80's — A Totally Awesome Shop (Denver, CO), Sasquatch Outpost
 (Bailey, CO), Butterfly Pavilion (Westminster, CO), Hammond's Candies
 Factory (Denver, CO), Dinosaur Ridge (Morrison, CO), Ghost Town Museum
-(Colorado Springs, CO), Manitou Springs (Manitou Springs, CO), Pikes Peak Cog Railway (Manitou Springs, CO), Glenwood Caverns Adventure Park (Glenwood Springs, CO), Royal Gorge Bridge & Park (Cañon City, CO), Royal Gorge Route Railroad (Cañon City, CO), Glenwood Hot Springs Pool (Glenwood Springs, CO), Georgetown Loop Railroad (Georgetown, CO), Durango & Silverton Narrow Gauge Railroad (Durango, CO), Black Canyon of the Gunnison National Park (Montrose, CO).
+(Colorado Springs, CO), Manitou Springs (Manitou Springs, CO), Pikes Peak Cog Railway (Manitou Springs, CO), Glenwood Caverns Adventure Park (Glenwood Springs, CO), Royal Gorge Bridge & Park (Cañon City, CO), Royal Gorge Route Railroad (Cañon City, CO), Glenwood Hot Springs Pool (Glenwood Springs, CO), Georgetown Loop Railroad (Georgetown, CO), Durango & Silverton Narrow Gauge Railroad (Durango, CO), Black Canyon of the Gunnison National Park (Montrose, CO), Chama Gaúcha
+Brazilian Steakhouse (Houston, TX), Adega Gaucha Brazilian Steakhouse
+(Orlando, FL), Brasão Brazilian Steakhouse (San Antonio, TX), Galpão Gaucho
+Brazilian Steakhouse (Las Vegas, NV), Show de Carnes Brazilian Steakhouse
+(Palo Alto, CA), Bullvino's Churrascaria (St. Paul, MN), M Grill Brazilian
+Churrascaria (Los Angeles, CA), Rodizio Grill Brazilian Steakhouse (Denver,
+CO), Fogo de Chão — Naperville (Naperville, IL), Texas de Brazil — Irvine
+(Irvine, CA).
