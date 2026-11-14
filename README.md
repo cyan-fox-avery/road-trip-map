@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (249)
+## Places so far (254)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -170,4 +170,4 @@ Brazilian Steakhouse (Las Vegas, NV), Show de Carnes Brazilian Steakhouse
 (Palo Alto, CA), Bullvino's Churrascaria (St. Paul, MN), M Grill Brazilian
 Churrascaria (Los Angeles, CA), Rodizio Grill Brazilian Steakhouse (Denver,
 CO), Fogo de Chão — Naperville (Naperville, IL), Texas de Brazil — Irvine
-(Irvine, CA).
+(Irvine, CA), Ghirardelli Square (San Francisco, CA), Flaming Gorge Reservoir (Dutch John, UT), Taos (Taos, NM), Carmel-by-the-Sea (Carmel-by-the-Sea, CA), Monterey (Monterey, CA).
