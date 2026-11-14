@@ -43,7 +43,6 @@
 
   /* Toolbar */
   .toolbar{background:var(--bg);padding:14px 0 10px;margin-top:14px;border-bottom:1px solid var(--line)}
-  @media(min-width:1100px){.toolbar{position:sticky;top:0;z-index:1200}}
   .viewtoggle{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;gap:4px;box-shadow:var(--shadow-sm)}
   .viewtoggle button{appearance:none;border:0;background:transparent;color:var(--ink-2);font:inherit;font-weight:700;font-size:15px;min-height:48px;padding:10px 22px;border-radius:999px;cursor:pointer}
   .viewtoggle button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
@@ -113,6 +112,10 @@
   .detail-body{padding:16px 20px 22px}
   @media(min-width:760px){.detail-body{padding:16px 26px 26px}}
   .detail-desc{font-size:16.5px;color:var(--ink);max-width:72ch;margin:0 0 18px}
+  .detail-photo{margin:0 0 18px}
+  .detail-photo img{display:block;width:100%;max-height:340px;object-fit:cover;border-radius:12px}
+  .detail-photo figcaption{font-size:12.5px;color:var(--ink-3);margin-top:6px}
+  .detail-photo figcaption a{color:var(--ink-3)}
   .facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 18px}
   @media(min-width:760px){.facts{grid-template-columns:repeat(4,1fr)}}
   .fact{background:var(--surface);padding:12px 14px}
@@ -292,7 +295,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Plan a full day — a partial day isn't enough."
+    notes: "Plan a full day — a partial day isn't enough.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Dollywood_sign_-_October_2023_-_Sarah_Stierch.jpg/1280px-Dollywood_sign_-_October_2023_-_Sarah_Stierch.jpg",
+    photoCredit: "Sarah Stierch, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Dollywood_sign_-_October_2023_-_Sarah_Stierch.jpg"
   },
   {
     id: "hersheypark",
@@ -311,7 +317,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "One ticket covers the rides, the Boardwalk, and ZooAmerica — give it a full day."
+    notes: "One ticket covers the rides, the Boardwalk, and ZooAmerica — give it a full day.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Hersheypark_Entrance_10-2-2022.jpg/1280px-Hersheypark_Entrance_10-2-2022.jpg",
+    photoCredit: "Hmich176, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Hersheypark_Entrance_10-2-2022.jpg"
   },
   {
     id: "walt-disney-world",
@@ -330,7 +339,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "With four full parks to cover, most visitors give it several days rather than a single full day."
+    notes: "With four full parks to cover, most visitors give it several days rather than a single full day.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/1/18/Walt_Disney_World%27s_Cinderella_Castle_in_2021.png",
+    photoCredit: "Kaleeb18, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Walt_Disney_World%27s_Cinderella_Castle_in_2021.png"
   },
   {
     id: "portillos-chicago",
@@ -350,7 +362,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Open until 1am every day, so it works as a late-night stop."
+    notes: "Open until 1am every day, so it works as a late-night stop.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Portillo%27s_Hot_Dogs%2C_Chicago%2C_Illinois_%2811004202155%29.jpg/1280px-Portillo%27s_Hot_Dogs%2C_Chicago%2C_Illinois_%2811004202155%29.jpg",
+    photoCredit: "Ken Lund, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Portillo%27s_Hot_Dogs%2C_Chicago%2C_Illinois_%2811004202155%29.jpg"
   },
   {
     id: "dog-mountain",
@@ -369,7 +384,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Leashes are optional — dogs can run and swim in the ponds. Time it for one of the seasonal Dog Parties if you can."
+    notes: "Leashes are optional — dogs can run and swim in the ponds. Time it for one of the seasonal Dog Parties if you can.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Dog_Chapel.jpg/1280px-Dog_Chapel.jpg",
+    photoCredit: "Alan Sandercock, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Dog_Chapel.jpg"
   },
   {
     id: "cryptozoology-museum",
@@ -388,7 +406,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "It moved in 2026 — the old Portland location is closed, so don't navigate there."
+    notes: "It moved in 2026 — the old Portland location is closed, so don't navigate there.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/International_Cryptozoology_Museum_Front_Entrance_2025-05-11.jpg/1280px-International_Cryptozoology_Museum_Front_Entrance_2025-05-11.jpg",
+    photoCredit: "Naufragiosus, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:International_Cryptozoology_Museum_Front_Entrance_2025-05-11.jpg"
   },
   {
     id: "mothman-museum",
@@ -407,7 +428,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "It's a small museum — most visits run under an hour. Leave time for the Silver Bridge Memorial and flood wall murals, a couple of blocks away."
+    notes: "It's a small museum — most visits run under an hour. Leave time for the Silver Bridge Memorial and flood wall murals, a couple of blocks away.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Mothman_Museum.jpg/1280px-Mothman_Museum.jpg",
+    photoCredit: "Richie Diesterheft, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Mothman_Museum.jpg"
   },
   {
     id: "house-on-the-rock",
@@ -426,7 +450,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Closed in January and February. Arrive no later than 2pm — the Ultimate Experience takes 3–3.5 hours and last admission is 3pm."
+    notes: "Closed in January and February. Arrive no later than 2pm — the Ultimate Experience takes 3–3.5 hours and last admission is 3pm.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/House_on_the_Rock_2.jpg/1280px-House_on_the_Rock_2.jpg",
+    photoCredit: "Wikideas1, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:House_on_the_Rock_2.jpg"
   },
   {
     id: "city-museum",
@@ -445,7 +472,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Wear closed-toe shoes and clothes you can climb in — kneepads are sold in the gift shop. The Rooftop and MonstroCity are weather-dependent and seasonal, roughly March–October."
+    notes: "Wear closed-toe shoes and clothes you can climb in — kneepads are sold in the gift shop. The Rooftop and MonstroCity are weather-dependent and seasonal, roughly March–October.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/City_Museum%2C_St._Louis_%288133090734%29.jpg/1280px-City_Museum%2C_St._Louis_%288133090734%29.jpg",
+    photoCredit: "Jon DeJong, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:City_Museum,_St._Louis_(8133090734).jpg"
   },
   {
     id: "house-of-eternal-return",
@@ -464,7 +494,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Timed-entry tickets book up — buy ahead online. Plan at least 2–3 hours."
+    notes: "Timed-entry tickets book up — buy ahead online. Plan at least 2–3 hours.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Meow_Wolf_Santa_Fe_-_House_of_Eternal_Return.jpg/1280px-Meow_Wolf_Santa_Fe_-_House_of_Eternal_Return.jpg",
+    photoCredit: "ObscuraNomad, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Meow_Wolf_Santa_Fe_-_House_of_Eternal_Return.jpg"
   },
   {
     id: "very-large-array",
@@ -483,7 +516,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Keep cell phones OFF or in airplane mode the whole visit — they interfere with the telescopes. There's no food on site, so bring food and water — and don't trust a maps search, it can send you to the Socorro offices instead."
+    notes: "Keep cell phones OFF or in airplane mode the whole visit — they interfere with the telescopes. There's no food on site, so bring food and water — and don't trust a maps search, it can send you to the Socorro offices instead.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Very_Large_Array_--_New_Mexico%2C_U.S.A._--_2009-08.jpg/1280px-Very_Large_Array_--_New_Mexico%2C_U.S.A._--_2009-08.jpg",
+    photoCredit: "CGP Grey, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Very_Large_Array_--_New_Mexico%2C_U.S.A._--_2009-08.jpg"
   },
   {
     id: "best-friends-animal-sanctuary",
@@ -541,7 +577,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Book ahead — the themed rooms go fast. You don't have to stay overnight to try the cake: the bakery sells it by the slice."
+    notes: "Book ahead — the themed rooms go fast. You don't have to stay overnight to try the cake: the bakery sells it by the slice.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/6/60/Madonna-inn-exterior-MCB.jpg",
+    photoCredit: "Michael C. Berch, CC BY-SA 2.5",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Madonna-inn-exterior-MCB.jpg"
   },
   {
     id: "piedras-blancas-elephant-seals",
@@ -560,7 +599,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Best viewing is late January–March for pups and mothers, December–February for the big bulls. No restrooms at the viewing area — bring binoculars."
+    notes: "Best viewing is late January–March for pups and mothers, December–February for the big bulls. No restrooms at the viewing area — bring binoculars.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Seals_at_Piedras_Blancas_elephant_seal_rookery_2013_01.jpg/1280px-Seals_at_Piedras_Blancas_elephant_seal_rookery_2013_01.jpg",
+    photoCredit: "Tuxyso, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Seals_at_Piedras_Blancas_elephant_seal_rookery_2013_01.jpg"
   },
   {
     id: "mystery-spot",
@@ -579,7 +621,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Book online in advance — weekends and holidays sell out. Arrive 30 minutes before your tour or you miss it."
+    notes: "Book online in advance — weekends and holidays sell out. Arrive 30 minutes before your tour or you miss it.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/The_Mystery_spot_entrance.jpg/1280px-The_Mystery_spot_entrance.jpg",
+    photoCredit: "Doglover41, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:The_Mystery_spot_entrance.jpg"
   },
   {
     id: "musee-mecanique",
@@ -599,7 +644,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Cash only — the machines take quarters, mostly 25–50¢ a play, with change machines on site."
+    notes: "Cash only — the machines take quarters, mostly 25–50¢ a play, with change machines on site.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Mus%C3%A9e_M%C3%A9canique%2C_San_Francisco.jpg/1280px-Mus%C3%A9e_M%C3%A9canique%2C_San_Francisco.jpg",
+    photoCredit: "Slyronit, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Mus%C3%A9e_M%C3%A9canique%2C_San_Francisco.jpg"
   },
   {
     id: "wave-organ",
@@ -618,7 +666,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Go at high tide — check the tide chart first. At low tide the pipes are silent."
+    notes: "Go at high tide — check the tide chart first. At low tide the pipes are silent.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Wave_Organ_-_San_Francisco%2C_CA_-_DSC02526.jpg/1280px-Wave_Organ_-_San_Francisco%2C_CA_-_DSC02526.jpg",
+    photoCredit: "Daderot, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Wave_Organ_-_San_Francisco%2C_CA_-_DSC02526.jpg"
   },
   {
     id: "confusion-hill",
@@ -637,7 +688,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The miniature train runs in summer only."
+    notes: "The miniature train runs in summer only.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Confusion_Hill_Redwoods_340.jpg/1280px-Confusion_Hill_Redwoods_340.jpg",
+    photoCredit: "Pamla J. Eisenberg, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Confusion_Hill_Redwoods_340.jpg"
   },
   {
     id: "avenue-of-the-giants",
@@ -656,7 +710,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free to drive — no entrance fee, no reservation. In winter, check road conditions — Highway 101 can close for landslides or flooding."
+    notes: "Free to drive — no entrance fee, no reservation. In winter, check road conditions — Highway 101 can close for landslides or flooding.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Avenue_of_the_Giants_-_California.jpg/1280px-Avenue_of_the_Giants_-_California.jpg",
+    photoCredit: "Dougtone, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Avenue_of_the_Giants_-_California.jpg"
   },
   {
     id: "salvation-mountain",
@@ -675,7 +732,10 @@ var PLACES = [
     seasons: ["Spring", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Best October to April — summer here is brutally hot with no shade, no water, and no services. Fill up and bring water in Niland first; there's no cell service out here either."
+    notes: "Best October to April — summer here is brutally hot with no shade, no water, and no services. Fill up and bring water in Niland first; there's no cell service out here either.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Salvation_Mountain%2C_Niland%2C_CA.jpg/1280px-Salvation_Mountain%2C_Niland%2C_CA.jpg",
+    photoCredit: "Aculp, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Salvation_Mountain%2C_Niland%2C_CA.jpg"
   },
   {
     id: "mothership",
@@ -732,7 +792,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free for San Diego County residents, students, and active-duty military on the 2nd Tuesday of each month. The outside is currently in renovation — the inside is the draw."
+    notes: "Free for San Diego County residents, students, and active-duty military on the 2nd Tuesday of each month. The outside is currently in renovation — the inside is the draw.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/SanDiegoAirSpaceMuseumByPhilKonstantin.JPG/1280px-SanDiegoAirSpaceMuseumByPhilKonstantin.JPG",
+    photoCredit: "Phil Konstantin, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:SanDiegoAirSpaceMuseumByPhilKonstantin.JPG"
   },
   {
     id: "disneyland-park",
@@ -751,7 +814,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Unlike Florida, Disneyland still requires a park reservation in addition to the ticket — book it right after buying."
+    notes: "Unlike Florida, Disneyland still requires a park reservation in addition to the ticket — book it right after buying.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Sleeping_Beauty_Castle_2019.jpg/1280px-Sleeping_Beauty_Castle_2019.jpg",
+    photoCredit: "CrispyCream27, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Sleeping_Beauty_Castle_2019.jpg"
   },
   {
     id: "knotts-berry-farm",
@@ -770,7 +836,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Buy tickets online — gate prices run higher. Closed Christmas Day."
+    notes: "Buy tickets online — gate prices run higher. Closed Christmas Day.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Knott%27s_Berry_Farm%2C_2025.jpg/1280px-Knott%27s_Berry_Farm%2C_2025.jpg",
+    photoCredit: "OliviaRigby, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Knott%27s_Berry_Farm%2C_2025.jpg"
   },
   {
     id: "medieval-times-buena-park",
@@ -808,7 +877,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Timed reservations are required on weekends, holidays, and peak days — buy online and pick an entry time."
+    notes: "Timed reservations are required on weekends, holidays, and peak days — buy online and pick an entry time.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Aquarium-of-the-Pacific-Night.png/1280px-Aquarium-of-the-Pacific-Night.png",
+    photoCredit: "Coughdrop12, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Aquarium-of-the-Pacific-Night.png"
   },
   {
     id: "universal-studios-hollywood",
@@ -827,7 +899,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Buy in advance — it's cheaper and dated tickets can sell out. In the fall, Halloween Horror Nights takes over select evenings and the park closes early those days."
+    notes: "Buy in advance — it's cheaper and dated tickets can sell out. In the fall, Halloween Horror Nights takes over select evenings and the park closes early those days.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Universal_Studios_Hollywood_globe_%28July_2022%29.JPG/1280px-Universal_Studios_Hollywood_globe_%28July_2022%29.JPG",
+    photoCredit: "Benoît Prieur, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Universal_Studios_Hollywood_globe_%28July_2022%29.JPG"
   },
   {
     id: "griffith-observatory",
@@ -846,26 +921,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Closed Mondays. Planetarium tickets are sold same-day at the box office only, and they sell out on weekends — and summit parking is $10/hour and fills fast, so the 50¢ DASH bus from the Vermont/Sunset Metro station is the move."
-  },
-  {
-    id: "monterey-bay-aquarium",
-    name: "Monterey Bay Aquarium",
-    categories: ["nature"],
-    city: "Monterey",
-    state: "California",
-    lat: 36.61825,
-    lng: -121.90177,
-    address: "886 Cannery Row, Monterey, CA 93940",
-    website: "https://www.montereybayaquarium.org/",
-    reviewsUrl: "https://www.tripadvisor.ca/Attraction_Review-g32737-d104804-Reviews-or40-Monterey_Bay_Aquarium-Monterey_Monterey_County_California.html",
-    description: "One of the world's great aquariums, on historic Cannery Row in a former sardine cannery — the three-story Kelp Forest, the 1.2-million-gallon Open Sea tank, sea otters, the famous jellies, and a nonprofit conservation mission.",
-    price: 2,
-    time: "half",
-    seasons: ["Spring", "Summer", "Fall", "Winter"],
-    rating: null,
-    status: "want",
-    notes: "Tickets must be bought in advance online — the aquarium doesn't sell them at the door."
+    notes: "Closed Mondays. Planetarium tickets are sold same-day at the box office only, and they sell out on weekends — and summit parking is $10/hour and fills fast, so the 50¢ DASH bus from the Vermont/Sunset Metro station is the move.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Griffith_observatory_2006.jpg/1280px-Griffith_observatory_2006.jpg",
+    photoCredit: "Matthew Field, CC BY 2.5",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Griffith_observatory_2006.jpg"
   },
   {
     id: "santa-cruz-beach-boardwalk",
@@ -884,7 +943,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Rides run daily in summer and weekends only the rest of the year — don't assume it's open every day. Buy the all-day wristband by midnight the day before for up to 20% off."
+    notes: "Rides run daily in summer and weekends only the rest of the year — don't assume it's open every day. Buy the all-day wristband by midnight the day before for up to 20% off.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Santa_Cruz_Beach_Boardwalk_2023-07-16_%281%29.jpg/1280px-Santa_Cruz_Beach_Boardwalk_2023-07-16_%281%29.jpg",
+    photoCredit: "The wub, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Santa_Cruz_Beach_Boardwalk_2023-07-16_%281%29.jpg"
   },
   {
     id: "exploratorium",
@@ -903,7 +965,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Closed Mondays — the classic trap. Buy tickets in advance; sessions sell out."
+    notes: "Closed Mondays — the classic trap. Buy tickets in advance; sessions sell out.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/San_Francisco_Exploratorium_-_South_Side.jpg/1280px-San_Francisco_Exploratorium_-_South_Side.jpg",
+    photoCredit: "Fabrice Florin, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:San_Francisco_Exploratorium_-_South_Side.jpg"
   },
   {
     id: "alcatraz-island",
@@ -922,7 +987,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Book as early as possible — tickets go on sale 90 days ahead and sell out weeks or months ahead in summer. Dress warm: the Bay is cold and windy even in summer."
+    notes: "Book as early as possible — tickets go on sale 90 days ahead and sell out weeks or months ahead in summer. Dress warm: the Bay is cold and windy even in summer.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Alcatraz_Island_as_seen_from_the_East.jpg/1280px-Alcatraz_Island_as_seen_from_the_East.jpg",
+    photoCredit: "Frank Schulenburg, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Alcatraz_Island_as_seen_from_the_East.jpg"
   },
   {
     id: "skunk-train",
@@ -941,7 +1009,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The old tunnel collapsed in 2013, so the full Fort Bragg–Willits through-trip doesn't run. All sales are final, no refunds."
+    notes: "The old tunnel collapsed in 2013, so the full Fort Bragg–Willits through-trip doesn't run. All sales are final, no refunds.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Skunk_Train_-_August_2018_-_Stierch_01.jpg",
+    photoCredit: "Missvain, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Skunk_Train_-_August_2018_-_Stierch_01.jpg"
   },
   {
     id: "redwood-sky-walk",
@@ -960,7 +1031,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The walk closes in high wind, so check the weather."
+    notes: "The walk closes in high wind, so check the weather.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Sequoia-Park-Zoo.jpg/1280px-Sequoia-Park-Zoo.jpg",
+    photoCredit: "AuroraTeagarden, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Sequoia-Park-Zoo.jpg"
   },
   {
     id: "living-desert-zoo-gardens",
@@ -979,7 +1053,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "In summer it closes at 1:30pm to protect visitors and animals from the heat, so go first thing. The zoo is cashless and tickets must be pre-purchased online or at the self-service kiosks."
+    notes: "In summer it closes at 1:30pm to protect visitors and animals from the heat, so go first thing. The zoo is cashless and tickets must be pre-purchased online or at the self-service kiosks.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Feeding_giraffes_in_Palm_Springs_Desert_Zoo_%2855122887488%29.jpg/1280px-Feeding_giraffes_in_Palm_Springs_Desert_Zoo_%2855122887488%29.jpg",
+    photoCredit: "Sergiy Galyonkin, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Feeding_giraffes_in_Palm_Springs_Desert_Zoo_%2855122887488%29.jpg"
   },
   {
     id: "cranberry-sweets",
@@ -1017,7 +1094,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Timed entry — book a time slot in advance, as popular days sell out."
+    notes: "Timed entry — book a time slot in advance, as popular days sell out.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Top_of_Giant_Ocean_Tank_at_New_England_Aquarium_Oct_2024_1.jpg/1280px-Top_of_Giant_Ocean_Tank_at_New_England_Aquarium_Oct_2024_1.jpg",
+    photoCredit: "4300streetcar, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Top_of_Giant_Ocean_Tank_at_New_England_Aquarium_Oct_2024_1.jpg"
   },
   {
     id: "tillamook-creamery",
@@ -1036,7 +1116,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free admission and free cheese samples — no reservation needed. The factory floor runs Monday–Saturday, so that's when there's most to see."
+    notes: "Free admission and free cheese samples — no reservation needed. The factory floor runs Monday–Saturday, so that's when there's most to see.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Tillamook_Creamery_4.2025.jpg/1280px-Tillamook_Creamery_4.2025.jpg",
+    photoCredit: "PortlandSaint, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Tillamook_Creamery_4.2025.jpg"
   },
   {
     id: "peculiarium",
@@ -1055,7 +1138,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free if you show up in a decent costume, or bring a well-behaved pet. The Bug Sundae is soft serve topped with dried mealworms and scorpions — finish it and you join the Insectarian Club."
+    notes: "Free if you show up in a decent costume, or bring a well-behaved pet. The Bug Sundae is soft serve topped with dried mealworms and scorpions — finish it and you join the Insectarian Club.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/The_Peculiarium.jpg/1280px-The_Peculiarium.jpg",
+    photoCredit: "Visitor7, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:The_Peculiarium.jpg"
   },
   {
     id: "crater-lake-rim-drive",
@@ -1074,7 +1160,10 @@ var PLACES = [
     seasons: ["Summer", "Fall"],
     rating: null,
     status: "want",
-    notes: "The full loop is only open roughly mid-July through October. The Cleetwood Cove Trail and all boat tours are closed through 2028, so the lake is view-only for now."
+    notes: "The full loop is only open roughly mid-July through October. The Cleetwood Cove Trail and all boat tours are closed through 2028, so the lake is view-only for now.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Crater_Lake_October_2019_017.jpg/1280px-Crater_Lake_October_2019_017.jpg",
+    photoCredit: "King of Hearts, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Crater_Lake_October_2019_017.jpg"
   },
   {
     id: "rogue-creamery",
@@ -1093,7 +1182,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free to visit, with free samples — the staff will let you taste anything in the case. The grilled cheese sandwich (blue cheese and honey) with tomato soup is the thing to get."
+    notes: "Free to visit, with free samples — the staff will let you taste anything in the case. The grilled cheese sandwich (blue cheese and honey) with tomato soup is the thing to get.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Rogue_Creamery_-_Jun_24%2C_2007.jpg",
+    photoCredit: "Clyde Adams III, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Rogue_Creamery_-_Jun_24%2C_2007.jpg"
   },
   {
     id: "roaring-rapids-pizza",
@@ -1131,7 +1223,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Waits run long — 30–45 minutes is common around 10–11am and Saturdays are the busiest; get there right at 8am to skip the wait."
+    notes: "Waits run long — 30–45 minutes is common around 10–11am and Saturdays are the busiest; get there right at 8am to skip the wait.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Portland%2C_Oregon_%28July_26%2C_2022%29_-_030.jpg/1280px-Portland%2C_Oregon_%28July_26%2C_2022%29_-_030.jpg",
+    photoCredit: "Another Believer, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Portland%2C_Oregon_%28July_26%2C_2022%29_-_030.jpg"
   },
   {
     id: "ravens-manor",
@@ -1150,7 +1245,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "21+ only, and closed Tuesdays. Reservations via Tock — book ahead, especially near Halloween."
+    notes: "21+ only, and closed Tuesdays. Reservations via Tock — book ahead, especially near Halloween.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Raven%27s_Manor%2C_Portland%2C_Oregon_2022.jpg/1280px-Raven%27s_Manor%2C_Portland%2C_Oregon_2022.jpg",
+    photoCredit: "Another Believer, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Raven%27s_Manor%2C_Portland%2C_Oregon_2022.jpg"
   },
   {
     id: "paxton-gate",
@@ -1169,7 +1267,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free to browse — it's a shop, not a museum, but it feels like one: a natural history museum where everything is for sale."
+    notes: "Free to browse — it's a shop, not a museum, but it feels like one: a natural history museum where everything is for sale.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Portland%2C_Oregon_%28July_2%2C_2022%29_-_185.jpg/1280px-Portland%2C_Oregon_%28July_2%2C_2022%29_-_185.jpg",
+    photoCredit: "Another Believer, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Portland%2C_Oregon_%28July_2%2C_2022%29_-_185.jpg"
   },
   {
     id: "marshs-free-museum",
@@ -1189,7 +1290,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Bring nickels, dimes, and quarters for the vintage coin-op machines."
+    notes: "Bring nickels, dimes, and quarters for the vintage coin-op machines.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Marsh%27s_Free_Museum_-_Long_Beach%2C_Washington.jpg/1280px-Marsh%27s_Free_Museum_-_Long_Beach%2C_Washington.jpg",
+    photoCredit: "Kingofthedead, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Marsh%27s_Free_Museum_-_Long_Beach%2C_Washington.jpg"
   },
   {
     id: "sharkys-ocean-shores",
@@ -1208,7 +1312,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "No restroom on site."
+    notes: "No restroom on site.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Sharky%27s_and_me_-_panoramio.jpg/1280px-Sharky%27s_and_me_-_panoramio.jpg",
+    photoCredit: "Kira Picabo, CC BY 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Sharky%27s_and_me_-_panoramio.jpg"
   },
   {
     id: "archie-mcphee",
@@ -1228,7 +1335,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: ""
+    notes: "",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Archie_McPhee_exterior.jpg/1280px-Archie_McPhee_exterior.jpg",
+    photoCredit: "Joe Mabel, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Archie_McPhee_exterior.jpg"
   },
   {
     id: "ye-olde-curiosity-shop",
@@ -1248,7 +1358,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free to look — the museum exhibits are free. Busiest at midday and on weekends."
+    notes: "Free to look — the museum exhibits are free. Busiest at midday and on weekends.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Seattle_-_Ye_Olde_Curiosity_Shop_2019-09.jpg/1280px-Seattle_-_Ye_Olde_Curiosity_Shop_2019-09.jpg",
+    photoCredit: "Joe Mabel, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Seattle_-_Ye_Olde_Curiosity_Shop_2019-09.jpg"
   },
   {
     id: "pike-place-market",
@@ -1260,6 +1373,9 @@ var PLACES = [
     lng: -122.34081,
     address: "85 Pike St, Seattle, WA 98101",
     website: "https://www.pikeplacemarket.org/",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Pike_Place_Public_Market_%282891583476%29.jpg",
+    photoCredit: "Cliff, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Pike_Place_Public_Market_(2891583476).jpg",
     reviewsUrl: "https://www.tripadvisor.co.nz/Attraction_Review-g60878-d103584-Reviews-Pike_Place_Market-Seattle_Washington.html",
     description: "Seattle's iconic public market since 1907 — fishmongers throwing salmon, fresh produce, flowers, crafts, and the original Starbucks, overlooking Elliott Bay.",
     mustSee: "The fish throwing at Pike Place Fish Market",
@@ -1287,7 +1403,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The trail connecting the upper and lower decks is 0.7 miles and steep — budget 2–3 hours if you do the full hike. The falls are most powerful in winter and spring with snowmelt and heavy rain."
+    notes: "The trail connecting the upper and lower decks is 0.7 miles and steep — budget 2–3 hours if you do the full hike. The falls are most powerful in winter and spring with snowmelt and heavy rain.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Snoqualmie_Falls%2C_Snoqualmie%2C_WA.jpeg/1280px-Snoqualmie_Falls%2C_Snoqualmie%2C_WA.jpeg",
+    photoCredit: "Meher Anand Kasam, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Snoqualmie_Falls,_Snoqualmie,_WA.jpeg"
   },
   {
     id: "leavenworth-reindeer-farm",
@@ -1344,7 +1463,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The falls are most powerful March–June with spring snowmelt. The ride may close without notice in high winds or extreme heat — in summer, go early."
+    notes: "The falls are most powerful March–June with spring snowmelt. The ride may close without notice in high winds or extreme heat — in summer, go early.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Spokane_Falls_Skyride_Tour.jpg/1280px-Spokane_Falls_Skyride_Tour.jpg",
+    photoCredit: "Rickymouser45, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Spokane_Falls_Skyride_Tour.jpg"
   },
   {
     id: "brights-candies",
@@ -1384,7 +1506,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "A guided Visitor Experience runs Mon, Tue, Thu, Sat, Sun 12:00–12:45pm. There's also a Pike Place Market location in Seattle — already covered by the Pike Place Market entry, so the Prosser flagship is the pin."
+    notes: "A guided Visitor Experience runs Mon, Tue, Thu, Sat, Sun 12:00–12:45pm. There's also a Pike Place Market location in Seattle — already covered by the Pike Place Market entry, so the Prosser flagship is the pin.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Chukar%27s_Headquarters_in_Prosser%2C_WA.jpg/1280px-Chukar%27s_Headquarters_in_Prosser%2C_WA.jpg",
+    photoCredit: "Chukar Cherries, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Chukar%27s_Headquarters_in_Prosser,_WA.jpg"
   },
   {
     id: "gingerbread-factory",
@@ -1424,7 +1549,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The MegaZapper Electrical Show runs Saturday–Sunday at 2:30pm. Closed Monday–Tuesday."
+    notes: "The MegaZapper Electrical Show runs Saturday–Sunday at 2:30pm. Closed Monday–Tuesday.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/SPARK_Museum_of_Electrical_Invention_-_interior_43_-_radios_and_tubes.jpg/1280px-SPARK_Museum_of_Electrical_Invention_-_interior_43_-_radios_and_tubes.jpg",
+    photoCredit: "Joe Mabel, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:SPARK_Museum_of_Electrical_Invention_-_interior_43_-_radios_and_tubes.jpg"
   },
   {
     id: "poulsbo",
@@ -1443,7 +1571,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "A short ferry ride from Seattle. Annual events: Viking Fest in May, Midtsommer Fest in June, Julefest in December."
+    notes: "A short ferry ride from Seattle. Annual events: Viking Fest in May, Midtsommer Fest in June, Julefest in December.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Poulsbo_Waterfront_%2816219039965%29.jpg/1280px-Poulsbo_Waterfront_%2816219039965%29.jpg",
+    photoCredit: "Jonathan Miske, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Poulsbo_Waterfront_(16219039965).jpg"
   },
   {
     id: "las-vegas",
@@ -1455,6 +1586,9 @@ var PLACES = [
     lng: -115.17557,
     address: "3600 Las Vegas Blvd S, Las Vegas, NV 89109",
     website: "https://www.visitlasvegas.com/experience/post/las-vegas-travel-guide/",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Bellagio_Fountains_%281150330184%29.jpg",
+    photoCredit: "Rob Young, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Bellagio_Fountains_(1150330184).jpg",
     reviewsUrl: "https://www.tripadvisor.ca/Tourism-g45963-Las_Vegas_Nevada-Vacations.html",
     description: "Las Vegas, Nevada — the Entertainment Capital of the World: the Strip's casinos and shows, Fremont Street's neon, and a desert city that's a destination in itself.",
     mustSee: "The Fountains of Bellagio",
@@ -1483,7 +1617,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Entry to the district itself is free — no reservation needed. 18+ after 8pm Thursday–Saturday."
+    notes: "Entry to the district itself is free — no reservation needed. 18+ after 8pm Thursday–Saturday.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/Area15_-_2.jpg/1280px-Area15_-_2.jpg",
+    photoCredit: "APK, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Area15_-_2.jpg"
   },
   {
     id: "golden-tiki",
@@ -1503,7 +1640,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "21+ with a physical, valid ID. Drinks only — no food menu — and reservations are strongly recommended."
+    notes: "21+ with a physical, valid ID. Drinks only — no food menu — and reservations are strongly recommended.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Golden_Tiki_Las_Vegas.jpg/1280px-Golden_Tiki_Las_Vegas.jpg",
+    photoCredit: "Joseph Gage, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Golden_Tiki_Las_Vegas.jpg"
   },
   {
     id: "silverton-aquarium",
@@ -1523,7 +1663,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "No mermaids Monday–Wednesday, though the tank is still viewable. Interactive stingray feedings daily at 1:30pm and 4:30pm."
+    notes: "No mermaids Monday–Wednesday, though the tank is still viewable. Interactive stingray feedings daily at 1:30pm and 4:30pm.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/Silverton_casino_and_aquarium.jpg/1280px-Silverton_casino_and_aquarium.jpg",
+    photoCredit: "kennejima, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Silverton_casino_and_aquarium.jpg"
   },
   {
     id: "ethel-m-chocolates",
@@ -1543,7 +1686,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Come on a weekday morning to see the chocolatiers at work — production runs Monday–Friday, 10am–3:30pm."
+    notes: "Come on a weekday morning to see the chocolatiers at work — production runs Monday–Friday, 10am–3:30pm.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Ethel_M_Garden_NV2.jpg/1280px-Ethel_M_Garden_NV2.jpg",
+    photoCredit: "Acroterion, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Ethel_M_Garden_NV2.jpg"
   },
   {
     id: "hoover-dam",
@@ -1563,7 +1709,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The $40 Guided Dam Tour is suspended until further notice. Summer is brutally hot with little shade — go early, bring water."
+    notes: "The $40 Guided Dam Tour is suspended until further notice. Summer is brutally hot with little shade — go early, bring water.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Boulder_Dam_-_A.jpg/1280px-Boulder_Dam_-_A.jpg",
+    photoCredit: "P, Hughes, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Boulder_Dam_-_A.jpg"
   },
   {
     id: "northshore-road",
@@ -1583,7 +1732,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Summer is brutally hot — early morning and late afternoon are best, when low sun deepens the colors."
+    notes: "Summer is brutally hot — early morning and late afternoon are best, when low sun deepens the colors.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/View_from_Northshore_Drive_at_Springtime_%28c4bd65ff-115c-44bc-9957-8dd6c34bc5bb%29.jpg/1280px-View_from_Northshore_Drive_at_Springtime_%28c4bd65ff-115c-44bc-9957-8dd6c34bc5bb%29.jpg",
+    photoCredit: "Andrew Cattoir, public domain",
+    photoSource: "https://commons.wikimedia.org/wiki/File:View_from_Northshore_Drive_at_Springtime_(c4bd65ff-115c-44bc-9957-8dd6c34bc5bb).jpg"
   },
   {
     id: "extraterrestrial-highway",
@@ -1603,7 +1755,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Refuel in Alamo or Ash Springs — the next gas is 52 miles away. Do NOT trespass on Area 51 or any military property."
+    notes: "Refuel in Alamo or Ash Springs — the next gas is 52 miles away. Do NOT trespass on Area 51 or any military property.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/2014-07-18_12_22_25_First_Extraterrestrial_Highway_sign_along_northbound_Nevada_State_Route_375_in_Crystal_Springs%2C_Nevada.JPG/1280px-2014-07-18_12_22_25_First_Extraterrestrial_Highway_sign_along_northbound_Nevada_State_Route_375_in_Crystal_Springs%2C_Nevada.JPG",
+    photoCredit: "Famartin, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:2014-07-18_12_22_25_First_Extraterrestrial_Highway_sign_along_northbound_Nevada_State_Route_375_in_Crystal_Springs,_Nevada.JPG"
   },
   {
     id: "virginia-city",
@@ -1623,7 +1778,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "No chain stores or fast food. Free to walk the town; museums and tours cost."
+    notes: "No chain stores or fast food. Free to walk the town; museums and tours cost.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/2015-10-30_13_48_20_View_south_along_C_Street_%28Nevada_State_Route_341%29_near_Taylor_Street_in_Virginia_City%2C_Nevada.jpg/1280px-2015-10-30_13_48_20_View_south_along_C_Street_%28Nevada_State_Route_341%29_near_Taylor_Street_in_Virginia_City%2C_Nevada.jpg",
+    photoCredit: "Famartin, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:2015-10-30_13_48_20_View_south_along_C_Street_(Nevada_State_Route_341)_near_Taylor_Street_in_Virginia_City,_Nevada.jpg"
   },
   {
     id: "virginia-truckee-railroad",
@@ -1643,7 +1801,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Physical tickets are required — digital confirmations aren't accepted. Arrive at least 30 minutes early; trains depart on time."
+    notes: "Physical tickets are required — digital confirmations aren't accepted. Arrive at least 30 minutes early; trains depart on time.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Virginia_and_Truckee_Railroad_locomotive_ALCO_S-6.jpg/1280px-Virginia_and_Truckee_Railroad_locomotive_ALCO_S-6.jpg",
+    photoCredit: "Sergey Yarmolyuk, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Virginia_and_Truckee_Railroad_locomotive_ALCO_S-6.jpg"
   },
   {
     id: "junkee-clothing-exchange",
@@ -1683,7 +1844,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Steam generally runs weekends, diesel mid-week. Over a mile high in elevation — bring a jacket."
+    notes: "Steam generally runs weekends, diesel mid-week. Over a mile high in elevation — bring a jacket.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Nevada_Northern_250.jpg/1280px-Nevada_Northern_250.jpg",
+    photoCredit: "Xboxtravis7992, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Nevada_Northern_250.jpg"
   },
   {
     id: "star-hotel",
@@ -1723,7 +1887,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: ""
+    notes: "",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Sandpoint%2C_Idaho_%2850082769833%29.jpg/1280px-Sandpoint%2C_Idaho_%2850082769833%29.jpg",
+    photoCredit: "Ken Lund, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Sandpoint,_Idaho_(50082769833).jpg"
   },
   {
     id: "silverwood-theme-park",
@@ -1743,7 +1910,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall"],
     rating: null,
     status: "want",
-    notes: "Cashless park — cash goes onto a cash band, and you must show the originating credit card used to buy tickets at entry. Boulder Beach Water Park is included with admission whenever it's open."
+    notes: "Cashless park — cash goes onto a cash band, and you must show the originating credit card used to buy tickets at entry. Boulder Beach Water Park is included with admission whenever it's open.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Silverwood_Theme_Park_Roller_Coasters.jpg/1280px-Silverwood_Theme_Park_Roller_Coasters.jpg",
+    photoCredit: "Jeff Pittman, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Silverwood_Theme_Park_Roller_Coasters.jpg"
   },
   {
     id: "lake-coeur-d-alene-cruises",
@@ -1763,7 +1933,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Well-behaved dogs are welcome on the Daily Scenic Cruise. Winter brings Eagle Watch cruises — bald eagles gather on the lake."
+    notes: "Well-behaved dogs are welcome on the Daily Scenic Cruise. Winter brings Eagle Watch cruises — bald eagles gather on the lake.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Lake_Coeur_d%27Alene%2C_Coeur_d%27Alene%2C_Idaho_%2850083363521%29.jpg/1280px-Lake_Coeur_d%27Alene%2C_Coeur_d%27Alene%2C_Idaho_%2850083363521%29.jpg",
+    photoCredit: "Ken Lund, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Lake_Coeur_d%27Alene,_Coeur_d%27Alene,_Idaho_(50083363521).jpg"
   },
   {
     id: "wallace",
@@ -1783,7 +1956,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The Center of the Universe manhole cover is in the middle of the road — mind the traffic. The Sierra Silver Mine Tour runs through October 15."
+    notes: "The Center of the Universe manhole cover is in the middle of the road — mind the traffic. The Sierra Silver Mine Tour runs through October 15.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Wallace_Idaho.JPG/1280px-Wallace_Idaho.JPG",
+    photoCredit: "Jayjayp, CC BY 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Wallace_Idaho.JPG"
   },
   {
     id: "silver-mountain-gondola",
@@ -1823,7 +1999,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: ""
+    notes: "",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Boise%2C_Idaho.jpg/1280px-Boise%2C_Idaho.jpg",
+    photoCredit: "Jyoni Shuler, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Boise,_Idaho.jpg"
   },
   {
     id: "repop-gifts",
@@ -1863,7 +2042,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The pin is the Park Center location — the original Westside Drive In is at 1929 W State St, in operation since 1957."
+    notes: "The pin is the Park Center location — the original Westside Drive In is at 1929 W State St, in operation since 1957.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Ice_cream_potato.jpg/1280px-Ice_cream_potato.jpg",
+    photoCredit: "LittleT889, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Ice_cream_potato.jpg"
   },
   {
     id: "indian-creek-plaza",
@@ -1883,7 +2065,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "In winter the plaza becomes Winter Wonderland, with the Ice Ribbon open November 20 through February — skating is ticketed."
+    notes: "In winter the plaza becomes Winter Wonderland, with the Ice Ribbon open November 20 through February — skating is ticketed.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Indian_Creek_Plaza_%282%29.jpg/1280px-Indian_Creek_Plaza_%282%29.jpg",
+    photoCredit: "Tamanoeconomico, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Indian_Creek_Plaza_(2).jpg"
   },
   {
     id: "bruneau-dunes-state-park",
@@ -1903,7 +2088,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Public observatory programs run Friday and Saturday nights, March–October — $5 per person. Rent a sandboard from the Visitor Center to climb the dune."
+    notes: "Public observatory programs run Friday and Saturday nights, March–October — $5 per person. Rent a sandboard from the Visitor Center to climb the dune.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Bruneau_sand_dunes.jpg/1280px-Bruneau_sand_dunes.jpg",
+    photoCredit: "Steve Spring, CC BY 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Bruneau_sand_dunes.jpg"
   },
   {
     id: "mccall",
@@ -1923,7 +2111,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "In winter the town flips: the McCall Winter Carnival runs late January–early February, and the Burgdorf hot springs are snowmobile-in only."
+    notes: "In winter the town flips: the McCall Winter Carnival runs late January–early February, and the Burgdorf hot springs are snowmobile-in only.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Mccall.JPG/1280px-Mccall.JPG",
+    photoCredit: "Karthikc123, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Mccall.JPG"
   },
   {
     id: "roundhouse-sun-valley",
@@ -1963,7 +2154,10 @@ var PLACES = [
     seasons: ["Spring", "Summer"],
     rating: null,
     status: "want",
-    notes: "Go in spring — flow depends on winter snowfall, and in fall the falls are often nearly dry. Check the live video feed on the city's page before you go."
+    notes: "Go in spring — flow depends on winter snowfall, and in fall the falls are often nearly dry. Check the live video feed on the city's page before you go.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Shoshone_Falls%2C_Idaho.jpg/1280px-Shoshone_Falls%2C_Idaho.jpg",
+    photoCredit: "Frank Schulenburg, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Shoshone_Falls,_Idaho.jpg"
   },
   {
     id: "pickles-place",
@@ -2003,7 +2197,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall"],
     rating: null,
     status: "want",
-    notes: "The black rock radiates heat at midday — go late afternoon or early evening, bring water. There is no cell service."
+    notes: "The black rock radiates heat at midday — go late afternoon or early evening, bring water. There is no cell service.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Craters_of_the_Moon_National_Monument_-_Idaho_%2814584562293%29.jpg/1280px-Craters_of_the_Moon_National_Monument_-_Idaho_%2814584562293%29.jpg",
+    photoCredit: "Doug Kerr, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Craters_of_the_Moon_National_Monument_-_Idaho_(14584562293).jpg"
   },
   {
     id: "lava-hot-springs-pools",
@@ -2023,7 +2220,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Open 363 days a year — closed only Thanksgiving and Christmas. Children under 2 are not recommended (water above 100°F)."
+    notes: "Open 363 days a year — closed only Thanksgiving and Christmas. Children under 2 are not recommended (water above 100°F).",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Lava_hot_springs%2C_idaho_%282452280074%29.jpg/1280px-Lava_hot_springs%2C_idaho_%282452280074%29.jpg",
+    photoCredit: "fishermansdaughter, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Lava_hot_springs,_idaho_(2452280074).jpg"
   },
   {
     id: "idaho-potato-museum",
@@ -2043,7 +2243,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The Potato Station Café's baked potatoes take two hours to perfect — call ahead. Out-of-state visitors get free souvenir 'taters' in the gift shop with paid admission."
+    notes: "The Potato Station Café's baked potatoes take two hours to perfect — call ahead. Out-of-state visitors get free souvenir 'taters' in the gift shop with paid admission.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/IdahoPotatoMuseum.jpg/1280px-IdahoPotatoMuseum.jpg",
+    photoCredit: "KRRK, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:IdahoPotatoMuseum.jpg"
   },
   {
     id: "willies-chicken-shack",
@@ -2082,7 +2285,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "St. Louis Cemetery No. 1 requires guided tours. Summers are hot and humid with afternoon thunderstorms — spring and fall are the sweet spot."
+    notes: "St. Louis Cemetery No. 1 requires guided tours. Summers are hot and humid with afternoon thunderstorms — spring and fall are the sweet spot.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Jackson_Square%2C_New_Orleans%2C_USA1.jpg/1280px-Jackson_Square%2C_New_Orleans%2C_USA1.jpg",
+    photoCredit: "Diego Delso, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Jackson_Square,_New_Orleans,_USA1.jpg"
   },
   {
     id: "cafe-du-monde",
@@ -2094,6 +2300,9 @@ var PLACES = [
     lng: -90.061787,
     address: "800 Decatur St, New Orleans, LA 70116",
     website: "http://www.cafedumonde.com/",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Cafe_du_Monde%2C_French_Market%2C_New_Orleans_22_November_2025_-_Beignets.jpg/1280px-Cafe_du_Monde%2C_French_Market%2C_New_Orleans_22_November_2025_-_Beignets.jpg",
+    photoCredit: "Jeremy Thompson, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Cafe_du_Monde,_French_Market,_New_Orleans_22_November_2025_-_Beignets.jpg",
     reviewsUrl: "https://www.tripadvisor.co.uk/Restaurant_Review-g60864-d492060-Reviews-or30810-Cafe_Du_Monde-New_Orleans_Louisiana.html",
     description: "The original 1862 coffee stand — beignets and chicory café au lait under the green-and-white striped awning, at the foot of Jackson Square.",
     mustSee: "The beignets — three hot squares of dough buried under powdered sugar, with a café au lait",
@@ -2122,7 +2331,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Avery first discovered Slap Ya Mama at this very tasting bar. Their listing offers one free bottle with a purchase if you mention the ad, and every 5 items gets the 6th free."
+    notes: "Avery first discovered Slap Ya Mama at this very tasting bar. Their listing offers one free bottle with a purchase if you mention the ad, and every 5 items gets the 6th free.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Pepper_palace_%282%29.jpg/1280px-Pepper_palace_%282%29.jpg",
+    photoCredit: "Joel Kramer, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Pepper_palace_(2).jpg"
   },
   {
     id: "audubon-aquarium",
@@ -2142,7 +2354,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The rays get fed around 1:30pm, and one stingray named Sweet Potato comes back for more pets. Book online in advance — timed entry can sell out."
+    notes: "The rays get fed around 1:30pm, and one stingray named Sweet Potato comes back for more pets. Book online in advance — timed entry can sell out.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Audubon_Aquarium_of_the_Americas%2C_New_Orleans_April_2015_-_Tunnel.jpg/1280px-Audubon_Aquarium_of_the_Americas%2C_New_Orleans_April_2015_-_Tunnel.jpg",
+    photoCredit: "Gary J. Wood, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Audubon_Aquarium_of_the_Americas,_New_Orleans_April_2015_-_Tunnel.jpg"
   },
   {
     id: "cafe-pontalba",
@@ -2162,7 +2377,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Identified from Avery's memory — the columns and the window/doors opening right onto the square. Heads-up: reviews are mixed on the food, so order the local specialties."
+    notes: "Identified from Avery's memory — the columns and the window/doors opening right onto the square. Heads-up: reviews are mixed on the food, so order the local specialties.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Pontalba_Buildings-Jackson_Square-New_Orleans.jpg/1280px-Pontalba_Buildings-Jackson_Square-New_Orleans.jpg",
+    photoCredit: "Yair Haklai, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Pontalba_Buildings-Jackson_Square-New_Orleans.jpg"
   },
   {
     id: "johnny-longboats",
@@ -2202,7 +2420,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Entry is credit-card only at the gate, and there’s no gas or water on site — come prepared. Closed New Year’s Day, Thanksgiving, and Christmas Day."
+    notes: "Entry is credit-card only at the gate, and there’s no gas or water on site — come prepared. Closed New Year’s Day, Thanksgiving, and Christmas Day.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Four_Corners_Monument_plaza_from_southern_walkway%2C_Navajo_Nation.jpg/1280px-Four_Corners_Monument_plaza_from_southern_walkway%2C_Navajo_Nation.jpg",
+    photoCredit: "Christian David, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Four_Corners_Monument_plaza_from_southern_walkway,_Navajo_Nation.jpg"
   },
   {
     id: "jelly-belly-factory",
@@ -2222,7 +2443,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Go on a weekday — the production floor is quieter on weekends and holidays. Closed New Year’s Day, Easter Sunday, Thanksgiving, and Christmas Day."
+    notes: "Go on a weekday — the production floor is quieter on weekends and holidays. Closed New Year’s Day, Easter Sunday, Thanksgiving, and Christmas Day.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Jelly_Belly_Visitor%27s_Center_and_factory.JPG/1280px-Jelly_Belly_Visitor%27s_Center_and_factory.JPG",
+    photoCredit: "Amadscientist, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Jelly_Belly_Visitor%27s_Center_and_factory.JPG"
   },
   {
     id: "bravo-farms-gift-shoppe",
@@ -2256,13 +2480,16 @@ var PLACES = [
     website: "http://www.peggysuesdiner.com/",
     reviewsUrl: "https://www.tripadvisor.ie/Restaurant_Review-g33295-d1116154-Reviews-or60-Peggy_Sue_s_50_s_Diner_Yermo-Yermo_California.html",
     description: "An original 1954 roadside diner off I-15 in the Mojave — neon, Elvis and Marilyn memorabilia, meatloaf and chicken-fried steak, thick malts and homemade pie, plus a gift shop and a Diner-Saur park with dinosaurs out back.",
-    mustSee: "The Buddy Holly Bacon Cheeseburger",
+    mustSee: "The 1950s time capsule itself — walls covered in Elvis and Marilyn memorabilia, life-size statues everywhere, and the Diner-Saur park with dinosaurs out back",
     price: 1,
     time: "short",
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "No reservations, and waits can run long at peak times. It’s five minutes from Calico Ghost Town — an easy pairing."
+    notes: "No reservations, and waits can run long at peak times. It’s five minutes from Calico Ghost Town — an easy pairing.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Peggy_Sue%27s_Diner_Yermo%2C_California.jpg/1280px-Peggy_Sue%27s_Diner_Yermo%2C_California.jpg",
+    photoCredit: "TaurusEmerald, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Peggy_Sue%27s_Diner_Yermo,_California.jpg"
   },
   {
     id: "calico-ghost-town",
@@ -2282,7 +2509,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Best October through April — the Mojave summer is brutal. Admission is $8, but the mine, train, and Mystery Shack are paid extras; the town closes at 5pm sharp."
+    notes: "Best October through April — the Mojave summer is brutal. Admission is $8, but the mine, train, and Mystery Shack are paid extras; the town closes at 5pm sharp.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Calico_Ghost_Town_%288331613711%29.jpg/1280px-Calico_Ghost_Town_%288331613711%29.jpg",
+    photoCredit: "InSapphoWeTrust, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Calico_Ghost_Town_(8331613711).jpg"
   },
   {
     id: "old-sacramento-waterfront",
@@ -2302,7 +2532,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The district itself is free to wander; museums charge separately. Parking is metered 10am–10pm, or use the garages at either end."
+    notes: "The district itself is free to wander; museums charge separately. Parking is metered 10am–10pm, or use the garages at either end.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Old_Sacramento_Historic_District._25.jpg/1280px-Old_Sacramento_Historic_District._25.jpg",
+    photoCredit: "Sarbjit Bahga, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Old_Sacramento_Historic_District._25.jpg"
   },
   {
     id: "rosicrucian-egyptian-museum",
@@ -2322,7 +2555,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Only open Friday, Saturday, and Sunday — closed Monday through Thursday. No cash, card only; under-18s must be with an adult."
+    notes: "Only open Friday, Saturday, and Sunday — closed Monday through Thursday. No cash, card only; under-18s must be with an adult.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Rosicrucian_Egyptian_Museum_entrance.jpg/1280px-Rosicrucian_Egyptian_Museum_entrance.jpg",
+    photoCredit: "The wub, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Rosicrucian_Egyptian_Museum_entrance.jpg"
   },
   {
     id: "yosemite-valley-scenic-drive",
@@ -2342,7 +2578,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 gate fee — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. No entry reservation needed in 2026, but the rules change most years, so check the NPS site before you go — valley parking fills by 9am, and the waterfalls are at their best in spring."
+    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 gate fee — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. No entry reservation needed in 2026, but the rules change most years, so check the NPS site before you go — valley parking fills by 9am, and the waterfalls are at their best in spring.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg/1280px-Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg",
+    photoCredit: "Diliff, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Tunnel_View,_Yosemite_Valley,_Yosemite_NP_-_Diliff.jpg"
   },
   {
     id: "springfield-oregon",
@@ -2362,7 +2601,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The mural is on the Emerald Art Center's west wall at 5th and Main — free and visible 24 hours. The art center keeps a cheat sheet for the 26+ Simpsons tributes hidden around downtown."
+    notes: "The mural is on the Emerald Art Center's west wall at 5th and Main — free and visible 24 hours. The art center keeps a cheat sheet for the 26+ Simpsons tributes hidden around downtown.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Main_Street%2C_Downtown_Springfield%2C_Oregon%2C_19_September_2026.jpg/1280px-Main_Street%2C_Downtown_Springfield%2C_Oregon%2C_19_September_2026.jpg",
+    photoCredit: "AnthonyTheGuy, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Main_Street,_Downtown_Springfield,_Oregon,_19_September_2026.jpg"
   },
   {
     id: "hot-lake-springs-resort",
@@ -2402,7 +2644,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall"],
     rating: null,
     status: "want",
-    notes: "Runs weekends and holidays from Memorial Day weekend through the last weekend in September — plus fall foliage, Halloween, and Christmas special trains. Most excursions board at the McEwen Depot, 23 miles southwest of Baker City on Hwy 7, not in Sumpter itself."
+    notes: "Runs weekends and holidays from Memorial Day weekend through the last weekend in September — plus fall foliage, Halloween, and Christmas special trains. Most excursions board at the McEwen Depot, 23 miles southwest of Baker City on Hwy 7, not in Sumpter itself.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/SVRR4_Sumpter_Valley_Railroad_19.jpg/1280px-SVRR4_Sumpter_Valley_Railroad_19.jpg",
+    photoCredit: "Richard Bauer, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:SVRR4_Sumpter_Valley_Railroad_19.jpg"
   },
   {
     id: "painted-hills-scenic-drive",
@@ -2422,7 +2667,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Go for the last hour before sunset, when low sun saturates the colors — they’re strongest after rain too. A third of the unit burned in a July 2026 wildfire, so check the NPS site first, and note there’s no cell service inside the unit."
+    notes: "Go for the last hour before sunset, when low sun saturates the colors — they’re strongest after rain too. A third of the unit burned in a July 2026 wildfire, so check the NPS site first, and note there’s no cell service inside the unit.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Painted_Hills_-_John_Day_Fossil_Beds_National_Monument_-_Wheeler_County%2C_Oregon_-_5_May_2013.jpg/1280px-Painted_Hills_-_John_Day_Fossil_Beds_National_Monument_-_Wheeler_County%2C_Oregon_-_5_May_2013.jpg",
+    photoCredit: "Ivan McClellan, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Painted_Hills_-_John_Day_Fossil_Beds_National_Monument_-_Wheeler_County,_Oregon_-_5_May_2013.jpg"
   },
   {
     id: "liberty-orchards-aplets-cotlets",
@@ -2442,7 +2690,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free tours run every 20 minutes, but production is usually done by noon — go early to see the candy being made. The company office is at 309 Mission Ave; the store and tour are at 117 Mission Ave."
+    notes: "Free tours run every 20 minutes, but production is usually done by noon — go early to see the candy being made. The company office is at 309 Mission Ave; the store and tour are at 117 Mission Ave.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/2024-04-21%2C_Aplets_%26_Cotlets_Candy_Kitchen_%28Cashmere%2C_Washington%29%2C_150044.jpg/1280px-2024-04-21%2C_Aplets_%26_Cotlets_Candy_Kitchen_%28Cashmere%2C_Washington%29%2C_150044.jpg",
+    photoCredit: "Steven Pavlov, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:2024-04-21,_Aplets_%26_Cotlets_Candy_Kitchen_(Cashmere,_Washington),_150044.jpg"
   },
   {
     id: "ligo-exploration-centre",
@@ -2461,7 +2712,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Drop-in visits are Tuesday–Friday, 9:30am–4pm — closed Sundays, Mondays, and most Saturdays. The free public tour runs only on the second Saturday of each month (not December or January) and needs an online reservation."
+    notes: "Drop-in visits are Tuesday–Friday, 9:30am–4pm — closed Sundays, Mondays, and most Saturdays. The free public tour runs only on the second Saturday of each month (not December or January) and needs an online reservation.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/LIGO_Hanford_aerial_05.jpg/1280px-LIGO_Hanford_aerial_05.jpg",
+    photoCredit: "LIGO Laboratory, public domain",
+    photoSource: "https://commons.wikimedia.org/wiki/File:LIGO_Hanford_aerial_05.jpg"
   },
   {
     id: "north-cascades-highway",
@@ -2481,7 +2735,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall"],
     rating: null,
     status: "want",
-    notes: "The high section closes every winter — typically late November to late April, and in 2026 storm damage kept it shut until June 14. Check WSDOT before you go."
+    notes: "The high section closes every winter — typically late November to late April, and in 2026 storm damage kept it shut until June 14. Check WSDOT before you go.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/North_Cascades_Highway_and_Liberty_Bell_Group.jpeg/1280px-North_Cascades_Highway_and_Liberty_Bell_Group.jpeg",
+    photoCredit: "Ron Clausen, public domain",
+    photoSource: "https://commons.wikimedia.org/wiki/File:North_Cascades_Highway_and_Liberty_Bell_Group.jpeg"
   },
   {
     id: "grand-canyon-south-rim",
@@ -2501,7 +2758,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Park entry is $35 per vehicle, valid 7 days, and the gates no longer take cash — bring a card or an America the Beautiful pass. Since January 2026, non-US residents pay an extra $100 per person on top of that, unless they hold the $250 annual pass."
+    notes: "Park entry is $35 per vehicle, valid 7 days, and the gates no longer take cash — bring a card or an America the Beautiful pass. Since January 2026, non-US residents pay an extra $100 per person on top of that, unless they hold the $250 annual pass.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Grand_Canyon_South_Rim_at_Sunset.jpg/1280px-Grand_Canyon_South_Rim_at_Sunset.jpg",
+    photoCredit: "Mgimelfarb, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Grand_Canyon_South_Rim_at_Sunset.jpg"
   },
   {
     id: "bearizona",
@@ -2521,7 +2781,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Tickets are per person, not per vehicle — $30 weekday, $35 weekend for adults — and your vehicle must be fully enclosed with working windows. Once you’re in, you can drive the loop as many times as you like."
+    notes: "Tickets are per person, not per vehicle — $30 weekday, $35 weekend for adults — and your vehicle must be fully enclosed with working windows. Once you’re in, you can drive the loop as many times as you like.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/American_black_bear_-_Bearizona_Wildlife_Park_%287177935972%29.jpg/1280px-American_black_bear_-_Bearizona_Wildlife_Park_%287177935972%29.jpg",
+    photoCredit: "Christopher Amrich, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:American_black_bear_-_Bearizona_Wildlife_Park_%287177935972%29.jpg"
   },
   {
     id: "poozeum",
@@ -2541,7 +2804,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free admission — it runs on donations and gift shop sales, so bring cash if you want to chip in. Closed Mondays and Tuesdays."
+    notes: "Free admission — it runs on donations and gift shop sales, so bring cash if you want to chip in. Closed Mondays and Tuesdays.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/The_Poozeum.jpg/1280px-The_Poozeum.jpg",
+    photoCredit: "Poozeum, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:The_Poozeum.jpg"
   },
   {
     id: "seligman",
@@ -2561,7 +2827,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The Snow Cap is seasonal — generally March through November — and hours vary, so call ahead. 2026 is Route 66’s 100th anniversary, so expect more visitors than usual."
+    notes: "The Snow Cap is seasonal — generally March through November — and hours vary, so call ahead. 2026 is Route 66’s 100th anniversary, so expect more visitors than usual.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/U.S._Route_66_in_Seligman%2C_Arizona.jpg/1280px-U.S._Route_66_in_Seligman%2C_Arizona.jpg",
+    photoCredit: "APK, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:U.S._Route_66_in_Seligman%2C_Arizona.jpg"
   },
   {
     id: "oatman",
@@ -2581,7 +2850,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The burros are wild — they will kick and bite if threatened, and feeding them in the roadway is illegal; buy the carrots the shops sell instead. The road in from Kingman over Sitgreaves Pass is twisty and narrow — not for large vehicles."
+    notes: "The burros are wild — they will kick and bite if threatened, and feeding them in the roadway is illegal; buy the carrots the shops sell instead. The road in from Kingman over Sitgreaves Pass is twisty and narrow — not for large vehicles.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Oatman-A-Welcome_to_Oatman_sign.jpg/1280px-Oatman-A-Welcome_to_Oatman_sign.jpg",
+    photoCredit: "Marine 69-71, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Oatman-A-Welcome_to_Oatman_sign.jpg"
   },
   {
     id: "keepers-of-the-wild",
@@ -2621,7 +2893,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "It’s privately owned, so national park passes don’t apply — and admission is $29 per adult. New in 2026: guided hikes to the crater floor run on select Saturdays for $125, book ahead."
+    notes: "It’s privately owned, so national park passes don’t apply — and admission is $29 per adult. New in 2026: guided hikes to the crater floor run on select Saturdays for $125, book ahead.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/2019_Meteor_Crater%2C_Arizona.jpg/1280px-2019_Meteor_Crater%2C_Arizona.jpg",
+    photoCredit: "PLBechly, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:2019_Meteor_Crater%2C_Arizona.jpg"
   },
   {
     id: "petrified-forest-national-park",
@@ -2641,7 +2916,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The park road is open 8am–5pm and the gates lock at closing — don’t get caught inside after 5. The Painted Desert Visitor Center is closed for renovation until June 2027; the Painted Desert Inn is serving as the north visitor center instead."
+    notes: "The park road is open 8am–5pm and the gates lock at closing — don’t get caught inside after 5. The Painted Desert Visitor Center is closed for renovation until June 2027; the Painted Desert Inn is serving as the north visitor center instead.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/The_PEFO_Tepees.jpg/1280px-The_PEFO_Tepees.jpg",
+    photoCredit: "Finetooth, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:The_PEFO_Tepees.jpg"
   },
   {
     id: "lowell-observatory",
@@ -2661,7 +2939,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Closed Tuesdays — and the move is to arrive late in the day, so you can tour in the last light and stay for the telescopes after dark. At 7,250 feet it’s cool and breezy up on the hill, even in summer."
+    notes: "Closed Tuesdays — and the move is to arrive late in the day, so you can tour in the last light and stay for the telescopes after dark. At 7,250 feet it’s cool and breezy up on the hill, even in summer.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Lowell_Observatory%2C_Flagstaff.jpg/1280px-Lowell_Observatory%2C_Flagstaff.jpg",
+    photoCredit: "Mukhtiaraliunar, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Lowell_Observatory%2C_Flagstaff.jpg"
   },
   {
     id: "verde-canyon-railroad",
@@ -2681,7 +2962,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Book ahead — trains sell out, and it doesn’t run every day, so check the calendar. Standard departure is 1pm; arrive an hour early for the depot café and the John Bell rail museum."
+    notes: "Book ahead — trains sell out, and it doesn’t run every day, so check the calendar. Standard departure is 1pm; arrive an hour early for the depot café and the John Bell rail museum.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Verde_Canyon_Railroad_engines.jpg/1280px-Verde_Canyon_Railroad_engines.jpg",
+    photoCredit: "Finetooth, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Verde_Canyon_Railroad_engines.jpg"
   },
   {
     id: "organ-stop-pizza",
@@ -2701,7 +2985,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Cash only — there’s an ATM in the lobby, so bring cash before you go. It opens at 4pm (3:30 on weekends), dinner only, and it fills up fast on Friday and Saturday nights."
+    notes: "Cash only — there’s an ATM in the lobby, so bring cash before you go. It opens at 4pm (3:30 on weekends), dinner only, and it fills up fast on Friday and Saturday nights.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/The_Organ_Stop_Pizza_Restaurant_in_Mesa%2C_Arizona.jpg/1280px-The_Organ_Stop_Pizza_Restaurant_in_Mesa%2C_Arizona.jpg",
+    photoCredit: "Richard N Horne, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:The_Organ_Stop_Pizza_Restaurant_in_Mesa%2C_Arizona.jpg"
   },
   {
     id: "curious-nature",
@@ -2741,7 +3028,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Buy tickets online ahead of time and pick an entry slot. After 4:30pm the twilight ticket is much cheaper — about $33 instead of $50."
+    notes: "Buy tickets online ahead of time and pick an entry slot. After 4:30pm the twilight ticket is much cheaper — about $33 instead of $50.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/OdySea_Aquarium_Scottsdale_Arizona.jpg/1280px-OdySea_Aquarium_Scottsdale_Arizona.jpg",
+    photoCredit: "Richard N Horne, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:OdySea_Aquarium_Scottsdale_Arizona.jpg"
   },
   {
     id: "butterfly-wonderland",
@@ -2761,7 +3051,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "It’s a humid 70–80 degrees inside the rainforest, so dress light. Last entry is 4pm."
+    notes: "It’s a humid 70–80 degrees inside the rainforest, so dress light. Last entry is 4pm.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Butterfly_Wonderland_Scottsdale_Arizona.jpg/1280px-Butterfly_Wonderland_Scottsdale_Arizona.jpg",
+    photoCredit: "Richard N Horne, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Butterfly_Wonderland_Scottsdale_Arizona.jpg"
   },
   {
     id: "cerreta-candy-company",
@@ -2781,7 +3074,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The tour is a guided presentation behind a viewing partition, not a walk through the production floor — and Monday to Thursday is best for seeing the machines actually running. Call ahead to confirm tour times."
+    notes: "The tour is a guided presentation behind a viewing partition, not a walk through the production floor — and Monday to Thursday is best for seeing the machines actually running. Call ahead to confirm tour times.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/1/1b/G-Cerrata_Candy_Factory_6.jpg",
+    photoCredit: "Tony the Marine, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:G-Cerrata_Candy_Factory_6.jpg"
   },
   {
     id: "rustlers-rooste",
@@ -2801,7 +3097,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Dinner only — it opens at 4pm, so time your visit for sunset. Reservations are recommended; the parking lot fills up on weekend nights."
+    notes: "Dinner only — it opens at 4pm, so time your visit for sunset. Reservations are recommended; the parking lot fills up on weekend nights.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Views_from_Rustler%E2%80%99s_Rooste_restaurant.jpg/1280px-Views_from_Rustler%E2%80%99s_Rooste_restaurant.jpg",
+    photoCredit: "Jbro1186, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Views_from_Rustler%E2%80%99s_Rooste_restaurant.jpg"
   },
   {
     id: "trail-dust-town",
@@ -2821,7 +3120,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "It’s free to walk in — rides are $3 each and the stunt show runs from $8.50, and the town is an evening place (Mon–Fri 5–9pm, Sat–Sun noon–9pm). The stunt show is loud — gunfire and explosions — so plan around it if you want a quieter visit."
+    notes: "It’s free to walk in — rides are $3 each and the stunt show runs from $8.50, and the town is an evening place (Mon–Fri 5–9pm, Sat–Sun noon–9pm). The stunt show is loud — gunfire and explosions — so plan around it if you want a quieter visit.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Trail_Dust_Town%2C_Tucson_%288391757250%29.jpg/1280px-Trail_Dust_Town%2C_Tucson_%288391757250%29.jpg",
+    photoCredit: "InSapphoWeTrust, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Trail_Dust_Town%2C_Tucson_%288391757250%29.jpg"
   },
   {
     id: "bowlins-the-thing",
@@ -2841,7 +3143,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The reveal is a staged mystery, not real human remains — the mummy is almost certainly a sideshow gaffe made by Phoenix oddities maker Homer Tate. It’s a quick stop, perfect for stretching your legs on I-10."
+    notes: "The reveal is a staged mystery, not real human remains — the mummy is almost certainly a sideshow gaffe made by Phoenix oddities maker Homer Tate. It’s a quick stop, perfect for stretching your legs on I-10.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/6/67/%22The_Thing%22_Store_Front_2016.jpg",
+    photoCredit: "BowlinTravelCenters, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:%22The_Thing%22_Store_Front_2016.jpg"
   },
   {
     id: "matelot-gulch-mining-company",
@@ -2941,7 +3246,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall"],
     rating: null,
     status: "want",
-    notes: "Open mid-April through October 31 only, daily 9am–5pm. Closed-toe shoes are required, bring safety glasses — rock chips fly — plus sunscreen, hats, and extra water; the digging is fully exposed."
+    notes: "Open mid-April through October 31 only, daily 9am–5pm. Closed-toe shoes are required, bring safety glasses — rock chips fly — plus sunscreen, hats, and extra water; the digging is fully exposed.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Quartz_%28%22Herkimer_Diamond%22%29_%28near_Herkimer%2C_New_York_State%2C_USA%29_2.jpg/1280px-Quartz_%28%22Herkimer_Diamond%22%29_%28near_Herkimer%2C_New_York_State%2C_USA%29_2.jpg",
+    photoCredit: "James St. John, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Quartz_(%22Herkimer_Diamond%22)_(near_Herkimer,_New_York_State,_USA)_2.jpg"
   },
   {
     id: "rainforest-cafe-mall-of-america",
@@ -2961,7 +3269,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Reservations are highly recommended — waits can run long. Heads-up: flashing lights and thunder sounds inside, which may bother anyone sensitive to either."
+    notes: "Reservations are highly recommended — waits can run long. Heads-up: flashing lights and thunder sounds inside, which may bother anyone sensitive to either.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Gfp-minnesota-minneapolis-jungle-themed-shop-in-mall.jpg/1280px-Gfp-minnesota-minneapolis-jungle-themed-shop-in-mall.jpg",
+    photoCredit: "Yinan Chen, public domain",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Gfp-minnesota-minneapolis-jungle-themed-shop-in-mall.jpg"
   },
   {
     id: "casa-bonita",
@@ -2981,7 +3292,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Online reservation only, no walk-ins — book at least two weeks out, and note it’s closed Mondays. It’s loud and chaotic by design, with a 15% service fee added to the bill."
+    notes: "Online reservation only, no walk-ins — book at least two weeks out, and note it’s closed Mondays. It’s loud and chaotic by design, with a 15% service fee added to the bill.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Casa_Bonita_%28Lakewood%2C_Colorado%29_waterfall_and_diving_area.jpg/1280px-Casa_Bonita_%28Lakewood%2C_Colorado%29_waterfall_and_diving_area.jpg",
+    photoCredit: "Kevin Payravi, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Casa_Bonita_(Lakewood,_Colorado)_waterfall_and_diving_area.jpg"
   },
   {
     id: "fritzs-railroad-restaurant",
@@ -3021,7 +3335,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Come hungry — portions are huge and the pass-arounds are unlimited, and waits can run 45 minutes on weekends, so weekday lunch is the quiet move. There’s a 3% surcharge when paying by credit card."
+    notes: "Come hungry — portions are huge and the pass-arounds are unlimited, and waits can run 45 minutes on weekends, so weekday lunch is the quiet move. There’s a 3% surcharge when paying by credit card.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/5/57/Lambert%27s_roll.jpg",
+    photoCredit: "Acdixon, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Lambert%27s_roll.jpg"
   },
   {
     id: "magic-time-machine",
@@ -3061,7 +3378,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The restaurant is separate from the aquarium itself — you can eat here without paying aquarium admission. It can get busy and noisy at peak times, so book ahead; the Shark Voyage train ride is a separate ticket."
+    notes: "The restaurant is separate from the aquarium itself — you can eat here without paying aquarium admission. It can get busy and noisy at peak times, so book ahead; the Shark Voyage train ride is a separate ticket.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Houston%2C_Downtown_Aquarium_2012.JPG/1280px-Houston%2C_Downtown_Aquarium_2012.JPG",
+    photoCredit: "Another Believer, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Houston,_Downtown_Aquarium_2012.JPG"
   },
   {
     id: "mai-kai-restaurant",
@@ -3081,7 +3401,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Dinner and the show need reservations — the show is $15/person on top of dinner, and seating can be 90 minutes before the show starts. Happy hour runs from opening until 7pm with half-priced cocktails."
+    notes: "Dinner and the show need reservations — the show is $15/person on top of dinner, and seating can be 90 minutes before the show starts. Happy hour runs from opening until 7pm with half-priced cocktails.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Mai_Kai_Restaurant_-_Fort_Lauderdale_-_FL_-_01.jpg/1280px-Mai_Kai_Restaurant_-_Fort_Lauderdale_-_FL_-_01.jpg",
+    photoCredit: "LEONARDO DASILVA, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Mai_Kai_Restaurant_-_Fort_Lauderdale_-_FL_-_01.jpg"
   },
   {
     id: "tonga-room-hurricane-bar",
@@ -3101,7 +3424,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Open Wednesday through Saturday from 5pm only — no reservations except for hotel guests, so arrive early. There’s a $15–20 cover per person once the band starts, and it’s 21+ after 10pm."
+    notes: "Open Wednesday through Saturday from 5pm only — no reservations except for hotel guests, so arrive early. There’s a $15–20 cover per person once the band starts, and it’s 21+ after 10pm.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Cmglee_Tonga_Room_and_Hurricane_Bar.jpg/1280px-Cmglee_Tonga_Room_and_Hurricane_Bar.jpg",
+    photoCredit: "Cmglee, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Cmglee_Tonga_Room_and_Hurricane_Bar.jpg"
   },
   {
     id: "dooky-chase",
@@ -3121,7 +3447,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Lunch Tuesday to Friday only, dinner Friday and Saturday only — closed Sundays and Mondays. Reservations are highly recommended."
+    notes: "Lunch Tuesday to Friday only, dinner Friday and Saturday only — closed Sundays and Mondays. Reservations are highly recommended.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Dooky_Chase%27s_restaurant_from_across_Orleans_Avenue%2C_New_Orleans_14_Oct_2026.jpg/1280px-Dooky_Chase%27s_restaurant_from_across_Orleans_Avenue%2C_New_Orleans_14_Oct_2026.jpg",
+    photoCredit: "Infrogmation, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Dooky_Chase%27s_restaurant_from_across_Orleans_Avenue%2C_New_Orleans_14_Oct_2026.jpg"
   },
   {
     id: "big-texan-steak-ranch",
@@ -3141,7 +3470,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Waits can run long without a reservation, so book ahead. There’s also a Western-themed motel next door with a Texas-shaped pool."
+    notes: "Waits can run long without a reservation, so book ahead. There’s also a Western-themed motel next door with a Texas-shaped pool.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/Sign_at_the_Big_Texan_steakhouse.jpg/1280px-Sign_at_the_Big_Texan_steakhouse.jpg",
+    photoCredit: "Cullen328, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Sign_at_the_Big_Texan_steakhouse.jpg"
   },
   {
     id: "serendipity-3",
@@ -3161,7 +3493,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Waits can run long and there’s a minimum spend of $18.95 per adult — book a table on Resy if you can. They’ve sold 25 million Frrrozen Hot Chocolates."
+    notes: "Waits can run long and there’s a minimum spend of $18.95 per adult — book a table on Resy if you can. They’ve sold 25 million Frrrozen Hot Chocolates.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Entrance_to_Serendipity_3%2C_the_New_York_City_dessert_restaurant.jpg/1280px-Entrance_to_Serendipity_3%2C_the_New_York_City_dessert_restaurant.jpg",
+    photoCredit: "Ben W, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Entrance_to_Serendipity_3%2C_the_New_York_City_dessert_restaurant.jpg"
   },
   {
     id: "cattlemans-steakhouse",
@@ -3201,7 +3536,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The Prime Steakhouse is dinner-only from 5pm and its days vary by season, so check the site before you go. Reservations are strongly recommended, especially on weekends."
+    notes: "The Prime Steakhouse is dinner-only from 5pm and its days vary by season, so check the site before you go. Reservations are strongly recommended, especially on weekends.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Harris_Ranch_Inn_%26_Restaurant_-_October_2022_-_Sarah_Stierch_01.jpg/1280px-Harris_Ranch_Inn_%26_Restaurant_-_October_2022_-_Sarah_Stierch_01.jpg",
+    photoCredit: "Missvain, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Harris_Ranch_Inn_%26_Restaurant_-_October_2022_-_Sarah_Stierch_01.jpg"
   },
   {
     id: "skeletons-museum-osteology",
@@ -3221,7 +3559,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Plan at least 2–3 hours — the scavenger hunts come in different ages and help you actually learn the bones. Special Forensics and Pathology Nights need advance booking."
+    notes: "Plan at least 2–3 hours — the scavenger hunts come in different ages and help you actually learn the bones. Special Forensics and Pathology Nights need advance booking.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Museum_of_Osteology%2C_Oklahoma_City%2C_Oklahoma%2C_USA.jpg/1280px-Museum_of_Osteology%2C_Oklahoma_City%2C_Oklahoma%2C_USA.jpg",
+    photoCredit: "OKJaguar, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Museum_of_Osteology%2C_Oklahoma_City%2C_Oklahoma%2C_USA.jpg"
   },
   {
     id: "national-museum-funeral-history",
@@ -3241,7 +3582,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Plan 2–3 hours — pick up the scavenger hunt paper, it gets you a discount in the gift shop at the end. It’s tucked in an industrial park north of Beltway 8, so use GPS."
+    notes: "Plan 2–3 hours — pick up the scavenger hunt paper, it gets you a discount in the gift shop at the end. It’s tucked in an industrial park north of Beltway 8, so use GPS.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/National_Museum_of_Funeral_History.jpg/1280px-National_Museum_of_Funeral_History.jpg",
+    photoCredit: "Jim Evans, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:National_Museum_of_Funeral_History.jpg"
   },
   {
     id: "museum-of-bad-art",
@@ -3261,7 +3605,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free admission — it’s inside a working brewery, so you can look at terrible portraits with a pint in hand. No one under 21 after 6pm on Friday and Saturday nights."
+    notes: "Free admission — it’s inside a working brewery, so you can look at terrible portraits with a pint in hand. No one under 21 after 6pm on Friday and Saturday nights.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/MOBA_security.jpg/1280px-MOBA_security.jpg",
+    photoCredit: "andrésmh, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:MOBA_security.jpg"
   },
   {
     id: "moab",
@@ -3280,7 +3627,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Basecamp town — Arches is five minutes north, Canyonlands about half an hour away."
+    notes: "Basecamp town — Arches is five minutes north, Canyonlands about half an hour away.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Moab%2C_Utah_downtown.jpg/1280px-Moab%2C_Utah_downtown.jpg",
+    photoCredit: "Quintin Soloviev, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Moab%2C_Utah_downtown.jpg"
   },
   {
     id: "arches-national-park",
@@ -3300,7 +3650,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "No timed-entry reservation needed in 2026 — just pay $30 per vehicle at the gate. Trailhead lots fill by 7:30am in summer, so go early; the Delicate Arch hike has no shade and gets dangerously hot by midday."
+    notes: "No timed-entry reservation needed in 2026 — just pay $30 per vehicle at the gate. Trailhead lots fill by 7:30am in summer, so go early; the Delicate Arch hike has no shade and gets dangerously hot by midday.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/USA_10400_Arches_National_Park_Luca_Galuzzi_2007.jpg/1280px-USA_10400_Arches_National_Park_Luca_Galuzzi_2007.jpg",
+    photoCredit: "Luca Galuzzi, CC BY-SA 2.5",
+    photoSource: "https://commons.wikimedia.org/wiki/File:USA_10400_Arches_National_Park_Luca_Galuzzi_2007.jpg"
   },
   {
     id: "museum-of-jurassic-technology",
@@ -3320,7 +3673,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Open Thursday to Sunday only — reserve timed tickets online in advance. Dimly lit, maze-like galleries, and the rooftop Tula Tea Room serves free tea among the doves."
+    notes: "Open Thursday to Sunday only — reserve timed tickets online in advance. Dimly lit, maze-like galleries, and the rooftop Tula Tea Room serves free tea among the doves.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Outside_Museum_of_Jurassic_Technology_Los_Angeles.jpg/1280px-Outside_Museum_of_Jurassic_Technology_Los_Angeles.jpg",
+    photoCredit: "Tore Danielsson, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Outside_Museum_of_Jurassic_Technology_Los_Angeles.jpg"
   },
   {
     id: "international-ufo-museum",
@@ -3340,7 +3696,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Admission is $7 and your ticket lets you come and go all day. The exhibits are very text-heavy — plan on an hour or two of reading, and save wallet space for the huge gift shop."
+    notes: "Admission is $7 and your ticket lets you come and go all day. The exhibits are very text-heavy — plan on an hour or two of reading, and save wallet space for the huge gift shop.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/International_UFO_Museum_and_Research_Center-sign.jpg/1280px-International_UFO_Museum_and_Research_Center-sign.jpg",
+    photoCredit: "Myotus, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:International_UFO_Museum_and_Research_Center-sign.jpg"
   },
   {
     id: "american-museum-of-magic",
@@ -3360,7 +3719,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall"],
     rating: null,
     status: "want",
-    notes: "Open April through October, Thursday to Sunday — November through March it’s by appointment only, so email ahead. Live magic presentations run on the main floor on Saturdays."
+    notes: "Open April through October, Thursday to Sunday — November through March it’s by appointment only, so email ahead. Live magic presentations run on the main floor on Saturdays.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/9/94/American_Museum_of_Magic.jpg",
+    photoCredit: "rossograph, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:American_Museum_of_Magic.jpg"
   },
   {
     id: "strong-national-museum-of-play",
@@ -3380,7 +3742,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Plan on at least half a day — reviewers say five hours still wasn’t enough. The Dancing Wings Butterfly Garden costs extra, and the carousel and train rides are $1 a person."
+    notes: "Plan on at least half a day — reviewers say five hours still wasn’t enough. The Dancing Wings Butterfly Garden costs extra, and the carousel and train rides are $1 a person.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/Strong_National_Museum_of_Play.jpg/1280px-Strong_National_Museum_of_Play.jpg",
+    photoCredit: "Ruhrfisch, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Strong_National_Museum_of_Play.jpg"
   },
   {
     id: "national-comedy-center",
@@ -3400,7 +3765,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Closed Tuesdays and Wednesdays (except summer Tuesdays) — plan around it. The Lucy Desi Museum is two blocks away and a $45 combo ticket covers both."
+    notes: "Closed Tuesdays and Wednesdays (except summer Tuesdays) — plan around it. The Lucy Desi Museum is two blocks away and a $45 combo ticket covers both.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/National_Comedy_Center_front_Jamestown_NY_2025-09-03_18-59-21.jpg/1280px-National_Comedy_Center_front_Jamestown_NY_2025-09-03_18-59-21.jpg",
+    photoCredit: "G. Edward Johnson, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:National_Comedy_Center_front_Jamestown_NY_2025-09-03_18-59-21.jpg"
   },
   {
     id: "museum-of-pop-culture",
@@ -3420,7 +3788,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Timed tickets — book online ahead, and buy early for the cheapest plan-ahead price. The horror exhibit is genuinely intense, so plan around it if that’s not your thing."
+    notes: "Timed tickets — book online ahead, and buy early for the cheapest plan-ahead price. The horror exhibit is genuinely intense, so plan around it if that’s not your thing.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Seattle_%28WA%2C_USA%29%2C_Museum_of_Pop_Culture%2C_Fassade_--_2022_--_1588.jpg/1280px-Seattle_%28WA%2C_USA%29%2C_Museum_of_Pop_Culture%2C_Fassade_--_2022_--_1588.jpg",
+    photoCredit: "Dietmar Rabich, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Seattle_(WA,_USA),_Museum_of_Pop_Culture,_Fassade_--_2022_--_1588.jpg"
   },
   {
     id: "steven-f-udvar-hazy-center",
@@ -3440,7 +3811,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Admission is free — the only cost is $15 parking (free after 4pm). The observation tower closes at 4:30pm, so go up before then."
+    notes: "Admission is free — the only cost is $15 parking (free after 4pm). The observation tower closes at 4:30pm, so go up before then.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Aircraft_at_the_Steven_F._Udvar-Hazy_Center_9.jpg/1280px-Aircraft_at_the_Steven_F._Udvar-Hazy_Center_9.jpg",
+    photoCredit: "Kurt Kaiser, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Aircraft_at_the_Steven_F._Udvar-Hazy_Center_9.jpg"
   },
   {
     id: "museum-of-the-moving-image",
@@ -3460,7 +3834,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Closed Monday through Wednesday — plan around it. General admission is free on Thursdays from 2 to 6pm, and includes a same-day screening ticket."
+    notes: "Closed Monday through Wednesday — plan around it. General admission is free on Thursdays from 2 to 6pm, and includes a same-day screening ticket.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/The_Museum_of_Moving_Image_%2849400608937%29.jpg/1280px-The_Museum_of_Moving_Image_%2849400608937%29.jpg",
+    photoCredit: "Mig Gilbert, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:The_Museum_of_Moving_Image_(49400608937).jpg"
   },
   {
     id: "field-museum",
@@ -3480,7 +3857,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Plan on at least half a day — reviewers say you can’t do it in one visit. Illinois residents get free basic admission on Wednesdays."
+    notes: "Plan on at least half a day — reviewers say you can’t do it in one visit. Illinois residents get free basic admission on Wednesdays.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Field_Museum_of_Natural_History.jpg/1280px-Field_Museum_of_Natural_History.jpg",
+    photoCredit: "Joe Ravi, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Field_Museum_of_Natural_History.jpg"
   },
   {
     id: "national-museum-of-natural-history",
@@ -3500,7 +3880,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Admission is free with no timed passes needed for the main galleries. The Butterfly Pavilion is a separate ticket ($8) — book ahead in summer."
+    notes: "Admission is free with no timed passes needed for the main galleries. The Butterfly Pavilion is a separate ticket ($8) — book ahead in summer.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Smithsonian_National_Museum_of_Natural_History_%2827722293661%29.jpg/1280px-Smithsonian_National_Museum_of_Natural_History_%2827722293661%29.jpg",
+    photoCredit: "Tony Hisgett, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Smithsonian_National_Museum_of_Natural_History_(27722293661).jpg"
   },
   {
     id: "atomic-museum",
@@ -3520,7 +3903,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The Ground Zero Theater simulation is intense — loud rumbling and a flash — so plan around it if that’s not your thing. Last admission is 4:15pm."
+    notes: "The Ground Zero Theater simulation is intense — loud rumbling and a flash — so plan around it if that’s not your thing. Last admission is 4:15pm.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/National_Atomic_Testing_Museum.JPG/1280px-National_Atomic_Testing_Museum.JPG",
+    photoCredit: "Ypsilon, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:National_Atomic_Testing_Museum.JPG"
   },
   {
     id: "american-visionary-art-museum",
@@ -3540,7 +3926,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Closed Mondays and Tuesdays — plan around it. The Sideshow gift shop is free to enter and reviewers call it the best and craziest museum gift store."
+    notes: "Closed Mondays and Tuesdays — plan around it. The Sideshow gift shop is free to enter and reviewers call it the best and craziest museum gift store.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Entrance_at_the_American_Visionary_Art_Museum_-_Stierch.jpg/1280px-Entrance_at_the_American_Visionary_Art_Museum_-_Stierch.jpg",
+    photoCredit: "Sarah Stierch, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Entrance_at_the_American_Visionary_Art_Museum_-_Stierch.jpg"
   },
   {
     id: "american-sign-museum",
@@ -3560,7 +3949,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Closed Mondays and Tuesdays — plan around it. The Saturday neon-bending demos at 11am and 1pm are the move — time your visit for one."
+    notes: "Closed Mondays and Tuesdays — plan around it. The Saturday neon-bending demos at 11am and 1pm are the move — time your visit for one.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/American_Sign_Museum%2C_Camp_Washington%2C_Cincinnati%2C_OH_%2848904610548%29.jpg/1280px-American_Sign_Museum%2C_Camp_Washington%2C_Cincinnati%2C_OH_%2848904610548%29.jpg",
+    photoCredit: "Warren LeMay, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:American_Sign_Museum%2C_Camp_Washington%2C_Cincinnati%2C_OH_(48904610548).jpg"
   },
   {
     id: "gilgal-sculpture-garden",
@@ -3580,7 +3972,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Tucked mid-block behind houses — look for the gate between the houses, not a grand entrance. No restrooms or water on site, so plan around that."
+    notes: "Tucked mid-block behind houses — look for the gate between the houses, not a grand entrance. No restrooms or water on site, so plan around that.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Gilgal_garden_1.JPG/1280px-Gilgal_garden_1.JPG",
+    photoCredit: "Intothewoods29, public domain",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Gilgal_garden_1.JPG"
   },
   {
     id: "hollow-mountain",
@@ -3600,7 +3995,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Gas pumps run 24 hours with a card; the store is 7am–10pm (8am–9pm Thursdays). Fill up here — it’s a long, empty stretch between Capitol Reef, Goblin Valley, and Lake Powell."
+    notes: "Gas pumps run 24 hours with a card; the store is 7am–10pm (8am–9pm Thursdays). Fill up here — it’s a long, empty stretch between Capitol Reef, Goblin Valley, and Lake Powell.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/2013-09-23_12_30_27_Far_view_of_the_Hollow_Mountain_Convenience_Store_in_Hanksville%2C_Utah.JPG/1280px-2013-09-23_12_30_27_Far_view_of_the_Hollow_Mountain_Convenience_Store_in_Hanksville%2C_Utah.JPG",
+    photoCredit: "Famartin, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:2013-09-23_12_30_27_Far_view_of_the_Hollow_Mountain_Convenience_Store_in_Hanksville,_Utah.JPG"
   },
   {
     id: "bonneville-salt-flats",
@@ -3620,7 +4018,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Only drive on the salt when it’s dry — wet salt can trap a car and damage it. No services on site, so bring water, sunscreen, and a hat — the glare is brutal."
+    notes: "Only drive on the salt when it’s dry — wet salt can trap a car and damage it. No services on site, so bring water, sunscreen, and a hat — the glare is brutal.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Wendover_%28UT%2C_USA%29%2C_Bonneville_Salt_Flats_--_2022_--_2693.jpg/1280px-Wendover_%28UT%2C_USA%29%2C_Bonneville_Salt_Flats_--_2022_--_2693.jpg",
+    photoCredit: "Dietmar Rabich, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Wendover_(UT,_USA),_Bonneville_Salt_Flats_--_2022_--_2693.jpg"
   },
   {
     id: "hole-n-the-rock",
@@ -3640,7 +4041,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "No photos allowed inside the house — you can buy a photo pack in the gift shop instead. The petting zoo is a separate ticket, and Cooper the camel is the star."
+    notes: "No photos allowed inside the house — you can buy a photo pack in the gift shop instead. The petting zoo is a separate ticket, and Cooper the camel is the star.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Hole_N_The_Rock.jpg",
+    photoCredit: "Jayron32, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Hole_N_The_Rock.jpg"
   },
   {
     id: "prairie-schooner",
@@ -3700,7 +4104,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Closed Sundays — plan around it. Individual shops keep their own hours, so check the one you want before you go."
+    notes: "Closed Sundays — plan around it. Individual shops keep their own hours, so check the one you want before you go.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Gardner_Village_sign.JPG/1280px-Gardner_Village_sign.JPG",
+    photoCredit: "An Errant Knight, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Gardner_Village_sign.JPG"
   },
   {
     id: "moab-rock-shop",
@@ -3720,7 +4127,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free to browse — rocks start at ten cents, so it’s an easy souvenir stop. Open late, 9am to 9pm every day."
+    notes: "Free to browse — rocks start at ten cents, so it’s an easy souvenir stop. Open late, 9am to 9pm every day.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Lin_Ottinger%E2%80%99s_eccentric_rock_shop%2C_Moab.jpg/1280px-Lin_Ottinger%E2%80%99s_eccentric_rock_shop%2C_Moab.jpg",
+    photoCredit: "Mramoeba, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Lin_Ottinger%E2%80%99s_eccentric_rock_shop%2C_Moab.jpg"
   },
   {
     id: "heber-valley-artisan-cheese",
@@ -3760,7 +4170,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Buy timed tickets online ahead — prices are demand-based and go up on busy days. Monday nights run $5 off after 4pm."
+    notes: "Buy timed tickets online ahead — prices are demand-based and go up on busy days. Monday nights run $5 off after 4pm.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/The_Claw_at_Loveland_Living_Planet_Aquarium.jpg/1280px-The_Claw_at_Loveland_Living_Planet_Aquarium.jpg",
+    photoCredit: "Dknelson9876, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:The_Claw_at_Loveland_Living_Planet_Aquarium.jpg"
   },
   {
     id: "mrs-cavanaughs",
@@ -3820,7 +4233,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The park grounds and the monument are free dawn to dusk — the paid pass is only for the Heritage Village. Winter admission drops to $7 for all ages."
+    notes: "The park grounds and the monument are free dawn to dusk — the paid pass is only for the Heritage Village. Winter admission drops to $7 for all ages.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Eagle_Gate_at_This_Is_The_Place_Heritage_Park_-_Salt_Lake_City%2C_Utah_-_22_September_2018.jpg/1280px-Eagle_Gate_at_This_Is_The_Place_Heritage_Park_-_Salt_Lake_City%2C_Utah_-_22_September_2018.jpg",
+    photoCredit: "Beneathtimp, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Eagle_Gate_at_This_Is_The_Place_Heritage_Park_-_Salt_Lake_City,_Utah_-_22_September_2018.jpg"
   },
   {
     id: "sip-n-dip",
@@ -3840,7 +4256,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Mermaids swim nightly from 6pm, but appearances aren’t guaranteed — call ahead if you’re coming far. Under-21s have to leave by 7pm."
+    notes: "Mermaids swim nightly from 6pm, but appearances aren’t guaranteed — call ahead if you’re coming far. Under-21s have to leave by 7pm.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Sip_%27n_Dip_Mermaid03.jpg/1280px-Sip_%27n_Dip_Mermaid03.jpg",
+    photoCredit: "V Smoothe, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Sip_%27n_Dip_Mermaid03.jpg"
   },
   {
     id: "sweet-palace",
@@ -3900,7 +4319,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Open 24/7 — a proper middle-of-nowhere I-90 stop between Missoula and Butte. The trout aquarium is free to watch."
+    notes: "Open 24/7 — a proper middle-of-nowhere I-90 stop between Missoula and Butte. The trout aquarium is free to watch.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/StRegisMTJuly2019.jpg/1280px-StRegisMTJuly2019.jpg",
+    photoCredit: "Ken Gallager, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:StRegisMTJuly2019.jpg"
   },
   {
     id: "montana-vortex",
@@ -3940,7 +4362,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Federal park passes are NOT accepted — it’s $20 per vehicle at the gate. Red Sleep Drive is summer only; Prairie Drive runs all year."
+    notes: "Federal park passes are NOT accepted — it’s $20 per vehicle at the gate. Red Sleep Drive is summer only; Prairie Drive runs all year.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/American_bison_on_the_National_Bison_Range%2C_Montana.JPG/1280px-American_bison_on_the_National_Bison_Range%2C_Montana.JPG",
+    photoCredit: "Henry Mulligan, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:American_bison_on_the_National_Bison_Range,_Montana.JPG"
   },
   {
     id: "gates-of-the-mountains",
@@ -3960,7 +4385,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall"],
     rating: null,
     status: "want",
-    notes: "Seasonal — runs Memorial Day weekend through mid-September. Book ahead in summer; the boats fill up."
+    notes: "Seasonal — runs Memorial Day weekend through mid-September. Book ahead in summer; the boats fill up.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Montana%2C_Gates_of_the_Mountains_Wilderness%2C_boat_tour_%281%29.jpg/1280px-Montana%2C_Gates_of_the_Mountains_Wilderness%2C_boat_tour_%281%29.jpg",
+    photoCredit: "Chris06, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Montana,_Gates_of_the_Mountains_Wilderness,_boat_tour_(1).jpg"
   },
   {
     id: "grizzly-and-wolf",
@@ -3980,7 +4408,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Open 365 days — the bears don’t hibernate. Your ticket is good for two consecutive days, so come back for the morning feeding."
+    notes: "Open 365 days — the bears don’t hibernate. Your ticket is good for two consecutive days, so come back for the morning feeding.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Grizzly_and_Wolf_Discovery_Center.JPG/1280px-Grizzly_and_Wolf_Discovery_Center.JPG",
+    photoCredit: "Sesamehoneytart, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Grizzly_and_Wolf_Discovery_Center.JPG"
   },
   {
     id: "alpacas-of-montana",
@@ -4020,7 +4451,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall"],
     rating: null,
     status: "want",
-    notes: "Seasonal — April to November, Friday through Monday only, 10am–4pm. Bring quarters for the coin-operated automatons."
+    notes: "Seasonal — April to November, Friday through Monday only, 10am–4pm. Bring quarters for the coin-operated automatons.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Tinkertown_Museum_%282932458392%29.jpg/1280px-Tinkertown_Museum_%282932458392%29.jpg",
+    photoCredit: "Jim Legans, Jr, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Tinkertown_Museum_(2932458392).jpg"
   },
   {
     id: "kakawa-chocolate-house",
@@ -4040,7 +4474,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The Mesoamerican elixirs are water-based and pack real chile heat — ask for a dollop of whipped cream to cut the spice. They offer samples before you commit."
+    notes: "The Mesoamerican elixirs are water-based and pack real chile heat — ask for a dollop of whipped cream to cut the spice. They offer samples before you commit.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Kakawa_Chocolate_House_%2810280112044%29.jpg/1280px-Kakawa_Chocolate_House_%2810280112044%29.jpg",
+    photoCredit: "Christine Rondeau, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Kakawa_Chocolate_House_(10280112044).jpg"
   },
   {
     id: "cumbres-toltec",
@@ -4060,7 +4497,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall"],
     rating: null,
     status: "want",
-    notes: "A full day — the All Aboard trip runs about eight hours including the bus return. Book ahead, especially for fall aspens; late September to early October is the prime window."
+    notes: "A full day — the All Aboard trip runs about eight hours including the bus return. Book ahead, especially for fall aspens; late September to early October is the prime window.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/CUMBRES_AND_TOLTEC_SCENIC_RAILROAD%2C_CHAMA%2C_NEW_MEXICO.jpg/1280px-CUMBRES_AND_TOLTEC_SCENIC_RAILROAD%2C_CHAMA%2C_NEW_MEXICO.jpg",
+    photoCredit: "CROCKERBD, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:CUMBRES_AND_TOLTEC_SCENIC_RAILROAD,_CHAMA,_NEW_MEXICO.jpg"
   },
   {
     id: "sparkys-burgers",
@@ -4080,7 +4520,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Closed Monday through Wednesday — plan around the four-day week. Live music in the dining hall on Saturday and Sunday, noon to 3pm."
+    notes: "Closed Monday through Wednesday — plan around the four-day week. Live music in the dining hall on Saturday and Sunday, noon to 3pm.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Oversized_chile_dog_and_restaurant_sign_at_the_former_Sparky%27s_Burgers_%26_BBQ_in_Tiny_Hatch%2C_New_Mexico.jpg",
+    photoCredit: "Carol M. Highsmith, public domain",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Oversized_chile_dog_and_restaurant_sign_at_the_former_Sparky%27s_Burgers_%26_BBQ_in_Tiny_Hatch,_New_Mexico.jpg"
   },
   {
     id: "66-diner",
@@ -4100,7 +4543,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The shakes are huge — they pour a fountain glass full and there’s still a shaker’s worth left. It opens at 11am, so it’s lunch and dinner only."
+    notes: "The shakes are huge — they pour a fountain glass full and there’s still a shaker’s worth left. It opens at 11am, so it’s lunch and dinner only.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/66_Diner_%282847984482%29.jpg/1280px-66_Diner_%282847984482%29.jpg",
+    photoCredit: "Marcin Wichary, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:66_Diner_(2847984482).jpg"
   },
   {
     id: "spaceport-roswell",
@@ -4140,7 +4586,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Come on a weekend if you can — the dances are the heart of the visit, and they’re not on weekdays. The museum shop and restaurant don’t need a ticket."
+    notes: "Come on a weekend if you can — the dances are the heart of the visit, and they’re not on weekdays. The museum shop and restaurant don’t need a ticket.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Indian_Pueblo_Cultural_Center_performers_%2848072659566%29.jpg/1280px-Indian_Pueblo_Cultural_Center_performers_%2848072659566%29.jpg",
+    photoCredit: "Gage Skidmore, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Indian_Pueblo_Cultural_Center_performers_(48072659566).jpg"
   },
   {
     id: "sandia-peak-tramway",
@@ -4160,7 +4609,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Closed Tuesdays, and it doesn’t run on very windy days — check before you go. It’s 20–30 degrees colder at the top, so bring a jacket even in summer."
+    notes: "Closed Tuesdays, and it doesn’t run on very windy days — check before you go. It’s 20–30 degrees colder at the top, so bring a jacket even in summer.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Sandia_Peak_Tramway_Lower_Tower_and_Car_Albuquerque_PP.JPG/1280px-Sandia_Peak_Tramway_Lower_Tower_and_Car_Albuquerque_PP.JPG",
+    photoCredit: "Skoch3, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Sandia_Peak_Tramway_Lower_Tower_and_Car_Albuquerque_PP.JPG"
   },
   {
     id: "bosque-del-apache",
@@ -4180,7 +4632,10 @@ var PLACES = [
     seasons: ["Fall", "Winter", "Spring"],
     rating: null,
     status: "want",
-    notes: "Come at sunrise or sunset in winter — that’s when the flocks move, and midday is quiet. Water-control work may close parts of the tour loop; call the Visitor Center (575-835-1828) the day before."
+    notes: "Come at sunrise or sunset in winter — that’s when the flocks move, and midday is quiet. Water-control work may close parts of the tour loop; call the Visitor Center (575-835-1828) the day before.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Marsh_Overlook_Trail_view_at_Bosque_del_Apache.jpg/1280px-Marsh_Overlook_Trail_view_at_Bosque_del_Apache.jpg",
+    photoCredit: "Thomas Asprey, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Marsh_Overlook_Trail_view_at_Bosque_del_Apache.jpg"
   },
   {
     id: "terry-bison-ranch",
@@ -4200,7 +4655,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Buy train tickets online — reviewers say it’s cheaper than at the gate. The train is rickety and squeaky, and the cars sit high above the bison, so small kids may struggle to reach down."
+    notes: "Buy train tickets online — reviewers say it’s cheaper than at the gate. The train is rickety and squeaky, and the cars sit high above the bison, so small kids may struggle to reach down.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/US-WY_-_Gleason_-_Sign_-_Road_Trip_-_The_West_-_Rocky_Mountains_-_Terry_Bison_Ranch_%284892443192%29.jpg/1280px-US-WY_-_Gleason_-_Sign_-_Road_Trip_-_The_West_-_Rocky_Mountains_-_Terry_Bison_Ranch_%284892443192%29.jpg",
+    photoCredit: "CGP Grey, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:US-WY_-_Gleason_-_Sign_-_Road_Trip_-_The_West_-_Rocky_Mountains_-_Terry_Bison_Ranch_(4892443192).jpg"
   },
   {
     id: "bar-t-5",
@@ -4240,7 +4698,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Hours are short and shift — open 11am–3pm, five days a week, closed Tuesday and Wednesday, so check before you go. It’s the only real stop in town, right off I-25."
+    notes: "Hours are short and shift — open 11am–3pm, five days a week, closed Tuesday and Wednesday, so check before you go. It’s the only real stop in town, right off I-25.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/Chugwater_Soda_Fountain.jpg/1280px-Chugwater_Soda_Fountain.jpg",
+    photoCredit: "Konrad Summers, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Chugwater_Soda_Fountain.jpg"
   },
   {
     id: "farson-mercantile",
@@ -4300,7 +4761,10 @@ var PLACES = [
     seasons: ["Summer"],
     rating: null,
     status: "want",
-    notes: "Buy tickets only from the rodeo itself — third-party resellers have charged over $100 for a $30 ticket, and parking is free. Concessions are cash only."
+    notes: "Buy tickets only from the rodeo itself — third-party resellers have charged over $100 for a $30 ticket, and parking is free. Concessions are cash only.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Cody_Nite_Rodeo_at_Cody_Stampede_Park_%28Cody%2C_Wyoming%29_001.jpg/1280px-Cody_Nite_Rodeo_at_Cody_Stampede_Park_%28Cody%2C_Wyoming%29_001.jpg",
+    photoCredit: "Leonard J. DeFrancisci, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Cody_Nite_Rodeo_at_Cody_Stampede_Park_(Cody,_Wyoming)_001.jpg"
   },
   {
     id: "wyoming-dinosaur-center",
@@ -4320,7 +4784,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The dig programs are summer-only, late May to mid-September, and Dig for a Day needs an advance reservation. The museum itself is open year-round."
+    notes: "The dig programs are summer-only, late May to mid-September, and Dig for a Day needs an advance reservation. The museum itself is open year-round.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Raptors_at_Wyoming_Dinosaur_Center.jpg/1280px-Raptors_at_Wyoming_Dinosaur_Center.jpg",
+    photoCredit: "Milonica, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Raptors_at_Wyoming_Dinosaur_Center.jpg"
   },
   {
     id: "buffalo-bill-center",
@@ -4340,7 +4807,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "One ticket covers all five museums and is good for two days — plan for at least three hours, or split it across two. Leave firearms, knives, and bear spray behind; they’re prohibited inside."
+    notes: "One ticket covers all five museums and is good for two days — plan for at least three hours, or split it across two. Leave firearms, knives, and bear spray behind; they’re prohibited inside.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Cody-Buffalo_Bill_Center_of_the_West_11-09-2014_17-51-32.JPG/1280px-Cody-Buffalo_Bill_Center_of_the_West_11-09-2014_17-51-32.JPG",
+    photoCredit: "Paul Hermans, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Cody-Buffalo_Bill_Center_of_the_West_11-09-2014_17-51-32.JPG"
   },
   {
     id: "yellowstone-national-park",
@@ -4360,7 +4830,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks — with Yellowstone and Grand Teton both on this trip, the pass already beats paying at the gate. Only the North Entrance stays open to cars in winter — the rest of the park is roughly late April to early November."
+    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks — with Yellowstone and Grand Teton both on this trip, the pass already beats paying at the gate. Only the North Entrance stays open to cars in winter — the rest of the park is roughly late April to early November.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Yellowstone_National_Park_%28WY%2C_USA%29%2C_Grand_Prismatic_Spring_--_2022_--_2514.jpg/1280px-Yellowstone_National_Park_%28WY%2C_USA%29%2C_Grand_Prismatic_Spring_--_2022_--_2514.jpg",
+    photoCredit: "Dietmar Rabich, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Yellowstone_National_Park_(WY,_USA),_Grand_Prismatic_Spring_--_2022_--_2514.jpg"
   },
   {
     id: "grand-teton-national-park",
@@ -4380,7 +4853,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. It's a separate fee from Yellowstone, so the two parks together are two surcharges. Get to Schwabacher Landing at least an hour before sunrise — parking fills fast, and the turnoff is poorly marked."
+    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. It's a separate fee from Yellowstone, so the two parks together are two surcharges. Get to Schwabacher Landing at least an hour before sunrise — parking fills fast, and the turnoff is poorly marked.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Oxbow_Bend_outlook_in_the_Grand_Teton_National_Park.jpg/1280px-Oxbow_Bend_outlook_in_the_Grand_Teton_National_Park.jpg",
+    photoCredit: "Michael Gäbler, CC BY 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Oxbow_Bend_outlook_in_the_Grand_Teton_National_Park.jpg"
   },
   {
     id: "acadia-national-park",
@@ -4400,7 +4876,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall"],
     rating: null,
     status: "want",
-    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. Cadillac Mountain needs a separate $6 timed vehicle reservation on top of the park pass — sunrise slots go months ahead. The Park Loop Road and summit road close in winter."
+    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. Cadillac Mountain needs a separate $6 timed vehicle reservation on top of the park pass — sunrise slots go months ahead. The Park Loop Road and summit road close in winter.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Cadillac_Mountain_Sunrise%2C_Acadia_National_Park_-_51650832934.jpg/1280px-Cadillac_Mountain_Sunrise%2C_Acadia_National_Park_-_51650832934.jpg",
+    photoCredit: "John Manard, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Cadillac_Mountain_Sunrise,_Acadia_National_Park_-_51650832934.jpg"
   },
   {
     id: "bryce-canyon-national-park",
@@ -4420,7 +4899,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. A free shuttle runs April through mid-October; the rim sits at 8,000–9,100 feet, so take it slow and bring a layer even in summer."
+    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. A free shuttle runs April through mid-October; the rim sits at 8,000–9,100 feet, so take it slow and bring a layer even in summer.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/USA_10654_Bryce_Canyon_Luca_Galuzzi_2007.jpg/1280px-USA_10654_Bryce_Canyon_Luca_Galuzzi_2007.jpg",
+    photoCredit: "Luca Galuzzi, CC BY-SA 2.5",
+    photoSource: "https://commons.wikimedia.org/wiki/File:USA_10654_Bryce_Canyon_Luca_Galuzzi_2007.jpg"
   },
   {
     id: "everglades-national-park",
@@ -4440,7 +4922,10 @@ var PLACES = [
     seasons: ["Fall", "Winter", "Spring"],
     rating: null,
     status: "want",
-    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. Come in the dry season (roughly December to April) — summer brings heat, humidity, and mosquitoes. The Anhinga Trail boardwalk is flat and wheelchair-accessible."
+    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. Come in the dry season (roughly December to April) — summer brings heat, humidity, and mosquitoes. The Anhinga Trail boardwalk is flat and wheelchair-accessible.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Everglades_Anhinga_Trail_Pond.jpg/1280px-Everglades_Anhinga_Trail_Pond.jpg",
+    photoCredit: "Daniel Kraft, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Everglades_Anhinga_Trail_Pond.jpg"
   },
   {
     id: "glacier-national-park",
@@ -4460,7 +4945,10 @@ var PLACES = [
     seasons: ["Summer", "Fall"],
     rating: null,
     status: "want",
-    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. No vehicle reservations needed in 2026, but there is no cell service on the road, and Logan Pass parking was limited to 3 hours in peak season — check the NPS site before you go."
+    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. No vehicle reservations needed in 2026, but there is no cell service on the road, and Logan Pass parking was limited to 3 hours in peak season — check the NPS site before you go.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Grinnell_Glacier_Overlook_at_Glacier_National_Park%2C_MT_%28DSC_0597%29.jpg/1280px-Grinnell_Glacier_Overlook_at_Glacier_National_Park%2C_MT_%28DSC_0597%29.jpg",
+    photoCredit: "Trougnouf (Benoit Brummer), CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Grinnell_Glacier_Overlook_at_Glacier_National_Park,_MT_(DSC_0597).jpg"
   },
   {
     id: "rocky-mountain-national-park",
@@ -4480,7 +4968,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. Timed-entry reservations are required May 22–October 12, 2026, 9am–2pm ($2), and the Bear Lake Road corridor needs a separate Timed Entry+ pass 5am–6pm. Bear Lake's 0.6-mile loop is flat and wheelchair-accessible."
+    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. Timed-entry reservations are required May 22–October 12, 2026, 9am–2pm ($2), and the Bear Lake Road corridor needs a separate Timed Entry+ pass 5am–6pm. Bear Lake's 0.6-mile loop is flat and wheelchair-accessible.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Moraine_Park_Valley%2C_Rocky_Mountain_National_Park.jpg/1280px-Moraine_Park_Valley%2C_Rocky_Mountain_National_Park.jpg",
+    photoCredit: "Frank Schulenburg, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Moraine_Park_Valley%2C_Rocky_Mountain_National_Park.jpg"
   },
   {
     id: "sequoia-kings-canyon-national-parks",
@@ -4500,7 +4991,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. One $35 pass covers both parks for 7 days, no reservation needed. The trail to the tree is paved and wheelchair-accessible, but the walk back up is steep — and there is almost no cell service in the parks, so download maps first."
+    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. One $35 pass covers both parks for 7 days, no reservation needed. The trail to the tree is paved and wheelchair-accessible, but the walk back up is steep — and there is almost no cell service in the parks, so download maps first.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/The_General_Sherman_tree_-_Sequoia_National_Park_%2833241877800%29.jpg/1280px-The_General_Sherman_tree_-_Sequoia_National_Park_%2833241877800%29.jpg",
+    photoCredit: "m01229 from USA, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:The_General_Sherman_tree_-_Sequoia_National_Park_(33241877800).jpg"
   },
   {
     id: "zion-national-park",
@@ -4520,7 +5014,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. From roughly April to November, private cars can't drive Zion Canyon Scenic Drive — ride the free shuttle to the Temple of Sinawava. The Narrows closes when the river runs over 150 cubic feet per second, often into June — the paved Riverside Walk to its start is flat, so you can see the canyon narrow without getting in the river."
+    notes: "⚠️ Non-US residents pay an extra $100 per person here (2026) on top of the $35 vehicle pass — unless you hold the $250 annual pass, which covers the whole vehicle at all 11 surcharge parks. From roughly April to November, private cars can't drive Zion Canyon Scenic Drive — ride the free shuttle to the Temple of Sinawava. The Narrows closes when the river runs over 150 cubic feet per second, often into June — the paved Riverside Walk to its start is flat, so you can see the canyon narrow without getting in the river.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Navajo_Sandstone_formations_in_Zion_National_Park%2C_Utah.-_%28USA_2016%29.jpg/1280px-Navajo_Sandstone_formations_in_Zion_National_Park%2C_Utah.-_%28USA_2016%29.jpg",
+    photoCredit: "Pierre André Leclercq, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Navajo_Sandstone_formations_in_Zion_National_Park,_Utah.-_(USA_2016).jpg"
   },
   {
     id: "wind-river-canyon",
@@ -4540,7 +5037,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free — it's a highway drive, about 40 minutes from Shoshoni to Thermopolis with pullouts along the way. The canyon runs through the Wind River Indian Reservation, so stay on the highway and pullouts — a tribal permit is needed to hike off-road — and keep an eye out for the canyon's ~100 bighorn sheep."
+    notes: "Free — it's a highway drive, about 40 minutes from Shoshoni to Thermopolis with pullouts along the way. The canyon runs through the Wind River Indian Reservation, so stay on the highway and pullouts — a tribal permit is needed to hike off-road — and keep an eye out for the canyon's ~100 bighorn sheep.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Wind_River_Canyon_tunnel_WY1.jpg/1280px-Wind_River_Canyon_tunnel_WY1.jpg",
+    photoCredit: "Acroterion, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Wind_River_Canyon_tunnel_WY1.jpg"
   },
   {
     id: "hells-half-acre",
@@ -4560,7 +5060,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free roadside stop — just a gravel lot and interpretive signs, no services, so bring water. You can't go down into the ravines legally; the old restaurant and motel were demolished in 2005 and the picnic area is fenced off."
+    notes: "Free roadside stop — just a gravel lot and interpretive signs, no services, so bring water. You can't go down into the ravines legally; the old restaurant and motel were demolished in 2005 and the picnic area is fenced off.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Hell%27s_Half_Acre_WY.jpg/1280px-Hell%27s_Half_Acre_WY.jpg",
+    photoCredit: "Carpenter, Kenneth, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Hell%27s_Half_Acre_WY.jpg"
   },
   {
     id: "devils-tower-national-monument",
@@ -4580,7 +5083,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Climbing is voluntarily closed each June out of respect for tribal ceremonies. The 1.3-mile Tower Trail is paved, but there's a steep hill up from the parking lot with no railings — and stop for the prairie dog town on the way in."
+    notes: "Climbing is voluntarily closed each June out of respect for tribal ceremonies. The 1.3-mile Tower Trail is paved, but there's a steep hill up from the parking lot with no railings — and stop for the prairie dog town on the way in.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/Bear_Lodge_Butte_%28Devil%E2%80%99s_Tower%29%2C_Devils_Tower_National_Monument%2C_Devils_Tower%2C_WY_-_53767681019.jpg/1280px-Bear_Lodge_Butte_%28Devil%E2%80%99s_Tower%29%2C_Devils_Tower_National_Monument%2C_Devils_Tower%2C_WY_-_53767681019.jpg",
+    photoCredit: "w_lemay, CC BY-SA 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Bear_Lodge_Butte_(Devil%E2%80%99s_Tower),_Devils_Tower_National_Monument,_Devils_Tower,_WY_-_53767681019.jpg"
   },
   {
     id: "cody-wyoming",
@@ -4599,7 +5105,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "A natural base for Yellowstone's East Entrance, 52 miles west along the North Fork of the Shoshone River."
+    notes: "A natural base for Yellowstone's East Entrance, 52 miles west along the North Fork of the Shoshone River.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Shops_and_restaurants_along_Sheridan_Avenue%2C_Cody%2C_2009.jpg/1280px-Shops_and_restaurants_along_Sheridan_Avenue%2C_Cody%2C_2009.jpg",
+    photoCredit: "DimiTalen, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Shops_and_restaurants_along_Sheridan_Avenue,_Cody,_2009.jpg"
   },
   {
     id: "jackson-wyoming",
@@ -4618,7 +5127,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "A natural base for Grand Teton — about 12 miles north to the park's south entrance — and Yellowstone's South Entrance, about 60 miles north through the park."
+    notes: "A natural base for Grand Teton — about 12 miles north to the park's south entrance — and Yellowstone's South Entrance, about 60 miles north through the park.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Elk_antler_arch_at_Jackson_Square%2C_Jackson%2C_WY_2022-07-11.jpg/1280px-Elk_antler_arch_at_Jackson_Square%2C_Jackson%2C_WY_2022-07-11.jpg",
+    photoCredit: "Schwerdf, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Elk_antler_arch_at_Jackson_Square,_Jackson,_WY_2022-07-11.jpg"
   },
   {
     id: "national-elk-refuge-sleigh-rides",
@@ -4638,7 +5150,10 @@ var PLACES = [
     seasons: ["Winter"],
     rating: null,
     status: "want",
-    notes: "Winter only — mid-December through March, closed Christmas Day. Book ahead, the sleighs sell out; dress warmly and bring a blanket, it's an open sleigh."
+    notes: "Winter only — mid-December through March, closed Christmas Day. Book ahead, the sleighs sell out; dress warmly and bring a blanket, it's an open sleigh.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Sleigh_Rides_on_the_National_Elk_Refuge_%2850746994963%29.png/1280px-Sleigh_Rides_on_the_National_Elk_Refuge_%2850746994963%29.png",
+    photoCredit: "USFWS Mountain Prairie, public domain",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Sleigh_Rides_on_the_National_Elk_Refuge_(50746994963).png"
   },
   {
     id: "the-airplane-restaurant",
@@ -4658,7 +5173,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Book ahead if you want to eat inside the plane itself — it only seats 42 of the restaurant's 275, and it's first come, first served otherwise. You can sit in the cockpit while you wait for a table."
+    notes: "Book ahead if you want to eat inside the plane itself — it only seats 42 of the restaurant's 275, and it's first come, first served otherwise. You can sit in the cockpit while you wait for a table.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/The_Airplane_Restaurant%2C_Colorado_Springs.jpg/1280px-The_Airplane_Restaurant%2C_Colorado_Springs.jpg",
+    photoCredit: "Xnatedawgx, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:The_Airplane_Restaurant,_Colorado_Springs.jpg"
   },
   {
     id: "manitou-springs-penny-arcade",
@@ -4678,7 +5196,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "No entry charge — you pay per game, mostly 25–50 cents, with some of the oldest machines still taking a genuine penny. Bring quarters (change machines are on-site but busy on weekends), and expect some of the oldest games to be out of order."
+    notes: "No entry charge — you pay per game, mostly 25–50 cents, with some of the oldest machines still taking a genuine penny. Bring quarters (change machines are on-site but busy on weekends), and expect some of the oldest games to be out of order.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Manitou_Springs_Penny_Arcade_%2848432066127%29.jpg/1280px-Manitou_Springs_Penny_Arcade_%2848432066127%29.jpg",
+    photoCredit: "PEO ACWA, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Manitou_Springs_Penny_Arcade_(48432066127).jpg"
   },
   {
     id: "the-wizards-chest",
@@ -4698,7 +5219,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Free to browse — the games and costumes are for sale, and it's easy to lose an hour in here. There's a wheelchair-accessible ramp, and the shop runs D&D and Magic nights if your timing lines up."
+    notes: "Free to browse — the games and costumes are for sale, and it's easy to lose an hour in here. There's a wheelchair-accessible ramp, and the shop runs D&D and Magic nights if your timing lines up.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/The_Wizard%27s_Chest_%2831725180660%29.jpg/1280px-The_Wizard%27s_Chest_%2831725180660%29.jpg",
+    photoCredit: "Paul Sableman, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:The_Wizard%27s_Chest_(31725180660).jpg"
   },
   {
     id: "fifty-two-80s",
@@ -4758,7 +5282,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Entry is timed — book a date and time window online rather than just turning up. The conservatory is warm and humid, so dress light; it's lovely on a cold day."
+    notes: "Entry is timed — book a date and time window online rather than just turning up. The conservatory is warm and humid, so dress light; it's lovely on a cold day.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Butterfly_Pavillion.jpg/1280px-Butterfly_Pavillion.jpg",
+    photoCredit: "Jared Winkler, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Butterfly_Pavillion.jpg"
   },
   {
     id: "hammonds-candies-factory",
@@ -4778,7 +5305,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Tours are free — sign up in advance, and note there are no tours on Sundays. Weekday tours run 9:15am–2:45pm, Saturdays to 2:15pm."
+    notes: "Tours are free — sign up in advance, and note there are no tours on Sundays. Weekday tours run 9:15am–2:45pm, Saturdays to 2:15pm.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Hammond%27s_Candies_Factory_Tour_%2819196687333%29.jpg/1280px-Hammond%27s_Candies_Factory_Tour_%2819196687333%29.jpg",
+    photoCredit: "Aranami from Arvada, CO, US, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Hammond%27s_Candies_Factory_Tour_(19196687333).jpg"
   },
   {
     id: "dinosaur-ridge",
@@ -4798,7 +5328,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The ridge walk itself is free — the guided bus tour is $21/adult. The trail is paved but uphill with no shade, so bring water and sun protection."
+    notes: "The ridge walk itself is free — the guided bus tour is $21/adult. The trail is paved but uphill with no shade, so bring water and sun protection.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Juvenile_Stegosaurus_dinosaur_footprint_%28Morrison_Formation%2C_Upper_Jurassic%3B_Dinosaur_Ridge%2C_west_of_Denver%2C_north-central_Colorado%2C_USA%29_%2815541291642%29.jpg/1280px-Juvenile_Stegosaurus_dinosaur_footprint_%28Morrison_Formation%2C_Upper_Jurassic%3B_Dinosaur_Ridge%2C_west_of_Denver%2C_north-central_Colorado%2C_USA%29_%2815541291642%29.jpg",
+    photoCredit: "James St. John, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Juvenile_Stegosaurus_dinosaur_footprint_(Morrison_Formation,_Upper_Jurassic;_Dinosaur_Ridge,_west_of_Denver,_north-central_Colorado,_USA)_(15541291642).jpg"
   },
   {
     id: "ghost-town-museum",
@@ -4818,7 +5351,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Gold panning runs May to September, weather permitting, and is included in admission. Bring quarters — the old arcade machines and shooting gallery still take them."
+    notes: "Gold panning runs May to September, weather permitting, and is included in admission. Bring quarters — the old arcade machines and shooting gallery still take them.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Ghost_Town_Museum_%28Colorado_Springs%29_-_Vehicle_10.jpg/1280px-Ghost_Town_Museum_%28Colorado_Springs%29_-_Vehicle_10.jpg",
+    photoCredit: "TranqyPoo, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Ghost_Town_Museum_(Colorado_Springs)_-_Vehicle_10.jpg"
   },
   {
     id: "manitou-springs",
@@ -4837,7 +5373,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "The mineral springs are free to taste — bring a cup, and expect each spring to taste different."
+    notes: "The mineral springs are free to taste — bring a cup, and expect each spring to taste different.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Manitou_Springs%2C_Colorado%2C_1902.jpg/1280px-Manitou_Springs%2C_Colorado%2C_1902.jpg",
+    photoCredit: "Detroit Publishing Co., public domain",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Manitou_Springs,_Colorado,_1902.jpg"
   },
   {
     id: "pikes-peak-cog-railway",
@@ -4857,7 +5396,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Book online at least two weeks ahead — summer trains sell out, and walk-up tickets cost more. The summit is 14,115 feet, so take it slow up there and bring a layer — it's cold and windy even in summer."
+    notes: "Book online at least two weeks ahead — summer trains sell out, and walk-up tickets cost more. The summit is 14,115 feet, so take it slow up there and bring a layer — it's cold and windy even in summer.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Pikes_Peak_Cog_Railroad_near_the_Summit.jpg/1280px-Pikes_Peak_Cog_Railroad_near_the_Summit.jpg",
+    photoCredit: "Bob Burch: Serious Noticing, CC0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Pikes_Peak_Cog_Railroad_near_the_Summit.jpg"
   },
   {
     id: "glenwood-caverns-adventure-park",
@@ -4877,7 +5419,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "You reach the park by gondola from the valley floor — the ride up is part of the experience. Some rides are seasonal and high wind can shut them down, so check the ride status before you go; the park is cashless."
+    notes: "You reach the park by gondola from the valley floor — the ride up is part of the experience. Some rides are seasonal and high wind can shut them down, so check the ride status before you go; the park is cashless.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Glenwood_caverns.jpg/1280px-Glenwood_caverns.jpg",
+    photoCredit: "Jutulen, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Glenwood_caverns.jpg"
   },
   {
     id: "royal-gorge-bridge-park",
@@ -4897,7 +5442,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "General admission covers the bridge walk, the gondola, the theater, and the playland — the zipline and Skycoaster cost extra. The gondola stops in high wind, so check before you go; it gets hot and windy up there, so bring water."
+    notes: "General admission covers the bridge walk, the gondola, the theater, and the playland — the zipline and Skycoaster cost extra. The gondola stops in high wind, so check before you go; it gets hot and windy up there, so bring water.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/8/89/Ca%C3%B1on_City%2C_CO_-_Royal_Gorge_Bridge_%282%29.jpg",
+    photoCredit: "Jrozwado, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Ca%C3%B1on_City,_CO_-_Royal_Gorge_Bridge_(2).jpg"
   },
   {
     id: "royal-gorge-route-railroad",
@@ -4917,7 +5465,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Book ahead — trains sell out, and walk-up tickets cost $10 more each. Every ticket includes access to the open-air car, the best spot for photos."
+    notes: "Book ahead — trains sell out, and walk-up tickets cost $10 more each. Every ticket includes access to the open-air car, the best spot for photos.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Royal_Gorge_%28train%29.JPG/1280px-Royal_Gorge_%28train%29.JPG",
+    photoCredit: "Jeffrey Beall, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Royal_Gorge_(train).JPG"
   },
   {
     id: "glenwood-hot-springs-pool",
@@ -4937,7 +5488,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Day passes include unlimited re-entry, so you can leave for lunch and come back. The main pool is 90–93°F — great even in winter, but bring a warm layer for getting out; the Splash Zone is summer only."
+    notes: "Day passes include unlimited re-entry, so you can leave for lunch and come back. The main pool is 90–93°F — great even in winter, but bring a warm layer for getting out; the Splash Zone is summer only.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Glenwood_Hot_Springs_Pool_2020.JPG/1280px-Glenwood_Hot_Springs_Pool_2020.JPG",
+    photoCredit: "Jeffrey Beall, CC BY 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Glenwood_Hot_Springs_Pool_2020.JPG"
   },
   {
     id: "georgetown-loop-railroad",
@@ -4957,7 +5511,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Book ahead in summer and fall — trains sell out, and the Lebanon Silver Mine tour is a separate ticket (April through September, 44°F inside, so bring a jacket). The open-air cars get cold at 9,000 feet, even in summer."
+    notes: "Book ahead in summer and fall — trains sell out, and the Lebanon Silver Mine tour is a separate ticket (April through September, 44°F inside, so bring a jacket). The open-air cars get cold at 9,000 feet, even in summer.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Georgetown_Loop_Railroad_Train_No._12.jpg/1280px-Georgetown_Loop_Railroad_Train_No._12.jpg",
+    photoCredit: "MCA / Mike Allyn, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Georgetown_Loop_Railroad_Train_No._12.jpg"
   },
   {
     id: "durango-silverton-narrow-gauge-railroad",
@@ -4977,7 +5534,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall", "Winter"],
     rating: null,
     status: "want",
-    notes: "Book months ahead in summer — trains sell out. The open-air gondola cars are the best seats for the gorge, and the Skyway Tour (train one way, motorcoach the other) is the shorter option if nine hours is too long."
+    notes: "Book months ahead in summer — trains sell out. The open-air gondola cars are the best seats for the gorge, and the Skyway Tour (train one way, motorcoach the other) is the shorter option if nine hours is too long.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Durango_%26_Silverton_Narrow_Gauge_Railroad_%2839938585813%29.jpg/1280px-Durango_%26_Silverton_Narrow_Gauge_Railroad_%2839938585813%29.jpg",
+    photoCredit: "Mike McBey, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Durango_%26_Silverton_Narrow_Gauge_Railroad_(39938585813).jpg"
   },
   {
     id: "black-canyon-of-the-gunnison-national-park",
@@ -4997,7 +5557,10 @@ var PLACES = [
     seasons: ["Spring", "Summer", "Fall"],
     rating: null,
     status: "want",
-    notes: "The South Rim Road closes to cars in winter — the park stays open for skiing and snowshoeing. The trails down to the river are steep and strenuous, so most visitors stick to the rim overlooks."
+    notes: "The South Rim Road closes to cars in winter — the park stays open for skiing and snowshoeing. The trails down to the river are steep and strenuous, so most visitors stick to the rim overlooks.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Black_Canyon_of_the_Gunnison_03.jpg/1280px-Black_Canyon_of_the_Gunnison_03.jpg",
+    photoCredit: "AndrewKPepper, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Black_Canyon_of_the_Gunnison_03.jpg"
   },
   {
     id: "chama-gaucha-brazilian-steakhouse",
@@ -5199,6 +5762,143 @@ var PLACES = [
     status: "want",
     notes: "Dinner is $71.99 — Friday-to-Sunday lunch is $45.99 and the quieter pick. The bar does half-price drinks 4:30–6pm, and lunch runs Friday to Sunday only."
   },
+  {
+    id: "ghirardelli-square",
+    name: "Ghirardelli Square",
+    categories: ["food", "shopping", "historic"],
+    city: "San Francisco",
+    state: "California",
+    lat: 37.80553,
+    lng: -122.42268,
+    address: "900 North Point St, San Francisco, CA 94109",
+    website: "https://www.ghirardellisq.com/",
+    reviewsUrl: "https://www.tripadvisor.ca/Restaurant_Review-g60713-d542709-Reviews-Ghirardelli_Chocolate_Experience-San_Francisco_California.html",
+    description: "The old Ghirardelli chocolate factory on the bay — a landmark plaza of shops and restaurants around the 1864 chocolate manufactory, under the big rooftop Ghirardelli sign at the west end of Fisherman's Wharf.",
+    mustSee: "The World Famous Hot Fudge Sundae — handmade hot fudge, made fresh daily",
+    price: 0,
+    time: "quick",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "If the line at the Original shop is long, the bigger Chocolate Experience shop in the West Plaza serves the same menu and often has a shorter line.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Ghirardelli_Square%2C_San_Francisco_2023-07-20.jpg/1280px-Ghirardelli_Square%2C_San_Francisco_2023-07-20.jpg",
+    photoCredit: "The wub, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Ghirardelli_Square,_San_Francisco_2023-07-20.jpg"
+  },
+  {
+    id: "flaming-gorge-reservoir",
+    name: "Flaming Gorge Reservoir",
+    categories: ["nature", "historic"],
+    city: "Dutch John",
+    state: "Utah",
+    lat: 40.91404,
+    lng: -109.42384,
+    address: "5995 Flaming Gorge Dam, Dutch John, UT 84023",
+    website: "https://www.flaminggorgecountry.com/Flaming-Gorge-Dam-Visitor-Center",
+    reviewsUrl: "https://www.tripadvisor.co.uk/Attraction_Review-g57054-d145218-Reviews-Flaming_Gorge_National_Recreation_Area-Manila_Utah.html",
+    description: "A 91-mile reservoir on the Green River behind the 502-foot Flaming Gorge Dam — red-rock canyon walls, turquoise water, and a Blue Ribbon trout fishery in the Flaming Gorge National Recreation Area.",
+    mustSee: "Red Canyon Overlook — the reservoir winding through the red-rock canyon, 1,400 feet below the overlook",
+    price: 0,
+    time: "half",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "The overlooks are free and drive-up — Red Canyon Overlook has a wide paved, fully accessible trail to the views. The $5 day-use fee only applies at boat launches and picnic sites; the dam visitor center runs mid-April to mid-October.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/20190801-FS-Ashley_NF-GM-Flaming_Gorge_NRA_Red_Canyon-01_%2848942419696%29.jpg/1280px-20190801-FS-Ashley_NF-GM-Flaming_Gorge_NRA_Red_Canyon-01_%2848942419696%29.jpg",
+    photoCredit: "U.S. Forest Service, public domain",
+    photoSource: "https://commons.wikimedia.org/wiki/File:20190801-FS-Ashley_NF-GM-Flaming_Gorge_NRA_Red_Canyon-01_(48942419696).jpg"
+  },
+  {
+    id: "taos",
+    name: "Taos",
+    categories: ["other"],
+    city: "Taos",
+    state: "New Mexico",
+    lat: 36.40734,
+    lng: -105.57474,
+    address: "N Plaza, Taos, NM 87571",
+    website: "https://taos.org/explore/landmarks/taos-plaza-downtown/",
+    reviewsUrl: "https://www.tripadvisor.in/Attraction_Review-g47224-d273906-Reviews-or10-Taos_Plaza-Taos_Taos_County_New_Mexico.html",
+    description: "A high-desert art town at 7,000 feet — the adobe Taos Plaza ringed by galleries, shops, and cafés, with the Sangre de Cristo mountains behind it and a thousand-year-old Pueblo just outside town.",
+    mustSee: "Taos Pueblo — the thousand-year-old adobe village, a UNESCO World Heritage Site just outside town",
+    price: 0,
+    time: "multi",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "The plaza itself is free and always open — shops and galleries keep their own hours. Taos Pueblo is $25 admission and can close at short notice for ceremonies, so check before driving out.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Adobe_with_Horno%2C_Taos_Pueblo%2C_NM_-_panoramio.jpg/1280px-Adobe_with_Horno%2C_Taos_Pueblo%2C_NM_-_panoramio.jpg",
+    photoCredit: "Aaron Zhu, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Adobe_with_Horno,_Taos_Pueblo,_NM_-_panoramio.jpg"
+  },
+  {
+    id: "carmel-by-the-sea",
+    name: "Carmel-by-the-Sea",
+    categories: ["other"],
+    city: "Carmel-by-the-Sea",
+    state: "California",
+    lat: 36.555223,
+    lng: -121.929632,
+    address: "Ocean Ave, Carmel-by-the-Sea, CA 93921",
+    website: "http://carmelbythesea.com/",
+    reviewsUrl: "https://www.tripadvisor.co.uk/Attraction_Review-g32172-d19857928-Reviews-Carmel_Beach-Carmel_Monterey_County_California.html",
+    description: "A storybook village on the Monterey Peninsula — fairy-tale cottages, 80-plus art galleries, and a white-sand beach at the foot of Ocean Avenue, under wind-bent cypress trees.",
+    mustSee: "Point Lobos State Natural Reserve — the granite coast just south of town, with sea lions, cypress groves, and turquoise coves",
+    price: 0,
+    time: "multi",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Carmel famously has no street addresses — places go by cross streets or cottage names, so navigate by Ocean Avenue and the beach. Point Lobos is $10/vehicle and the lots fill by 9:30am on weekends — come early or park on Highway 1 and walk in.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Point_Lobos_September_2012_003.jpg/1280px-Point_Lobos_September_2012_003.jpg",
+    photoCredit: "King of Hearts, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Point_Lobos_September_2012_003.jpg"
+  },
+  {
+    id: "monterey-bay-aquarium",
+    name: "Monterey Bay Aquarium",
+    categories: ["nature"],
+    city: "Monterey",
+    state: "California",
+    lat: 36.61825,
+    lng: -121.90177,
+    address: "886 Cannery Row, Monterey, CA 93940",
+    website: "https://www.montereybayaquarium.org/",
+    reviewsUrl: "https://www.tripadvisor.ca/Attraction_Review-g32737-d104804-Reviews-or40-Monterey_Bay_Aquarium-Monterey_Monterey_County_California.html",
+    description: "One of the world's great aquariums, on historic Cannery Row in a former sardine cannery — the three-story Kelp Forest, the 1.2-million-gallon Open Sea tank, sea otters, the famous jellies, and a nonprofit conservation mission.",
+    price: 2,
+    time: "half",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "Tickets must be bought in advance online — the aquarium doesn't sell them at the door.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/School_of_sardines_at_the_Monterey_Bay_Aquarium_%2812056%29.jpg/1280px-School_of_sardines_at_the_Monterey_Bay_Aquarium_%2812056%29.jpg",
+    photoCredit: "Rhododendrites, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:School_of_sardines_at_the_Monterey_Bay_Aquarium_(12056).jpg"
+  },
+  {
+    id: "monterey",
+    name: "Monterey",
+    categories: ["other"],
+    city: "Monterey",
+    state: "California",
+    lat: 36.603731,
+    lng: -121.893366,
+    address: "1 Old Fisherman's Wharf, Monterey, CA 93940",
+    website: "http://www.montereywharf.com/",
+    reviewsUrl: "https://www.tripadvisor.co.uk/Attraction_Review-g32737-d144837-Reviews-or590-Old_Fisherman_s_Wharf-Monterey_Monterey_County_California.html",
+    description: "A working fishing harbor turned waterfront town — the 1870 Old Fisherman's Wharf, Cannery Row's old sardine canneries, and sea otters in the bay, with the aquarium at the end of the Row.",
+    mustSee: "Old Fisherman's Wharf and Cannery Row — the 1870 wharf of seafood stalls, whale-watching boats, and sea lions, and the old sardine-cannery strip Steinbeck made famous",
+    price: 0,
+    time: "multi",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    status: "want",
+    notes: "The wharf and Cannery Row are free to wander. In summer the free trolley runs between downtown, the wharf, Cannery Row, and the aquarium.",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Old_Fisherman%27s_Wharf%2C_Monterey%2C_California_LCCN2013630517.tif/lossy-page1-1280px-Old_Fisherman%27s_Wharf%2C_Monterey%2C_California_LCCN2013630517.tif.jpg",
+    photoCredit: "Carol M. Highsmith, public domain",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Old_Fisherman%27s_Wharf,_Monterey,_California_LCCN2013630517.tif"
+  },
 ];
 
 var CATEGORIES = {
@@ -5318,6 +6018,7 @@ function renderDetail(p){
     + '<p class="detail-loc">' + esc(p.city) + ', ' + esc(p.state) + (p.address ? ' · ' + esc(p.address) : '') + '</p></div>'
     + '<div style="display:flex;gap:6px;flex-wrap:wrap">' + tagHTML(p) + '</div></div>'
     + '<div class="detail-body">'
+    + (p.photo ? '<figure class="detail-photo"><img src="' + esc(p.photo) + '" alt="Photo of ' + esc(p.name) + '" loading="lazy">' + (p.photoCredit ? '<figcaption>Photo: ' + esc(p.photoCredit) + ' — <a href="' + esc(p.photoSource) + '" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption>' : '') + '</figure>' : '')
     + '<p class="detail-desc">' + esc(p.description) + '</p>'
     + '<dl class="facts">'
     + '<div class="fact"><dt>Type</dt><dd>' + esc(catsLabel(p)) + '</dd></div>'
