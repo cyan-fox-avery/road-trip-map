@@ -22,7 +22,7 @@ website, short description, price tier (Free / $ / $$ / $$$), time it takes
 visited), notes, and an optional one-line must-see highlight. Coordinates
 are looked up from the address.
 
-## Places so far (254)
+## Places so far (262)
 
 Dollywood (TN), Hersheypark (PA), Walt Disney World (FL), Portillo's Chicago
 (IL), Dog Mountain (VT), International Cryptozoology Museum (Bangor, ME),
@@ -170,4 +170,4 @@ Brazilian Steakhouse (Las Vegas, NV), Show de Carnes Brazilian Steakhouse
 (Palo Alto, CA), Bullvino's Churrascaria (St. Paul, MN), M Grill Brazilian
 Churrascaria (Los Angeles, CA), Rodizio Grill Brazilian Steakhouse (Denver,
 CO), Fogo de Chão — Naperville (Naperville, IL), Texas de Brazil — Irvine
-(Irvine, CA), Ghirardelli Square (San Francisco, CA), Flaming Gorge Reservoir (Dutch John, UT), Taos (Taos, NM), Carmel-by-the-Sea (Carmel-by-the-Sea, CA), Monterey (Monterey, CA).
+(Irvine, CA), Ghirardelli Square (San Francisco, CA), Flaming Gorge Reservoir (Dutch John, UT), Taos (Taos, NM), Carmel-by-the-Sea (Carmel-by-the-Sea, CA), Monterey (Monterey, CA), Turpentine Creek Wildlife Refuge (Eureka Springs, AR), Peaceful Valley Donkey Rescue (San Angelo, TX), Lions Tigers & Bears (Alpine, CA), Wild Spirit Wolf Sanctuary (Ramah, NM), Chimp Haven (Keithville, LA), Luvin Arms Animal Sanctuary (Erie, CO), The Gentle Barn (Santa Clarita, CA), Farm Sanctuary (Watkins Glen, NY).
