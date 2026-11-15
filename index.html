@@ -229,7 +229,7 @@
           <option value="price-asc">Price (low → high)</option>
           <option value="price-desc">Price (high → low)</option>
           <option value="time-asc">Visit length (short → long)</option>
-          <option value="rating-desc">Your rating (high → low)</option>
+          <option value="rating-desc">Public rating (high → low)</option>
         </select>
       </div>
       <div class="filter-actions">
@@ -275,6 +275,7 @@
    price: 0 = Free, 1 = $, 2 = $$, 3 = $$$
    time: "quick" (<1h) | "short" (1–2h) | "half" | "full" | "multi" (multi day)
    rating: null until visited, then 1–5 (your own rating)
+   publicRating: average of Google + Tripadvisor reviews, one decimal (null until filled in)
    status: "want" | "visited"
    ============================================================ */
 var PLACES = [
@@ -8756,6 +8757,249 @@ var PLACES = [
     photoSource: "https://commons.wikimedia.org/wiki/File:Whale_and_fishing_boat.jpg",
     notes: "Tickets vary by day \u2014 about $46 adults, $26 kids; under 4 free; buy online in advance. Open 364 days a year, closed only on Christmas Day; hours vary by season, so check before you go. Plan 3\u20134 hours; both halves follow a single route, so print the online map ahead \u2014 there are no printed maps on site, and a few side galleries are easy to miss. The Bass Pro Shops store next door has free galleries of its own: the archery and firearms halls of fame and the motorsports exhibits."
   },
+  {
+    id: "swamp-monster-restaurant",
+    name: "Swamp Monster Restaurant",
+    categories: ["food", "quirky"],
+    city: "Franklinton",
+    state: "Louisiana",
+    lat: 30.84439,
+    lng: -90.15511,
+    address: "913 Washington St, Franklinton, LA 70438",
+    website: "https://m.facebook.com/954774301280262/",
+    reviewsUrl: "https://www.tripadvisor.co.uk/Restaurant_Review-g40164-d27883798-Reviews-Swamp_Monster_Restaurant-Franklinton_Louisiana.html",
+    description: "A swamp-themed Cajun restaurant in small-town Franklinton, about an hour and a half north of New Orleans \u2014 alligator taxidermy on the walls, Bigfoot and Rougarou memorabilia, hand-painted signs warning you not to feed the Rougarou, and the owner greeting guests personally. The menu leans hard into Cajun country: fried alligator bites with jalape\u00f1o sauce, the Swamp Bucket of crawfish \u00e9touff\u00e9e, boudin balls, and the Filthy Swamp Tilapia stuffed with crawfish and three cheeses.",
+    mustSee: "The fried alligator bites \u2014 crispy tail meat with jalape\u00f1o sauce, eaten under the gaze of the taxidermy.",
+    price: 1,
+    time: "short",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    publicRating: 4.9,
+    status: "want",
+    notes: "Open Thursday\u2013Sunday only, closed Monday\u2013Wednesday; Sunday hours vary by source, so check before you go. The Facebook listing flags the restaurant as temporarily closed, but current listings and recent reviews show it open \u2014 worth confirming before the drive."
+  },,
+  {
+    id: "dogwood-canyon-nature-park",
+    name: "Dogwood Canyon Nature Park",
+    categories: ["nature"],
+    city: "Lampe",
+    state: "Missouri",
+    lat: 36.53183,
+    lng: -93.45938,
+    address: "2038 West State Hwy 86, Lampe, MO 65681",
+    website: "https://dogwoodcanyon.org/",
+    reviewsUrl: "https://www.tripadvisor.co.uk/Attraction_Review-g44574-d560196-Reviews-or350-Dogwood_Canyon_Nature_Park-Lampe_Missouri.html",
+    description: "A 10,000-acre Ozark nature park on the Missouri-Arkansas border, with trout streams, dozens of waterfalls, hand-built bridges, and a wildlife tram tour past bison, elk, and longhorn herds.",
+    mustSee: "The two-hour Wildlife Tram Tour \u2014 an open-air ride through the canyon past waterfalls and bison, elk, and longhorn herds.",
+    price: 2,
+    time: "half day",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    publicRating: 4.7,
+    status: "want",
+    notes: "The Wildlife Tram Tour is a separate ticket from admission and sells out, so book ahead \u2014 it\u2019s also the no-walking way to see the canyon. Open daily 9am\u20135pm, though hours can change without notice."
+  },
+  {
+    id: "lost-canyon-cave-and-nature-trail",
+    name: "Lost Canyon Cave and Nature Trail",
+    categories: ["nature", "historic"],
+    city: "Ridgedale",
+    state: "Missouri",
+    lat: 36.53163,
+    lng: -93.24887,
+    address: "150 Top of the Rock Rd, Ridgedale, MO 65739",
+    website: "https://bigcedar.com/top-of-the-rock",
+    reviewsUrl: "https://www.tripadvisor.co.uk/Attraction_Review-g44844-d7331667-Reviews-or20-Lost_Canyon_Cave_and_Nature_Trail-Ridgedale_Missouri.html",
+    description: "A 2.5-mile self-guided electric-cart ride through the Top of the Rock preserve, past nine waterfalls, natural rock formations, and covered Amish bridges \u2014 ending in a four-story cave with cascading waterfalls and a bar inside.",
+    mustSee: "Driving the cart through the four-story Lost Canyon Cave \u2014 waterfalls cascading around you, with the Bat Bar inside.",
+    price: 3,
+    time: "short",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    publicRating: 4.7,
+    status: "want",
+    notes: "There\u2019s a $10 per-vehicle entry fee on top of the ~$42-per-person trail ticket, and hours vary by season \u2014 check the official site before you go."
+  },
+  {
+    id: "gateway-arch",
+    name: "Gateway Arch",
+    categories: ["nature", "historic"],
+    city: "St. Louis",
+    state: "Missouri",
+    lat: 38.62569,
+    lng: -90.18923,
+    address: "11 N 4th St, St. Louis, MO 63102",
+    website: "https://www.gatewayarch.com/",
+    reviewsUrl: "https://www.tripadvisor.co.uk/Attraction_Review-g44881-d104318-Reviews-or3870-The_Gateway_Arch-Saint_Louis_Missouri.html",
+    description: "The 630-foot stainless steel Gateway Arch on the Mississippi riverfront \u2014 the tallest man-made monument in the United States and the centerpiece of the country\u2019s smallest national park, with a free museum underneath telling the story of westward expansion.",
+    mustSee: "The tram ride to the top \u2014 630 feet up, looking out over St. Louis and the Mississippi from the observation windows.",
+    price: 2,
+    time: "half day",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    publicRating: 4.6,
+    status: "want",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Gateway_Arch%2C_St._Louis.jpg/1280px-Gateway_Arch%2C_St._Louis.jpg",
+    photoCredit: "Lewis Hulbert, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Gateway_Arch,_St._Louis.jpg",
+    notes: "The tram sells out, especially in summer \u2014 book a timed ticket ahead; the grounds and museum are free, only the tram costs extra. The tram ride itself is not wheelchair-accessible, though the museum and grounds are."
+  },
+  {
+    id: "fitzs-root-beer",
+    name: "Fitz's Root Beer",
+    categories: ["food"],
+    city: "St. Louis",
+    state: "Missouri",
+    lat: 38.65626,
+    lng: -90.30554,
+    address: "6605 Delmar Blvd, St. Louis, MO 63130",
+    website: "http://www.fitzsrootbeer.com/",
+    reviewsUrl: "https://www.tripadvisor.co.nz/Restaurant_Review-g44881-d441377-Reviews-or60-Fitz_s-Saint_Louis_Missouri.html",
+    description: "A St. Louis institution in the Delmar Loop \u2014 a restaurant and microbrewery bottling its own craft sodas, with a vintage 1940s bottling line running in the dining room.",
+    mustSee: "The root beer float \u2014 house-brewed root beer poured over ice cream in a monster mug.",
+    price: 2,
+    time: "short",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    publicRating: 4.5,
+    status: "want",
+    notes: "Hours vary by source \u2014 the restaurant lists 11am\u20139pm (10pm Fri\u2013Sat), Tripadvisor lists earlier closes, so check before you go. The floats are huge enough to share."
+  },
+  {
+    id: "negro-leagues-baseball-museum",
+    name: "Negro Leagues Baseball Museum",
+    categories: ["other", "culture"],
+    city: "Kansas City",
+    state: "Missouri",
+    lat: 39.09143,
+    lng: -94.56272,
+    address: "1616 E 18th St, Kansas City, MO 64108",
+    website: "https://nlbm.com/",
+    reviewsUrl: "https://www.tripadvisor.co.uk/Attraction_Review-g44535-d104463-Reviews-or340-Negro_Leagues_Baseball_Museum-Kansas_City_Missouri.html",
+    description: "The world\u2019s only museum dedicated to Black baseball \u2014 a chronological walk through the Negro Leagues and their impact on American history, in the historic 18th & Vine Jazz District, sharing a building with the American Jazz Museum.",
+    mustSee: "The Field of Legends \u2014 life-size bronze statues of Negro Leagues greats standing on a mock diamond.",
+    price: 1,
+    time: "short",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    publicRating: 4.7,
+    status: "want",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/6/61/Negro_League_Baseball_Museum_and_American_Jazz_Museum.jpg",
+    photoCredit: "Richard, CC BY 2.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Negro_League_Baseball_Museum_and_American_Jazz_Museum.jpg",
+    notes: "Closed Mondays, except during baseball season when it opens Mondays 10am\u20133pm. Free in February for Black History Month."
+  },
+  {
+    id: "national-museum-toys-miniatures",
+    name: "National Museum of Toys and Miniatures",
+    categories: ["other", "culture"],
+    city: "Kansas City",
+    state: "Missouri",
+    lat: 39.03078,
+    lng: -94.58203,
+    address: "5235 Oak St, Kansas City, MO 64112",
+    website: "http://www.toyandminiaturemuseum.org/",
+    reviewsUrl: "https://www.tripadvisor.co.uk/Attraction_Review-g44535-d104334-Reviews-or280-The_National_Museum_of_Toys_and_Miniatures-Kansas_City_Missouri.html",
+    description: "The world\u2019s largest collection of fine-scale miniatures and one of the nation\u2019s largest antique toy collections, on the UMKC campus \u2014 ground floor miniatures, second floor toys, from the 17th century to the present day.",
+    mustSee: "The nine-foot, four-story dollhouse in the miniatures gallery.",
+    price: 1,
+    time: "short",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    publicRating: 4.8,
+    status: "want",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/4/42/NationalToyMiniatureMuseum.jpg",
+    photoCredit: "Sandover, CC BY-SA 3.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:NationalToyMiniatureMuseum.jpg",
+    notes: "Closed Tuesdays. Free on the second Sunday of every month."
+  },
+  {
+    id: "uranus-missouri",
+    name: "Uranus",
+    categories: ["other", "quirky"],
+    city: "Uranus",
+    state: "Missouri",
+    lat: 37.82874,
+    lng: -92.105483,
+    address: "14400 State Hwy Z, St. Robert, MO 65584",
+    website: "https://www.uranusgeneralstore.com/",
+    reviewsUrl: "https://www.tripadvisor.ca/Attraction_Review-g44886-d9586272-Reviews-or10-Uranus_Fudge_Factory_General_Store-Saint_Robert_Pulaski_County_Missouri.html",
+    description: "A Route 66 roadside \u2018town\u2019 in the Ozarks \u2014 really one glorious attraction complex built around the Uranus Fudge Factory, with a sideshow museum, mini golf, dinosaurs, giant neon signs, and the World\u2019s Largest Belt Buckle, all leaned into with maximum pun energy.",
+    mustSee: "The Fudge Factory\u2019s hand-made fudge, the Sideshow Museum\u2019s sword-swallowing show, and the World\u2019s Largest Belt Buckle.",
+    price: 1,
+    time: "short",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    publicRating: 4.5,
+    status: "want",
+    photo: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/44/Uranus_2.jpg/1280px-Uranus_2.jpg",
+    photoCredit: "Adventuregirlkat, CC BY-SA 4.0",
+    photoSource: "https://commons.wikimedia.org/wiki/File:Uranus_2.jpg",
+    notes: "It\u2019s an unincorporated area marketed as a town, not a real town \u2014 the whole \u2018town center\u2019 is the one complex at 14400 Hwy Z. The Sideshow Museum is $6 for adults, $3 for kids, and the sword swallower performs every half hour."
+  },
+  {
+    id: "stark-caverns",
+    name: "Stark Caverns",
+    categories: ["nature", "historic"],
+    city: "Eldon",
+    state: "Missouri",
+    lat: 38.28376,
+    lng: -92.59149,
+    address: "125 Cave Drive, Eldon, MO 65026",
+    website: "http://starkcaverns.com/",
+    reviewsUrl: "https://www.tripadvisor.ca/Attraction_Review-g44330-d12690541-Reviews-or30-Stark_Caverns-Eldon_Lake_of_the_Ozarks_Missouri.html",
+    description: "A show cave near Lake of the Ozarks \u2014 four levels of stalactites, stalagmites, and fluorescent minerals, with Native American artifacts, ancient bear beds, Moonshiner\u2019s Dam, the Wishing Well, and the cave\u2019s own Grand Canyon.",
+    mustSee: "The Black Light Tour \u2014 fluorescent minerals glowing under black light, an experience no other nearby cave offers.",
+    price: 2,
+    time: "short",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    publicRating: 4.9,
+    status: "want",
+    notes: "Closed Thanksgiving and Christmas Day. The cave is 85% wheelchair accessible, though some reviewers mention steep stairs."
+  },
+  {
+    id: "askinosie-chocolate",
+    name: "Askinosie Chocolate",
+    categories: ["food"],
+    city: "Springfield",
+    state: "Missouri",
+    lat: 37.22971,
+    lng: -93.28654,
+    address: "514 E Commercial St, Springfield, MO 65803",
+    website: "https://askinosie.com/",
+    reviewsUrl: "https://www.tripadvisor.ca/Attraction_Review-g44926-d8547722-Reviews-or10-Askinosie_Chocolate-Springfield_Missouri.html",
+    description: "An award-winning small-batch bean-to-bar chocolate factory in the Historic Commercial Street District \u2014 single-origin beans sourced directly from farmers around the world, made into chocolate on site, with a storefront and a social-impact program, Chocolate University.",
+    mustSee: "The factory tour \u2014 watch single-origin beans become small-batch chocolate, with tastings along the way.",
+    price: 1,
+    time: "short",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    publicRating: 4.6,
+    status: "want",
+    notes: "Public tours run Wednesdays at 3:30pm and select Saturdays \u2014 reserve ahead, they cap at 20 people. Closed Sundays."
+  },
+  {
+    id: "institute-marine-mammal-studies",
+    name: "Institute for Marine Mammal Studies",
+    categories: ["nature"],
+    city: "Gulfport",
+    state: "Mississippi",
+    lat: 30.41997,
+    lng: -89.01681,
+    address: "10801 Dolphin Ln, Gulfport, MS 39503",
+    website: "http://www.imms.org/",
+    reviewsUrl: "https://www.tripadvisor.ca/Attraction_Review-g43802-d3550078-Reviews-The_Institute_for_Marine_Mammal_Studies-Gulfport_Mississippi.html",
+    description: "A non-profit marine mammal rescue and research center \u2014 the Gulf Coast\u2019s premier stranding organization \u2014 with an Ocean Adventures marine park: dolphin and sea lion shows, a walk-through aviary, touch pools, and a museum, with every admission dollar going to conservation.",
+    mustSee: "The dolphin show in the 500-seat arena \u2014 rescued dolphins, with the rescue stories behind them.",
+    price: 1,
+    time: "half",
+    seasons: ["Spring", "Summer", "Fall", "Winter"],
+    rating: null,
+    publicRating: 4.8,
+    status: "want",
+    notes: "Open daily 9am\u20134pm, though the show schedule wraps up earlier on weekdays \u2014 check the day\u2019s program on arrival. Programs run on a reservation basis, so book ahead."
+  }
 
 
 
@@ -9003,6 +9247,10 @@ function starsHTML(rating){
   for (var i = 1; i <= 5; i++) s += '<span class="' + (i <= rating ? "" : "off") + '">★</span>';
   return '<span class="stars">' + s + '</span>';
 }
+function publicRatingHTML(p){
+  if (p.publicRating == null) return '<span style="color:var(--ink-3);font-weight:600;font-size:14px">No public rating yet</span>';
+  return starsHTML(Math.round(p.publicRating)) + ' <b>' + p.publicRating.toFixed(1) + ' / 5</b><small>public review average</small>';
+}
 function directionsUrl(p){
   return "https://www.google.com/maps/dir/?api=1&destination=" + p.lat + "," + p.lng;
 }
@@ -9040,7 +9288,7 @@ function getFiltered(){
     if (sort === "price-asc") return a.price - b.price || a.name.localeCompare(b.name);
     if (sort === "price-desc") return b.price - a.price || a.name.localeCompare(b.name);
     if (sort === "time-asc") return TIME_ORDER[a.time] - TIME_ORDER[b.time] || a.name.localeCompare(b.name);
-    if (sort === "rating-desc") return (b.rating || 0) - (a.rating || 0) || a.name.localeCompare(b.name);
+    if (sort === "rating-desc") return (b.publicRating || 0) - (a.publicRating || 0) || a.name.localeCompare(b.name);
     return a.name.localeCompare(b.name);
   });
   return out;
@@ -9054,7 +9302,7 @@ function tagHTML(p){
   }).join("");
   return tags
     + '<span class="tag">' + esc(PRICE_LABEL[p.price]) + ' · ' + esc(TIME_LABEL[p.time]) + '</span>'
-    + '<span class="tag status-' + p.status + '">' + (p.status === "visited" ? "✓ Visited" : "Want to go") + '</span>';
+    + (p.status === "visited" ? '<span class="tag status-visited">✓ Visited</span>' : '');
 }
 function renderCards(list){
   var box = el("cards");
@@ -9064,7 +9312,7 @@ function renderCards(list){
       + '<p class="desc">' + esc(p.description) + '</p>'
       + (p.mustSee ? '<p class="mustsee">★ Must see: ' + esc(p.mustSee) + '</p>' : '')
       + '<span class="meta">' + tagHTML(p) + '</span>'
-      + '<span class="foot"><span>' + esc(seasonsLabel(p)) + '</span><span>' + (p.rating ? "★ " + p.rating + " / 5 — yours" : "Not rated yet") + '</span></span>'
+      + '<span class="foot"><span>' + esc(seasonsLabel(p)) + '</span><span>' + (p.publicRating != null ? "★ " + p.publicRating.toFixed(1) + " / 5" : "No public rating yet") + '</span></span>'
       + '</button>';
   }).join("");
   el("empty").style.display = list.length ? "none" : "block";
@@ -9091,8 +9339,7 @@ function renderDetail(p){
     + '<div class="fact"><dt>Price</dt><dd>' + esc(PRICE_LABEL[p.price]) + '<small>' + esc(PRICE_HINT[p.price]) + '</small></dd></div>'
     + '<div class="fact"><dt>Visit length</dt><dd>' + esc(TIME_LABEL[p.time]) + '<small>' + esc(TIME_HINT[p.time]) + '</small></dd></div>'
     + '<div class="fact"><dt>Seasons</dt><dd style="font-size:14.5px">' + esc(seasonsLabel(p)) + '</dd></div>'
-    + '<div class="fact"><dt>Status</dt><dd>' + (p.status === "visited" ? "Visited" : "Want to go") + '</dd></div>'
-    + '<div class="fact"><dt>Your rating</dt><dd>' + starsHTML(p.rating) + '</dd></div>'
+    + '<div class="fact"><dt>Public rating</dt><dd>' + publicRatingHTML(p) + '</dd></div>'
     + '<div class="fact"><dt>Location</dt><dd style="font-size:14.5px">' + esc(p.city) + ', ' + esc(p.state) + '<small>' + p.lat.toFixed(5) + ', ' + p.lng.toFixed(5) + '</small></dd></div>'
     + '<div class="fact"><dt>Address</dt><dd style="font-size:14.5px">' + (p.address ? esc(p.address) : "—") + '</dd></div>'
     + '</dl>'
