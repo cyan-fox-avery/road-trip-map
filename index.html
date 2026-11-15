@@ -8777,7 +8777,7 @@ var PLACES = [
     publicRating: 4.9,
     status: "want",
     notes: "Open Thursday\u2013Sunday only, closed Monday\u2013Wednesday; Sunday hours vary by source, so check before you go. The Facebook listing flags the restaurant as temporarily closed, but current listings and recent reviews show it open \u2014 worth confirming before the drive."
-  },,
+  },
   {
     id: "dogwood-canyon-nature-park",
     name: "Dogwood Canyon Nature Park",
@@ -9368,7 +9368,7 @@ function popupHTML(p){
 }
 function initMap(){
   if (typeof L === "undefined"){ el("map").style.display = "none"; el("map-fallback").style.display = "block"; return; }
-  map = L.map("map", { scrollWheelZoom: true }).setView([39.5, -98.35], 4);
+  map = L.map("map", { scrollWheelZoom: false }).setView([39.5, -98.35], 4);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
