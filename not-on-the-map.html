@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>Not on the map — Worth the Detour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f4ee; --surface:#ffffff; --surface-2:#efece3; --ink:#1c2420; --ink-2:#4b5750; --ink-3:#71807a;
+    --line:#ddd8ca; --accent:#1d4d3a; --accent-ink:#ffffff; --accent-soft:#e3ede7;
+    --chip:#eef0ea; --shadow:0 10px 30px rgba(28,36,32,.10); --shadow-sm:0 2px 10px rgba(28,36,32,.08);
+    --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#121613; --surface:#1b201d; --surface-2:#232a26; --ink:#ece9df; --ink-2:#b9c0ba; --ink-3:#8b968f;
+      --line:#333b36; --accent:#7fc7a5; --accent-ink:#0f1f18; --accent-soft:#22352c;
+      --chip:#262d29; --shadow:0 10px 30px rgba(0,0,0,.45); --shadow-sm:0 2px 10px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent)}
+  a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .wrap{max-width:820px;margin:0 auto;padding:20px 16px 56px}
+  @media(min-width:760px){.wrap{padding:28px 24px 64px}}
+
+  .back{margin:0 0 18px;font-size:15px;font-weight:700}
+  .back a{text-decoration:none}
+  .back a:hover{text-decoration:underline}
+  .intro{margin-bottom:6px}
+  .intro h1{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:clamp(30px,5vw,44px);line-height:1.05;margin:0;letter-spacing:.2px}
+  .intro .kicker{margin:0 0 6px;color:var(--ink-2);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+  .lede{font-size:17px;color:var(--ink-2);max-width:72ch;margin:14px 0 28px}
+  section{margin-bottom:30px}
+  section h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:26px;line-height:1.15;margin:0 0 8px}
+  section p{margin:0 0 12px;max-width:72ch;color:var(--ink-2)}
+  section p b{color:var(--ink)}
+  ul.places{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  ul.places li{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-sm);padding:14px 16px}
+  ul.places li b{color:var(--ink)}
+  ul.places li .loc{color:var(--ink-3);font-weight:600;font-size:14px}
+  ul.places li p{margin:4px 0 0;color:var(--ink-2);font-size:15px}
+  details{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px}
+  details summary{font-weight:800;font-size:16px;cursor:pointer;min-height:44px;display:flex;align-items:center}
+  details h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:21px;margin:18px 0 8px}
+  details h3:first-of-type{margin-top:14px}
+  details ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+  details ul li{font-size:15px;color:var(--ink-2)}
+  details ul li b{color:var(--ink)}
+  footer{margin-top:28px;color:var(--ink-3);font-size:13.5px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="back"><a href="index.html">← Back to the map</a></p>
+
+  <header class="intro">
+    <div>
+      <p class="kicker">Avery, Harley &amp; Sarah's road trip</p>
+      <h1>Not on the map</h1>
+    </div>
+  </header>
+
+  <p class="lede">Every pin on Worth the Detour is a place we'd actually send you to. These are the ones we looked at and left off on purpose — and why. If a place isn't listed here, we probably just haven't looked at it yet.</p>
+
+  <section>
+    <h2>Animal welfare comes first</h2>
+    <p>We don't put a place on the map if it fails on animal welfare, no matter how famous it is. Tripadvisor flags these three as not meeting its Animal Welfare Policy, and we agree with the call.</p>
+    <ul class="places">
+      <li><b>Gatorland</b> <span class="loc">Orlando, Florida</span><p>Flagged by Tripadvisor as not meeting its Animal Welfare Policy.</p></li>
+      <li><b>Georgia Aquarium</b> <span class="loc">Atlanta, Georgia</span><p>The same flag — whale sharks, belugas and dolphins kept in captivity.</p></li>
+      <li><b>Shedd Aquarium</b> <span class="loc">Chicago, Illinois</span><p>The same flag — beluga whales and dolphins kept in captivity.</p></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Closed for good</h2>
+    <p>No point sending you somewhere that isn't there any more.</p>
+    <ul class="places">
+      <li><b>Beyond the Lens! Family Fun</b> <span class="loc">Pigeon Forge, Tennessee</span><p>Permanently closed in July 2026.</p></li>
+      <li><b>Old Apple Barn</b> <span class="loc">High Rolls, New Mexico</span><p>Permanently closed and up for sale.</p></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Didn't make the cut</h2>
+    <p>We want lots of pins, but they have to be good ones — up against Dollywood, crazy restaurants, Meow Wolf and huge aquariums. These didn't hold up.</p>
+    <ul class="places">
+      <li><b>Kentucky Science Center</b> <span class="loc">Louisville, Kentucky</span><p>Tripadvisor 3.8, with reviewers calling the exhibits tired and worn.</p></li>
+      <li><b>Museum of the Unknown</b> <span class="loc">St. Pete Beach, Florida</span><p>$39–55 a person for a one-hour tour, with no Tripadvisor reviews at all.</p></li>
+      <li><b>St. Louis Union Station</b> <span class="loc">St. Louis, Missouri</span><p>Tripadvisor 3.2 — reviewers call it an abandoned-mall feel. (The aquarium inside it is a different story.)</p></li>
+      <li><b>Branson Scenic Railway</b> <span class="loc">Branson, Missouri</span><p>Tripadvisor 3.1 — "nothing scenic, just trees and rock walls."</p></li>
+      <li><b>Mississippi Aquarium</b> <span class="loc">Gulfport, Mississippi</span><p>Tripadvisor 3.4 — small, and $35 a person at the gate.</p></li>
+      <li><b>Alien Research Center</b> <span class="loc">Hiko, Nevada</span><p>Just a gift shop in a metal hut, not a research center.</p></li>
+      <li><b>Bison Paddock</b> <span class="loc">San Francisco, California</span><p>Just a small herd in an 11-acre meadow.</p></li>
+      <li><b>Equine Affaire</b> <span class="loc">West Springfield, Massachusetts</span><p>Only open four days a year.</p></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Didn't fit how we travel</h2>
+    <p>All three of us are autistic, and we travel on our own terms — places to sit, no long hikes, not too many stairs. These didn't fit.</p>
+    <ul class="places">
+      <li><b>Trail Creek Cabin</b> <span class="loc">Livingston, Montana</span><p>A 2.2-mile hike in, with no car access.</p></li>
+      <li><b>American Fossil Quarry</b> <span class="loc">Kemmerer, Wyoming</span><p>The digging is physical — hunched over, hammering on uneven rock — with no seating provided.</p></li>
+      <li><b>Earthship Biotecture</b> <span class="loc">Taos, New Mexico</span><p>Didn't meet our accessibility bar.</p></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Cut by us</h2>
+    <p>Sometimes we just say no. No big reason — our call.</p>
+    <ul class="places">
+      <li><b>Paisley Park</b> <span class="loc">Chanhassen, Minnesota</span></li>
+      <li><b>Waffle House Museum</b> <span class="loc">Decatur, Georgia</span></li>
+      <li><b>Crayola Experience</b> <span class="loc">Orlando, Florida</span></li>
+      <li><b>The Sallie House</b> <span class="loc">Atchison, Kansas</span></li>
+      <li><b>Sandhill Crane Migration, Rowe Sanctuary</b> <span class="loc">Gibbon, Nebraska</span><p>The migration didn't last long enough to count.</p></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>The big clear-out</h2>
+    <p>In November 2026 we went back over the whole map and cut 81 places that didn't hold up against the best pins — small shops, look-only viewpoints, and places that were fine but not worth a detour.</p>
+    <details>
+      <summary>See all 81 places</summary>
+      <h3>Clear-out 1 — 13 places</h3>
+      <ul>
+        <li><b>War Eagle Mill</b> — Rogers, Arkansas</li>
+        <li><b>Fargo-Moorhead Visitors Center</b> — Fargo, North Dakota</li>
+        <li><b>Prairie Fire Pottery</b> — Beach, North Dakota</li>
+        <li><b>Fort Cody Trading Post</b> — North Platte, Nebraska</li>
+        <li><b>Paul Broste Rock Museum</b> — Parshall, North Dakota</li>
+        <li><b>Dahl's Chainsaw Art</b> — Keystone, South Dakota</li>
+        <li><b>Shreveport Water Works Museum</b> — Shreveport, Louisiana</li>
+        <li><b>Nifty Nut House</b> — Wichita, Kansas</li>
+        <li><b>Hollywood Candy</b> — Omaha, Nebraska</li>
+        <li><b>Moon Marble Company</b> — Bonner Springs, Kansas</li>
+        <li><b>Old Mill Tasty Shop</b> — Wichita, Kansas</li>
+        <li><b>The Brothel Deadwood</b> — Deadwood, South Dakota</li>
+        <li><b>Mardi Gras Museum of Imperial Calcasieu</b> — Lake Charles, Louisiana</li>
+      </ul>
+      <h3>Clear-out 2 — 44 places</h3>
+      <ul>
+        <li><b>Museum of Make Believe</b> — Laguna Beach, California</li>
+        <li><b>Bravo Farms Gift Shoppe</b> — Traver, California</li>
+        <li><b>Matelot Gulch Mining Company</b> — Columbia, California</li>
+        <li><b>Rogue Creamery Cheese Shop</b> — Central Point, Oregon</li>
+        <li><b>Roaring Rapids Pizza</b> — Eugene, Oregon</li>
+        <li><b>Paxton Gate</b> — Portland, Oregon</li>
+        <li><b>Sharky's</b> — Ocean Shores, Washington</li>
+        <li><b>Petunia &amp; Loomis</b> — Spokane, Washington</li>
+        <li><b>Bright's Candies</b> — Walla Walla, Washington</li>
+        <li><b>The Gingerbread Factory</b> — Leavenworth, Washington</li>
+        <li><b>Junkee Clothing Exchange</b> — Reno, Nevada</li>
+        <li><b>Curious Nature</b> — Phoenix, Arizona</li>
+        <li><b>RePop Gifts</b> — Boise, Idaho</li>
+        <li><b>Indian Creek Plaza</b> — Caldwell, Idaho</li>
+        <li><b>The Sweet Palace</b> — Philipsburg, Montana</li>
+        <li><b>Montana Gems of Philipsburg</b> — Philipsburg, Montana</li>
+        <li><b>St. Regis Travel Center</b> — St. Regis, Montana</li>
+        <li><b>The Wizard's Chest</b> — Denver, Colorado</li>
+        <li><b>Fifty Two 80's — A Totally Awesome Shop</b> — Denver, Colorado</li>
+        <li><b>Sasquatch Outpost</b> — Bailey, Colorado</li>
+        <li><b>Moab</b> — Moab, Utah</li>
+        <li><b>Pirate O's Gourmet Market</b> — Draper, Utah</li>
+        <li><b>Gardner Village</b> — West Jordan, Utah</li>
+        <li><b>Moab Rock Shop</b> — Moab, Utah</li>
+        <li><b>Heber Valley Milk &amp; Artisan Cheese</b> — Midway, Utah</li>
+        <li><b>Spaceport Roswell</b> — Roswell, New Mexico</li>
+        <li><b>Decopolis</b> — Tulsa, Oklahoma</li>
+        <li><b>Buck Atom's Cosmic Curios on 66</b> — Tulsa, Oklahoma</li>
+        <li><b>The American Pigeon Museum &amp; Library</b> — Oklahoma City, Oklahoma</li>
+        <li><b>Bigfoot Crossroads of America Museum</b> — Hastings, Nebraska</li>
+        <li><b>Salem Sue</b> — New Salem, North Dakota</li>
+        <li><b>Lewis &amp; Clark Riverboat</b> — Bismarck, North Dakota</li>
+        <li><b>Fargo Air Museum</b> — Fargo, North Dakota</li>
+        <li><b>Bigfoot: The Curator's Collection</b> — Eureka Springs, Arkansas</li>
+        <li><b>Wegner Crystal Mines</b> — Mount Ida, Arkansas</li>
+        <li><b>Leroy's Place Art &amp; Gifts</b> — New Orleans, Louisiana</li>
+        <li><b>Café Pontalba</b> — New Orleans, Louisiana</li>
+        <li><b>Creole Nature Trail Adventure Point</b> — Sulphur, Louisiana</li>
+        <li><b>Sheffler Rock Shop and Geode Mine</b> — Alexandria, Missouri</li>
+        <li><b>Woodstock Farm Sanctuary</b> — High Falls, New York</li>
+        <li><b>Museum of Bad Art</b> — Boston, Massachusetts</li>
+        <li><b>Save the Chimps</b> — Fort Pierce, Florida</li>
+        <li><b>Retirement Home for Horses</b> — Alachua, Florida</li>
+        <li><b>Full Circle Farm Sanctuary</b> — Warm Springs, Georgia</li>
+      </ul>
+      <h3>Clear-out 3 — nature, 10 places</h3>
+      <ul>
+        <li><b>Northshore Road</b> — Boulder City, Nevada</li>
+        <li><b>Wind River Canyon</b> — Thermopolis, Wyoming</li>
+        <li><b>Hell's Half Acre</b> — Casper, Wyoming</li>
+        <li><b>Flaming Gorge Reservoir</b> — Dutch John, Utah</li>
+        <li><b>Talimena Scenic Byway</b> — Talihina, Oklahoma</li>
+        <li><b>Gypsum Hills Scenic Byway</b> — Medicine Lodge, Kansas</li>
+        <li><b>Painted Canyon</b> — Belfield, North Dakota</li>
+        <li><b>Pembina Gorge</b> — Walhalla, North Dakota</li>
+        <li><b>Maxwell Wildlife Refuge</b> — Canton, Kansas</li>
+        <li><b>White Horse Hill National Game Preserve</b> — St. Michael, North Dakota</li>
+      </ul>
+      <h3>Clear-out 4 — towns and museums, 12 places</h3>
+      <ul>
+        <li><b>Wallace</b> — Wallace, Idaho</li>
+        <li><b>Cody</b> — Cody, Wyoming</li>
+        <li><b>Poulsbo</b> — Poulsbo, Washington</li>
+        <li><b>Jackson</b> — Jackson, Wyoming</li>
+        <li><b>Trail Dust Town</b> — Tucson, Arizona</li>
+        <li><b>Biedenharn Coca-Cola Museum &amp; Gardens</b> — Monroe, Louisiana</li>
+        <li><b>Dakota Territory Air Museum</b> — Minot, North Dakota</li>
+        <li><b>Ghost Town Museum</b> — Colorado Springs, Colorado</li>
+        <li><b>The Momentary</b> — Bentonville, Arkansas</li>
+        <li><b>SPARK Museum of Electrical Invention</b> — Bellingham, Washington</li>
+        <li><b>Museum of World Treasures</b> — Wichita, Kansas</li>
+        <li><b>North Dakota Heritage Center &amp; State Museum</b> — Bismarck, North Dakota</li>
+      </ul>
+      <h3>Clear-out 5 — carriage rides, 2 places</h3>
+      <ul>
+        <li><b>Acadia by Carriage</b> — Mount Desert, Maine</li>
+        <li><b>Biltmore Estate Carriage &amp; Trail Ride Barns</b> — Asheville, North Carolina</li>
+      </ul>
+    </details>
+  </section>
+
+  <footer>Worth the Detour · <a href="index.html">Back to the map</a></footer>
+</div>
+</body>
+</html>
