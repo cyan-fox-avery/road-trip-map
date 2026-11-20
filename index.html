@@ -10,6 +10,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 <style>
   :root{
     --bg:#f6f4ee; --surface:#ffffff; --surface-2:#efece3; --ink:#1c2420; --ink-2:#4b5750; --ink-3:#71807a;
@@ -94,6 +96,10 @@
   .pin-wrap{background:transparent;border:0}
   .pin{width:34px;height:34px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;cursor:pointer}
   .pin span{transform:rotate(45deg);color:#fff;font-size:15px;line-height:1}
+  .cluster-wrap{background:transparent;border:none}
+  .cluster{width:44px;height:44px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center}
+  .cluster span{transform:rotate(45deg);color:#fff;font-weight:800;font-size:15px;line-height:1}
+  .more-btn{display:block;width:100%;margin-top:14px;padding:16px;font:inherit;font-weight:700;font-size:16px;color:var(--accent);background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);cursor:pointer}
   .pin.visited{outline:3px solid #1c2420;outline-offset:1px}
   @media(prefers-color-scheme: dark){.pin.visited{outline-color:#fff}}
 
@@ -266,6 +272,7 @@
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr" crossorigin=""></script>
 <script>
 /* ============================================================
    PLACES — add one object per attraction. Every field from the
@@ -18096,6 +18103,8 @@ var TIME_ORDER  = { quick: 0, short: 1, half: 2, full: 3, multi: 4 };
 var state = { view: "map", category: "", status: "", selectedId: null };
 var markers = {};
 var map = null;
+var clusterGroup = null;
+var useClusters = false;
 
 /* ---------- helpers ---------- */
 function el(id){ return document.getElementById(id); }
@@ -18170,22 +18179,59 @@ function tagHTML(p){
     + '<span class="tag">' + esc(PRICE_LABEL[p.price]) + ' · ' + esc(TIME_LABEL[p.time]) + '</span>'
     + (p.status === "visited" ? '<span class="tag status-visited">✓ Visited</span>' : '');
 }
-function renderCards(list){
-  var box = el("cards");
-  box.innerHTML = list.map(function(p){
-    return '<button type="button" class="card' + (state.selectedId === p.id ? " selected" : "") + '" data-id="' + esc(p.id) + '">'
-      + '<span class="card-top"><span><h3>' + esc(p.name) + '</h3><p class="loc">' + esc(p.city) + ', ' + esc(p.state) + '</p></span></span>'
-      + '<p class="desc">' + esc(p.description) + '</p>'
-      + (p.mustSee ? '<p class="mustsee">★ Must see: ' + esc(p.mustSee) + '</p>' : '')
-      + '<span class="meta">' + tagHTML(p) + '</span>'
-      + '<span class="foot"><span>' + esc(seasonsLabel(p)) + '</span><span>' + (p.publicRating != null ? "★ " + p.publicRating.toFixed(1) + " / 5" : "No public rating yet") + '</span></span>'
-      + '</button>';
-  }).join("");
-  el("empty").style.display = list.length ? "none" : "block";
-  var cards = box.querySelectorAll(".card");
+/* ---------- rendering: list (paginated, 50 at a time) ---------- */
+var PAGE_SIZE = 50;
+var currentList = [];
+var shownCount = 0;
+function cardHTML(p){
+  return '<button type="button" class="card' + (state.selectedId === p.id ? " selected" : "") + '" data-id="' + esc(p.id) + '">'
+    + '<span class="card-top"><span><h3>' + esc(p.name) + '</h3><p class="loc">' + esc(p.city) + ', ' + esc(p.state) + '</p></span></span>'
+    + '<p class="desc">' + esc(p.description) + '</p>'
+    + (p.mustSee ? '<p class="mustsee">★ Must see: ' + esc(p.mustSee) + '</p>' : '')
+    + '<span class="meta">' + tagHTML(p) + '</span>'
+    + '<span class="foot"><span>' + esc(seasonsLabel(p)) + '</span><span>' + (p.publicRating != null ? "★ " + p.publicRating.toFixed(1) + " / 5" : "No public rating yet") + '</span></span>'
+    + '</button>';
+}
+function bindCardClicks(box){
+  var cards = box.querySelectorAll(".card[data-id]:not([data-bound])");
   for (var i = 0; i < cards.length; i++){
+    cards[i].setAttribute("data-bound", "1");
     cards[i].addEventListener("click", function(){ selectPlace(this.getAttribute("data-id"), true); });
   }
+}
+function moreButtonHTML(){
+  if (currentList.length <= shownCount) return "";
+  return '<button type="button" class="more-btn" id="cards-more">Show more (' + (currentList.length - shownCount) + ' remaining)</button>';
+}
+function renderCards(list){
+  currentList = list;
+  shownCount = Math.min(PAGE_SIZE, list.length);
+  var box = el("cards");
+  box.innerHTML = list.slice(0, shownCount).map(cardHTML).join("") + moreButtonHTML();
+  el("empty").style.display = list.length ? "none" : "block";
+  bindCardClicks(box);
+  var more = el("cards-more");
+  if (more) more.addEventListener("click", showMoreCards);
+}
+function showMoreCards(){
+  var box = el("cards");
+  var more = el("cards-more");
+  if (more) more.remove();
+  var next = Math.min(currentList.length, shownCount + PAGE_SIZE);
+  box.insertAdjacentHTML("beforeend", currentList.slice(shownCount, next).map(cardHTML).join(""));
+  shownCount = next;
+  box.insertAdjacentHTML("beforeend", moreButtonHTML());
+  bindCardClicks(box);
+  var m2 = el("cards-more");
+  if (m2) m2.addEventListener("click", showMoreCards);
+}
+/* Highlight one card without rebuilding the whole list. */
+function markSelected(id){
+  var box = el("cards");
+  var prev = box.querySelector(".card.selected");
+  if (prev) prev.classList.remove("selected");
+  var cur = box.querySelector('.card[data-id="' + id + '"]');
+  if (cur) cur.classList.add("selected");
 }
 
 /* ---------- rendering: detail ---------- */
@@ -18232,6 +18278,20 @@ function pinIcon(p){
 function popupHTML(p){
   return '<p class="pop-name">' + esc(p.name) + '</p>';
 }
+function clusterIcon(cluster){
+  var kids = cluster.getAllChildMarkers();
+  var counts = {};
+  kids.forEach(function(mk){ var k = mk.options.cat || "other"; counts[k] = (counts[k] || 0) + 1; });
+  var top = "other", topN = 0;
+  Object.keys(counts).forEach(function(k){ if (counts[k] > topN){ topN = counts[k]; top = k; } });
+  var c = CATEGORIES[top] || CATEGORIES.other;
+  return L.divIcon({
+    html: '<div class="cluster" style="background:' + c.color + '"><span>' + kids.length + '</span></div>',
+    className: "cluster-wrap",
+    iconSize: [44, 44],
+    iconAnchor: [22, 22]
+  });
+}
 function initMap(){
   if (typeof L === "undefined"){ el("map").style.display = "none"; el("map-fallback").style.display = "block"; return; }
   map = L.map("map", { scrollWheelZoom: false }).setView([39.5, -98.35], 4);
@@ -18239,22 +18299,31 @@ function initMap(){
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
   }).addTo(map);
+  useClusters = typeof L.markerClusterGroup === "function";
+  if (useClusters){
+    clusterGroup = L.markerClusterGroup({ disableClusteringAtZoom: 14, iconCreateFunction: clusterIcon });
+  }
   PLACES.forEach(function(p){
-    var m = L.marker([p.lat, p.lng], { icon: pinIcon(p), title: p.name }).addTo(map);
+    var m = L.marker([p.lat, p.lng], { icon: pinIcon(p), title: p.name, cat: (p.categories && p.categories[0]) || "other" });
     m.bindPopup(popupHTML(p));
     m.on("click", function(){ selectPlace(p.id, false); });
     markers[p.id] = m;
+    if (useClusters) clusterGroup.addLayer(m); else m.addTo(map);
   });
+  if (useClusters) map.addLayer(clusterGroup);
 }
+function markerLayer(){ return useClusters ? clusterGroup : map; }
 function syncMarkers(list){
   if (!map) return;
+  var layer = markerLayer();
+  if (!layer) return;
   var visible = {};
   list.forEach(function(p){ visible[p.id] = true; });
   PLACES.forEach(function(p){
     var m = markers[p.id];
     if (!m) return;
-    if (visible[p.id]){ if (!map.hasLayer(m)) m.addTo(map); }
-    else if (map.hasLayer(m)) map.removeLayer(m);
+    if (visible[p.id]){ if (!layer.hasLayer(m)) layer.addLayer(m); }
+    else if (layer.hasLayer(m)) layer.removeLayer(m);
   });
 }
 
@@ -18264,11 +18333,15 @@ function selectPlace(id, switchToMap){
   var p = null;
   for (var i = 0; i < PLACES.length; i++) if (PLACES[i].id === id) p = PLACES[i];
   renderDetail(p);
-  renderCards(getFiltered());
+  markSelected(id);
   if (p && map && markers[id]){
     if (switchToMap) setView("map");
     map.flyTo([p.lat, p.lng], map.getZoom(), { duration: 0.8 });
-    setTimeout(function(){ markers[id].openPopup(); }, 850);
+    setTimeout(function(){
+      var m = markers[id];
+      if (useClusters && clusterGroup && clusterGroup.hasLayer(m)) clusterGroup.zoomToShowLayer(m, function(){ m.openPopup(); });
+      else m.openPopup();
+    }, 850);
     if (switchToMap) el("detail").scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 }
@@ -18336,6 +18409,7 @@ function setView(v){
 })();
 
 /* ---------- events ---------- */
+var searchTimer = null;
 ["f-search","f-category","f-state","f-price","f-time","f-season","f-sort"].forEach(function(id){
   el(id).addEventListener("input", function(){
     if (id === "f-category"){
@@ -18343,9 +18417,17 @@ function setView(v){
       var all = el("legend").querySelectorAll(".legend-item");
       for (var j = 0; j < all.length; j++) all[j].setAttribute("aria-pressed", "false");
     }
+    if (id === "f-search"){
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(refresh, 200);
+    } else {
+      refresh();
+    }
+  });
+  el(id).addEventListener("change", function(){
+    if (id === "f-search") clearTimeout(searchTimer);
     refresh();
   });
-  el(id).addEventListener("change", refresh);
 });
 el("btn-map").addEventListener("click", function(){ setView("map"); });
 el("btn-list").addEventListener("click", function(){ setView("list"); });
