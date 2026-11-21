@@ -19192,7 +19192,7 @@ function initMap(){
   }).addTo(map);
   useClusters = typeof L.markerClusterGroup === "function";
   if (useClusters){
-    clusterGroup = L.markerClusterGroup({ disableClusteringAtZoom: 14, iconCreateFunction: clusterIcon });
+    clusterGroup = L.markerClusterGroup({ disableClusteringAtZoom: 10, iconCreateFunction: clusterIcon });
   }
   PLACES.forEach(function(p){
     var m = L.marker([p.lat, p.lng], { icon: pinIcon(p), title: p.name, cat: (p.categories && p.categories[0]) || "other" });
