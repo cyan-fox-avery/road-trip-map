@@ -195,9 +195,17 @@
         <label for="f-category">Type</label>
         <select id="f-category"><option value="">All types</option></select>
       </div>
+      <div class="field hidden" id="field-country">
+        <label for="f-country">Country</label>
+        <select id="f-country"><option value="">All countries</option></select>
+      </div>
       <div class="field">
         <label for="f-state">State</label>
         <select id="f-state"><option value="">All states</option></select>
+      </div>
+      <div class="field hidden" id="field-province">
+        <label for="f-province">Province</label>
+        <select id="f-province"><option value="">All provinces</option></select>
       </div>
       <div class="field">
         <label for="f-price">Price</label>
@@ -22862,10 +22870,21 @@ function directionsUrl(p){
    picks, the shark emoji shows Sarah's. Nothing in the UI mentions it. */
 var HARLEY_PICKS = ["best-friends-animal-sanctuary", "lakota-wolf-preserve", "wild-spirit-wolf-sanctuary", "international-wolf-center", "grizzly-and-wolf", "turpentine-creek-wildlife-refuge", "keepers-of-the-wild", "lions-tigers-bears-san-diego", "luvin-arms-animal-sanctuary", "the-gentle-barn", "farm-sanctuary-watkins-glen", "peaceful-valley-donkey-rescue", "villalobos-rescue-center", "busch-wildlife-sanctuary", "center-for-birds-of-prey", "alaska-wildlife-conservation-center", "alaska-raptor-center", "reindeer-farm-palmer", "oatman", "return-to-freedom", "chama-gaucha-brazilian-steakhouse", "adega-gaucha-brazilian-steakhouse", "brasao-brazilian-steakhouse", "galpao-gaucho-brazilian-steakhouse", "show-de-carnes-brazilian-steakhouse", "bullvinos-churrascaria", "m-grill-brazilian-churrascaria", "rodizio-grill-brazilian-steakhouse", "fogo-de-chao-naperville", "texas-de-brazil-irvine", "estancia-brazilian-steakhouse-austin", "chama-gaucha-san-antonio", "rustlers-rooste", "big-texan-steak-ranch", "cattlemans-steakhouse", "prairie-schooner", "the-drover", "pitchfork-steak-fondue", "does-eat-place", "the-angus-barn", "olde-jaol-steakhouse-and-tavern", "cattlemens-steak-house-fort-worth", "perini-ranch-steakhouse-buffalo-gap", "star-hotel", "harris-ranch-resort", "salt-lick-bbq", "joes-kc-bbq", "dreamland-bar-b-que", "big-bob-gibson-bar-b-q", "moonlite-bar-b-q-inn", "lancasters-bbq", "skylight-inn-bbq", "franklin-barbecue-austin", "lockhart", "dr-pepper-museum", "fannie-may-chocolate-factory", "krispy-kreme-doughnut-factory", "world-of-coca-cola", "mcloons-lobster-shack", "the-nordic", "pirates-table-seafood-buffet", "the-place", "johnny-longboats", "lulu-lobster-boat-ride", "new-orleans", "cafe-du-monde", "willies-chicken-shack", "hersheypark", "hersheys-chocolate-world", "dollywood", "assateague-island", "chincoteague-national-wildlife-refuge", "wild-horse-adventure-tours", "salt-river-wild-horse-viewing", "pryor-mountain-wild-mustang-center", "kentucky-horse-park", "old-friends", "claiborne-farm", "warm-springs-ranch", "express-clydesdales-ranch"];
 var SARAH_PICKS = ["monterey-bay-aquarium", "aquarium-of-the-pacific", "new-england-aquarium", "national-aquarium-baltimore", "alaska-sealife-center", "maui-ocean-center", "my-kona-adventures-manta-ray-night-snorkel", "pacwhale-eco-adventures-maui-whale-watch", "piedras-blancas-elephant-seals", "save-the-bay-seal-tours", "kenai-fjords-glacier-wildlife-cruise", "glacier-bay-national-park", "sea-turtle-inc", "georgia-sea-turtle-center", "dry-tortugas-national-park", "punaluu-black-sand-beach", "holo-holo-charters-na-pali-coast-snorkel-and-sail", "institute-marine-mammal-studies", "audubon-aquarium", "silverton-aquarium", "odysea-aquarium", "loveland-living-planet", "oklahoma-aquarium", "frost-museum-of-science", "alabama-aquarium", "mcwane-science-center", "sea-life-minnesota-aquarium", "ripleys-aquarium-of-the-smokies", "newport-aquarium", "north-carolina-aquarium-at-fort-fisher", "adventure-aquarium", "biomes-marine-biology-center", "field-museum", "wyoming-dinosaur-center", "dinosaur-ridge", "sam-noble-museum", "dickinson-museum-center", "dinosaur-world-plant-city", "dinosaur-world-cave-city", "prehistoric-gardens", "north-carolina-museum-of-natural-sciences", "american-museum-of-natural-history", "yale-peabody-museum", "mid-america-science-museum", "science-museum-of-minnesota", "dinoland-cafe", "hersheypark", "ethel-m-chocolates", "cerreta-candy-company", "mrs-cavanaughs", "kakawa-chocolate-house", "ghirardelli-square", "askinosie-chocolate", "fannie-may-chocolate-factory", "hersheys-chocolate-world", "village-peddler-and-chocolatorium", "lenny-the-chocolate-moose", "titanic-museum-attraction", "aquarium-restaurant-houston", "moody-gardens", "henry-doorly-zoo", "wonders-of-wildlife", "national-mississippi-river-museum-aquarium", "cook-museum-of-natural-science", "great-lakes-aquarium", "tennessee-aquarium", "south-carolina-aquarium", "cryptozoology-museum", "peculiarium", "museum-of-the-weird", "skunk-ape-research-headquarters", "expedition-bigfoot", "cryptozoology-paranormal-museum", "echo-leahy-center-for-lake-champlain"];
+/* Provinces and territories: a place's country is derived from its state
+   value, since entries carry no country field. The header pill counts
+   provinces only; the country filter counts provinces + territories. */
+var PROVINCES = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia", "Ontario", "Prince Edward Island", "Québec", "Saskatchewan"];
+var CANADIAN_TERRITORIES = ["Yukon", "Northwest Territories", "Nunavut"];
+function countryOf(p){
+  if (PROVINCES.indexOf(p.state) !== -1 || CANADIAN_TERRITORIES.indexOf(p.state) !== -1) return "Canada";
+  return "United States";
+}
 function getFiltered(){
   var q = el("f-search").value.trim().toLowerCase();
   var cat = el("f-category").value;
+  var country = el("f-country").value;
   var st = el("f-state").value;
+  var prov = el("f-province").value;
   var price = el("f-price").value;
   var time = el("f-time").value;
   var season = el("f-season").value;
@@ -22892,7 +22911,9 @@ function getFiltered(){
     }
     if (cat && p.categories.indexOf(cat) === -1) return false;
     if (state.category && p.categories.indexOf(state.category) === -1) return false;
+    if (country && countryOf(p) !== country) return false;
     if (st && p.state !== st) return false;
+    if (prov && p.state !== prov) return false;
     if (price !== "" && p.price !== Number(price)) return false;
     if (time && p.time !== time) return false;
     if (season){
@@ -23121,11 +23142,22 @@ function setView(v){
     o.value = k; o.textContent = CATEGORIES[k].label + (used ? "" : "");
     catSel.appendChild(o);
   });
-  var states = [];
-  PLACES.forEach(function(p){ if (states.indexOf(p.state) === -1) states.push(p.state); });
-  states.sort();
+  var regions = [];
+  PLACES.forEach(function(p){ if (regions.indexOf(p.state) === -1) regions.push(p.state); });
+  regions.sort();
+  var states = regions.filter(function(s){ return PROVINCES.indexOf(s) === -1; });
+  var provinces = regions.filter(function(s){ return PROVINCES.indexOf(s) !== -1; });
+  var countries = [];
+  PLACES.forEach(function(p){ var c = countryOf(p); if (countries.indexOf(c) === -1) countries.push(c); });
+  countries.sort();
+  var cSel = el("f-country");
+  countries.forEach(function(c){ var o = document.createElement("option"); o.value = c; o.textContent = c; cSel.appendChild(o); });
+  el("field-country").classList.toggle("hidden", countries.length <= 1);
   var stSel = el("f-state");
   states.forEach(function(s){ var o = document.createElement("option"); o.value = s; o.textContent = s; stSel.appendChild(o); });
+  var provSel = el("f-province");
+  provinces.forEach(function(s){ var o = document.createElement("option"); o.value = s; o.textContent = s; provSel.appendChild(o); });
+  el("field-province").classList.toggle("hidden", provinces.length === 0);
 
   var legend = el("legend");
   legend.innerHTML = "<h2>Pin colours — tap to filter by type</h2>" + Object.keys(CATEGORIES).map(function(k){
@@ -23148,9 +23180,8 @@ function setView(v){
 
   el("stat-total").textContent = PLACES.length;
   el("stat-total-label").textContent = PLACES.length === 1 ? "place" : "places";
-  var PROVINCES = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia", "Ontario", "Prince Edward Island", "Québec", "Saskatchewan"];
-  var provinceCount = states.filter(function(s){ return PROVINCES.indexOf(s) !== -1; }).length;
-  var stateCount = states.filter(function(s){ return s !== "District of Columbia" && PROVINCES.indexOf(s) === -1; }).length;
+  var provinceCount = provinces.length;
+  var stateCount = states.filter(function(s){ return s !== "District of Columbia"; }).length;
   el("stat-states").textContent = stateCount;
   el("stat-states-label").textContent = stateCount === 1 ? "state" : "states";
   el("stat-provinces").textContent = provinceCount;
@@ -23160,7 +23191,7 @@ function setView(v){
 
 /* ---------- events ---------- */
 var searchTimer = null;
-["f-search","f-category","f-state","f-price","f-time","f-season","f-sort"].forEach(function(id){
+["f-search","f-category","f-country","f-state","f-province","f-price","f-time","f-season","f-sort"].forEach(function(id){
   el(id).addEventListener("input", function(){
     if (id === "f-category"){
       state.category = "";
@@ -23212,7 +23243,7 @@ el("filters").addEventListener("submit", function(e){ e.preventDefault(); });
 /* ---------- filters dropdown ---------- */
 function updateFiltersCount(){
   var n = 0;
-  ["f-category","f-state","f-price","f-time","f-season"].forEach(function(id){ if (el(id).value) n++; });
+  ["f-category","f-country","f-state","f-province","f-price","f-time","f-season"].forEach(function(id){ if (el(id).value) n++; });
   if (state.status) n++;
   var badge = el("filters-count");
   badge.hidden = n === 0;
