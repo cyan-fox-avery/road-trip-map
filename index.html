@@ -171,6 +171,7 @@
     <div class="stats" aria-label="Trip summary">
       <span class="stat"><b id="stat-total">1</b> <span id="stat-total-label">places</span></span>
       <span class="stat"><b id="stat-states">1</b> <span id="stat-states-label">states</span></span>
+      <span class="stat hidden" id="stat-provinces-wrap"><b id="stat-provinces">0</b> <span id="stat-provinces-label">provinces</span></span>
     </div>
   </header>
 
@@ -23147,9 +23148,14 @@ function setView(v){
 
   el("stat-total").textContent = PLACES.length;
   el("stat-total-label").textContent = PLACES.length === 1 ? "place" : "places";
-  var stateCount = states.filter(function(s){ return s !== "District of Columbia"; }).length;
+  var PROVINCES = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia", "Ontario", "Prince Edward Island", "Québec", "Saskatchewan"];
+  var provinceCount = states.filter(function(s){ return PROVINCES.indexOf(s) !== -1; }).length;
+  var stateCount = states.filter(function(s){ return s !== "District of Columbia" && PROVINCES.indexOf(s) === -1; }).length;
   el("stat-states").textContent = stateCount;
   el("stat-states-label").textContent = stateCount === 1 ? "state" : "states";
+  el("stat-provinces").textContent = provinceCount;
+  el("stat-provinces-label").textContent = provinceCount === 1 ? "province" : "provinces";
+  el("stat-provinces-wrap").classList.toggle("hidden", provinceCount === 0);
 })();
 
 /* ---------- events ---------- */
